@@ -1,9 +1,9 @@
 import { Entity, Column } from 'typeorm';
 
 import { BaseEntity } from '@config';
-import { TableNames } from '@books/values';
+import { BooksTableNames } from '@books/values';
 
-@Entity({ name: TableNames.AUTHOR })
+@Entity({ name: BooksTableNames.AUTHOR })
 export class AuthorEntity extends BaseEntity {
   @Column({ nullable: false })
   firstName: string;

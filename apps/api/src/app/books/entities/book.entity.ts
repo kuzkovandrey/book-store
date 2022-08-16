@@ -1,7 +1,7 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 
 import { BaseEntity } from '@config';
-import { TableNames } from '@books/values';
+import { BooksTableNames } from '@books/values';
 import {
   LanguageEntity,
   GenreEntity,
@@ -9,7 +9,7 @@ import {
   AuthorEntity,
 } from '@books/entities';
 
-@Entity({ name: TableNames.BOOK })
+@Entity({ name: BooksTableNames.BOOK })
 export class BookEntity extends BaseEntity {
   @Column({ nullable: false })
   title: string;

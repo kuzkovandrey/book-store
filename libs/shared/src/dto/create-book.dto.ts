@@ -1,5 +1,5 @@
-import { Author } from '../author.model';
-import { Language } from '../language.model';
+import { Author } from '../models/author.model';
+import { Language } from '../models/language.model';
 
 export interface CreateBookDto {
   language: Language;

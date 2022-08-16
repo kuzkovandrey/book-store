@@ -1,1 +1,1 @@
-export { TableNames } from './table-names.enum';
+export { BooksTableNames } from './books-table-names.enum';

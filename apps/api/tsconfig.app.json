@@ -8,11 +8,11 @@
     "target": "es2015",
     "baseUrl": ".",
     "paths": {
-      "@book-store/models": ["../../libs/models/src/lib"],
-      "@book-store/models/*": ["../../libs/models/src/lib/*"],
       "@books/*": ["./src/app/books/*"],
       "@products/*": ["./src/app/products/*"],
-      "@config": ["./src/app/config"]
+      "@config": ["./src/app/config"],
+      "@book-store/shared/*": ["../../libs/shared/src/*"],
+      "@book-store/shared": ["../../libs/shared/src"]
     }
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],

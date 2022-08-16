@@ -7,7 +7,7 @@ import { LanguagesService } from '@books/services/languages.service';
 import { PublishersService } from '@books/services/publishers.service';
 import { GenresService } from '@books/services/genres.service';
 import { BookEntity } from '@books/entities';
-import { CreateBookDto } from '@book-store/models/dto';
+import { CreateBookDto } from '@book-store/shared/dto';
 
 @Injectable()
 export class BooksService {
