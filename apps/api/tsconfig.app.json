@@ -5,7 +5,15 @@
     "module": "commonjs",
     "types": ["node"],
     "emitDecoratorMetadata": true,
-    "target": "es2015"
+    "target": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "@book-store/models": ["../../libs/models/src/lib"],
+      "@book-store/models/*": ["../../libs/models/src/lib/*"],
+      "@books/*": ["./src/app/books/*"],
+      "@products/*": ["./src/app/products/*"],
+      "@config": ["./src/app/config"]
+    }
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
   "include": ["**/*.ts"]

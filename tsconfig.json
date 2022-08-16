@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@book-store/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@book-store/models": ["./libs/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

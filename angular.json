@@ -3,8 +3,8 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "api-interfaces": "libs/api-interfaces",
     "book-store": "apps/book-store",
-    "book-store-e2e": "apps/book-store-e2e"
+    "book-store-e2e": "apps/book-store-e2e",
+    "models": "libs/models"
   }
 }
