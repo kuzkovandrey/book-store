@@ -10,8 +10,11 @@ export class ProductEntity extends BaseEntity {
   @Column({ default: 100 })
   totalCount: number;
 
-  @Column({ default: true })
+  @Column({ default: false })
   onSale: boolean;
+
+  @Column({ default: null })
+  cost: number;
 
   @ManyToOne(() => DiscountEntity)
   discount: DiscountEntity;

@@ -10,4 +10,7 @@ export class DiscountEntity extends BaseEntity {
 
   @Column()
   description: string;
+
+  @Column({ default: 0 })
+  percent: number;
 }

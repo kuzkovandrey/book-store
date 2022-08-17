@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinTable } from 'typeorm';
 
 import { BaseEntity } from '@config';
 import { BooksTableNames } from '@books/values';

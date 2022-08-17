@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeepPartial, Repository } from 'typeorm';
+import { DeepPartial, FindOptionsRelations, Repository } from 'typeorm';
 
 import { AuthorsService } from '@books/services/authors.service';
 import { LanguagesService } from '@books/services/languages.service';
@@ -11,6 +11,13 @@ import { CreateBookDto } from '@book-store/shared/dto';
 
 @Injectable()
 export class BooksService {
+  private readonly findOptionsRelations: FindOptionsRelations<BookEntity> = {
+    language: true,
+    publisher: true,
+    genre: true,
+    author: true,
+  } as const;
+
   constructor(
     @InjectRepository(BookEntity)
     private repository: Repository<BookEntity>,
@@ -21,7 +28,9 @@ export class BooksService {
   ) {}
 
   findAll(): Promise<BookEntity[]> {
-    return this.repository.find();
+    return this.repository.find({
+      relations: this.findOptionsRelations,
+    });
   }
 
   findById(id: number): Promise<BookEntity> {
