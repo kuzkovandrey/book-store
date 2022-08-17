@@ -1,7 +1,7 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
-import { ProductEntity } from '@products/entities';
+import { ProductEntity, DiscountEntity } from '@products/entities';
 import { DiscountsService } from '@products/services/discounts.service';
 import { AddDiscountDto, CreateDiscountDto } from '@book-store/shared/dto';
 
@@ -9,16 +9,20 @@ import { AddDiscountDto, CreateDiscountDto } from '@book-store/shared/dto';
 export class DiscountsController {
   constructor(private discountsService: DiscountsService) {}
 
-  @Post(`${ApiControlles.ADD}/:id`)
-  addDiscountByProductId(
-    @Param('id') productId: number,
-    @Body() { discountId }: AddDiscountDto
+  @Post(ApiControlles.ADD)
+  addDiscountToProductById(
+    @Body() { discountId, productId }: AddDiscountDto
   ): Promise<ProductEntity> {
     return this.discountsService.addDiscountByProductId(productId, discountId);
   }
 
-  @Post(ApiControlles.ROOT)
-  createDiscount(@Body() discount: CreateDiscountDto) {
+  @Post('/')
+  createDiscount(@Body() discount: CreateDiscountDto): Promise<DiscountEntity> {
     return this.discountsService.create(discount);
+  }
+
+  @Delete('/:id')
+  deleteDiscountById(@Param('id') id: number): Promise<DiscountEntity> {
+    return this.discountsService.deleteById(id);
   }
 }

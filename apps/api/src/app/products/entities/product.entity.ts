@@ -16,7 +16,9 @@ export class ProductEntity extends BaseEntity {
   @Column({ default: null })
   cost: number;
 
-  @ManyToOne(() => DiscountEntity)
+  @ManyToOne(() => DiscountEntity, {
+    onDelete: 'SET NULL',
+  })
   discount: DiscountEntity;
 
   @OneToOne(() => BookEntity)

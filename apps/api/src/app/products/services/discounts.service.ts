@@ -22,6 +22,15 @@ export class DiscountsService {
     return this.repository.findOneBy({ id });
   }
 
+  async deleteById(id: number): Promise<DiscountEntity> {
+    const entity = await this.findById(id);
+
+    if (!entity)
+      throw new HttpException('Discount not found', HttpStatus.NOT_FOUND);
+
+    return this.repository.remove(entity);
+  }
+
   create({
     name,
     description,

@@ -1,3 +1,6 @@
+
+//create book
+
 {
   "language": {
     "code": "RU",
@@ -16,4 +19,13 @@
   "pageCount": 10,
   "publicationYear": 1,
   "picture": null
+}
+
+
+// create discount
+
+{
+  "name": "Test Disc",
+  "description": "Test Disc Desc",
+  "percent": 33,
 }

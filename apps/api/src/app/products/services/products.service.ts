@@ -39,10 +39,10 @@ export class ProductsService {
   ) {}
 
   async createBookProduct(book: BookEntity): Promise<ProductEntity> {
-    const product = this.repository.create();
-    product.book = book;
+    // const product = this.repository.create();
+    // product.book = book;
 
-    return product.save();
+    // return product.save();
 
     return await this.repository.save({
       book,
@@ -101,13 +101,6 @@ export class ProductsService {
         yearMax
       ),
     });
-  }
-
-  async toggleProductSalesStateById(id: number, onSale: boolean) {
-    const product = await this.repository.findOneBy({ id });
-    product.onSale = onSale;
-
-    return product.save();
   }
 
   async changeProductValuesById(
