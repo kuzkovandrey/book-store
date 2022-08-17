@@ -21,8 +21,8 @@ export class BooksSubscriber implements EntitySubscriberInterface<BookEntity> {
     return BookEntity;
   }
 
-  beforeInsert(event: InsertEvent<BookEntity>) {
-    console.log(`BEFORE USER INSERTED: `, event.entity);
+  afterInsert(event: InsertEvent<BookEntity>) {
+    console.log(`AFTER USER INSERTED: `, event.entity);
     this.productsService.createBookProduct(event.entity);
   }
 }

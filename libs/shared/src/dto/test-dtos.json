@@ -1,0 +1,19 @@
+{
+  "language": {
+    "code": "RU",
+    "name": "Русский"
+  },
+  "authors": [
+    {
+      "firstName": "Andrey",
+      "lastName": "Ivanov"
+    }
+  ],
+  "genreName": "Test genre",
+  "publisherName": "OOO Test publisher",
+  "title": "Test book title",
+  "description": "description",
+  "pageCount": 10,
+  "publicationYear": 1,
+  "picture": null
+}

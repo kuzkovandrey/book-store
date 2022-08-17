@@ -3,7 +3,7 @@ import { Language } from '../models/language.model';
 
 export interface CreateBookDto {
   language: Language;
-  author: Author;
+  authors: Author[];
   genreName: string;
   publisherName: string;
   title: string;

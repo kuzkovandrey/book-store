@@ -29,7 +29,7 @@ export class ProductsService {
       language: true,
       publisher: true,
       genre: true,
-      author: true,
+      authors: true,
     },
   };
 
@@ -39,6 +39,11 @@ export class ProductsService {
   ) {}
 
   async createBookProduct(book: BookEntity): Promise<ProductEntity> {
+    const product = this.repository.create();
+    product.book = book;
+
+    return product.save();
+
     return await this.repository.save({
       book,
     });

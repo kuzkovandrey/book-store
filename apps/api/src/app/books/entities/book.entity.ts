@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinTable } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinTable, ManyToMany } from 'typeorm';
 
 import { BaseEntity } from '@config';
 import { BooksTableNames } from '@books/values';
@@ -35,6 +35,7 @@ export class BookEntity extends BaseEntity {
   @ManyToOne(() => PublisherEntity)
   publisher: PublisherEntity;
 
-  @ManyToOne(() => AuthorEntity)
-  author: AuthorEntity;
+  @ManyToMany(() => AuthorEntity, (author) => author.books)
+  @JoinTable()
+  authors: AuthorEntity[];
 }

@@ -15,7 +15,7 @@ export class BooksService {
     language: true,
     publisher: true,
     genre: true,
-    author: true,
+    authors: true,
   } as const;
 
   constructor(
@@ -45,10 +45,13 @@ export class BooksService {
       bookDto.language.name
     );
 
-    const author = await this.authorsService.createIfNotExists(
-      bookDto.author.firstName,
-      bookDto.author.lastName
+    const authorsPromises = bookDto.authors.map(
+      async ({ firstName, lastName }) => {
+        return this.authorsService.createIfNotExists(firstName, lastName);
+      }
     );
+
+    const authors = await Promise.all(authorsPromises);
 
     const publisher = await this.publishersService.createIfNotExists(
       bookDto.publisherName
@@ -58,7 +61,7 @@ export class BooksService {
       .create({
         genre,
         language,
-        author,
+        authors: [...authors],
         publisher,
         title: bookDto.title,
         description: bookDto.description,

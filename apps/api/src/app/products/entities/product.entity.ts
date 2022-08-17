@@ -20,6 +20,6 @@ export class ProductEntity extends BaseEntity {
   discount: DiscountEntity;
 
   @OneToOne(() => BookEntity)
-  @JoinColumn({ name: 'bookId' })
+  @JoinColumn()
   book: BookEntity;
 }
