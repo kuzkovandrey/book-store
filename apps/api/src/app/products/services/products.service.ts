@@ -109,9 +109,9 @@ export class ProductsService {
   ): Promise<ProductEntity> {
     const product = await this.repository.findOneBy({ id });
 
-    product.totalCount = totalCount ? totalCount : product.totalCount;
-    product.onSale = onSale ? onSale : product.onSale;
-    product.cost = cost ? cost : product.cost;
+    product.totalCount = totalCount ?? product.totalCount;
+    product.onSale = onSale ?? product.onSale;
+    product.cost = cost ?? product.cost;
 
     return product.save();
   }

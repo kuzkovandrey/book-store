@@ -44,12 +44,10 @@ export class DiscountsService {
     discountId: number
   ): Promise<ProductEntity> {
     const product = await this.productsService.findById(productId);
-    const discount = await this.findById(discountId);
+    const discount = !discountId ? null : await this.findById(discountId);
 
     if (!product)
       throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
-    if (!discount)
-      throw new HttpException('Discount not found', HttpStatus.NOT_FOUND);
 
     product.discount = discount;
 

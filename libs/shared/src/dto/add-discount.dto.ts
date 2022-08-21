@@ -1,4 +1,4 @@
 export interface AddDiscountDto {
-  discountId: number;
+  discountId: number | null;
   productId: number;
 }

@@ -1,0 +1,24 @@
+@import 'mixins';
+
+.books {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include element(title) {
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  @include element(create-book-form) {
+    width: 50%;
+  }
+
+  @include element(author-list) {
+    width: 50%;
+  }
+
+  @include element(add-button) {
+    margin-top: 2rem;
+  }
+}

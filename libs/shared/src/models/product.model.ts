@@ -6,6 +6,6 @@ export interface Product {
   totalCount: number;
   onSale: boolean;
   cost: number;
-  discount: Discount;
+  discount: Model<Discount>;
   book: Model<Book>;
 }

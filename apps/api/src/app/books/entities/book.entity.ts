@@ -14,7 +14,7 @@ export class BookEntity extends BaseEntity {
   @Column({ nullable: false })
   title: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, length: 500 })
   description: string;
 
   @Column({ nullable: false })

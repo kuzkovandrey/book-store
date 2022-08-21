@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
 import { ProductEntity, DiscountEntity } from '@products/entities';
@@ -8,6 +8,11 @@ import { AddDiscountDto, CreateDiscountDto } from '@book-store/shared/dto';
 @Controller(ApiControlles.DISCOUNTS)
 export class DiscountsController {
   constructor(private discountsService: DiscountsService) {}
+
+  @Get('/')
+  getAll(): Promise<DiscountEntity[]> {
+    return this.discountsService.findAll();
+  }
 
   @Post(ApiControlles.ADD)
   addDiscountToProductById(

@@ -5,7 +5,7 @@ import { BaseEntity } from '@config';
 
 @Entity({ name: TableNames.DISCOUNT })
 export class DiscountEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column()
   name: string;
 
   @Column()

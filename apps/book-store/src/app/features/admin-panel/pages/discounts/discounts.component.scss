@@ -1,0 +1,23 @@
+@import 'mixins';
+
+.discounts {
+  @include element(create-form) {
+    padding: 1rem;
+    width: 50%;
+  }
+
+  @include element(list) {
+    padding: 1rem;
+  }
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+
+  @include element(button) {
+    max-width: 10rem;
+  }
+}

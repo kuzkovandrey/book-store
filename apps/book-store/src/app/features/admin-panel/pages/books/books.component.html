@@ -1,0 +1,28 @@
+<section class="books">
+  <h2 class="books__title tui-text_h3">Добавить новую книгу</h2>
+
+  <create-book-form
+    (valueChanges)="onBookFormChanges($event)"
+    class="books__create-book-form"
+  ></create-book-form>
+
+  <h4 class="books__title tui-text_h4">Авторы:</h4>
+
+  <author-list
+    (authorListChanges)="onAuthorListChanges($event)"
+    class="books__author-list"
+  ></author-list>
+
+  <button
+    (click)="createBook()"
+    class="books__add-button"
+    tuiButton
+    type="button"
+    size="m"
+    appearance="primary"
+    [disabled]="!isValidBookForm || !hasAuthors"
+    color="primary"
+  >
+    Добавить книгу
+  </button>
+</section>

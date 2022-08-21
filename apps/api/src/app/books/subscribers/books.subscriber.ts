@@ -17,12 +17,11 @@ export class BooksSubscriber implements EntitySubscriberInterface<BookEntity> {
     dataSource.subscribers.push(this);
   }
 
-  listenTo() {
+  listenTo(): typeof BookEntity {
     return BookEntity;
   }
 
   afterInsert(event: InsertEvent<BookEntity>) {
-    console.log(`AFTER USER INSERTED: `, event.entity);
     this.productsService.createBookProduct(event.entity);
   }
 }

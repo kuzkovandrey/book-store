@@ -1,12 +1,14 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/book-store/src",
-  "prefix": "book-store",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/book-store/src/styles"]
+        },
         "outputPath": "dist/apps/book-store",
         "index": "apps/book-store/src/index.html",
         "main": "apps/book-store/src/main.ts",
@@ -15,9 +17,19 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/book-store/src/favicon.ico",
-          "apps/book-store/src/assets"
+          "apps/book-store/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
         ],
-        "styles": ["apps/book-store/src/styles.scss"],
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "apps/book-store/src/styles.scss",
+          "apps/book-store/src/styles/main.scss"
+        ],
         "scripts": []
       },
       "configurations": {

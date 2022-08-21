@@ -1,5 +1,3 @@
-export interface CreateDiscountDto {
-  name: string;
-  description: string;
-  percent: number;
-}
+import { Discount } from './../models/discount.model';
+
+export interface CreateDiscountDto extends Discount {}

@@ -1,0 +1,8 @@
+<section class="products">
+  <product-list
+    [products]="productList"
+    (editButtonClicked)="openEditModal($event)"
+    (deleteButtonClicked)="deleteProduct($event)"
+    (discountClicked)="openChangeDiscountModal($event)"
+  ></product-list>
+</section>
