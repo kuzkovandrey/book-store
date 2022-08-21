@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.dialog {
+  @include element(button) {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}

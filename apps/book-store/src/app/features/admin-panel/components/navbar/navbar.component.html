@@ -1,0 +1,10 @@
+<nav class="nav">
+  <ng-container *ngFor="let route of routes">
+    <span
+      [routerLink]="route.path"
+      routerLinkActive="nav__link--active"
+      class="tui-text_body-l-2 nav__link"
+      >{{ route.title }}</span
+    >
+  </ng-container>
+</nav>

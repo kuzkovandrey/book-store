@@ -1,0 +1,31 @@
+<form [formGroup]="editProductForm" class="dialog">
+  <tui-input class="dialog__input" formControlName="totalCount">
+    Количество
+    <input tuiTextfield type="number" />
+  </tui-input>
+
+  <tui-combo-box class="dialog__input" formControlName="onSale">
+    Статус
+    <input tuiTextfield />
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="productSaleStates"
+    ></tui-data-list-wrapper>
+  </tui-combo-box>
+
+  <tui-input class="dialog__input" formControlName="cost">
+    Цена (бел. рублей)
+    <input tuiTextfield type="number" />
+  </tui-input>
+
+  <button
+    class="dialog__button"
+    (click)="changeProductValues()"
+    [disabled]="editProductForm.invalid"
+    tuiButton
+    appearance="primary"
+    type="button"
+  >
+    Изменить
+  </button>
+</form>

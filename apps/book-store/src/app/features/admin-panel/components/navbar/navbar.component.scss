@@ -1,0 +1,20 @@
+@import 'mixins';
+
+.nav {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--tui-secondary);
+
+  @include element(link) {
+    margin-right: 0.5rem;
+    color: var(--tui-text-02);
+    opacity: 0.8;
+    cursor: pointer;
+
+    @include modifier(active) {
+      color: var(--tui-text-01);
+      font-weight: 700;
+      opacity: 1;
+    }
+  }
+}

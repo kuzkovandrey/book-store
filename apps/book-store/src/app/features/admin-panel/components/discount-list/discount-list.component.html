@@ -1,0 +1,40 @@
+<table [columns]="columns" tuiTable class="tui-table table">
+  <thead>
+    <tr tuiThGroup>
+      <th [sorter]="null" tuiTh *tuiHead="'Название'">Название</th>
+      <th [sorter]="null" tuiTh *tuiHead="'Описание'">Описание</th>
+      <th [sorter]="null" tuiTh *tuiHead="'Процент скидки'">Процент скидки</th>
+      <th [sorter]="null" tuiTh *tuiHead="'Дата создания'">Дата создания</th>
+      <th [sorter]="null" tuiTh *tuiHead="'Действие'">Действие</th>
+    </tr>
+  </thead>
+  <tbody tuiTbody [data]="discounts">
+    <tr tuiTr *tuiRow="let discount of discounts">
+      <td tuiTd *tuiCell="'Название'">
+        {{ discount.name }}
+      </td>
+
+      <td tuiTd *tuiCell="'Описание'">
+        {{ discount.description }}
+      </td>
+
+      <td tuiTd *tuiCell="'Процент скидки'">
+        {{ discount.percent }}
+      </td>
+
+      <td tuiTd *tuiCell="'Дата создания'">
+        {{ discount?.createdAt | date }}
+      </td>
+
+      <td tuiTd *tuiCell="'Действие'">
+        <button
+          (click)="delete(discount.id)"
+          tuiIconButton
+          icon="tuiIconTrashLarge"
+          size="s"
+          appearance="accent"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

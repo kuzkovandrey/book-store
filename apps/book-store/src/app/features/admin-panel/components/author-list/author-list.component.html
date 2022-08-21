@@ -1,0 +1,48 @@
+<div class="authors">
+  <ul class="list">
+    <li
+      class="tui-text_body-l-2 list__item list__item--danger"
+      *ngIf="!authors.length"
+    >
+      Необходим минимум один автор
+    </li>
+
+    <li
+      class="tui-text_body-l-2 list__item"
+      *ngFor="let author of authors; index as i"
+    >
+      * {{ author.firstName }} {{ author.lastName }}
+      <button
+        (click)="removeAuthor(i)"
+        tuiButton
+        appearance="secondary-destructive"
+        size="xs"
+      >
+        Удалить
+      </button>
+    </li>
+  </ul>
+
+  <form [formGroup]="authorForm" class="authors__form form">
+    <tui-input class="form__input" formControlName="firstName">
+      Имя
+      <input tuiTextfield type="text" />
+    </tui-input>
+
+    <tui-input class="form__input" formControlName="lastName">
+      Фамилия
+      <input tuiTextfield type="text" />
+    </tui-input>
+
+    <button
+      [disabled]="authorForm.invalid"
+      tuiButton
+      appearance="primary"
+      size="m"
+      (click)="addAuthor()"
+      type="button"
+    >
+      Добавить
+    </button>
+  </form>
+</div>

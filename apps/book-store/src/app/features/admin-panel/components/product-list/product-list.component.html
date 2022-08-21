@@ -1,0 +1,57 @@
+<table class="tui-table">
+  <thead>
+    <tr class="tui-table__tr">
+      <th *ngFor="let item of columns" class="tui-table__th">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products" class="tui-table__tr">
+      <td class="tui-table__td">{{ product.id }}</td>
+      <td class="tui-table__td">
+        <img class="image" [src]="product.book.picture" />
+      </td>
+      <td class="tui-table__td">{{ product.createdAt | date }}</td>
+      <td class="tui-table__td">{{ product.book.title }}</td>
+      <td class="tui-table__td">
+        <tui-badge
+          [status]="product.onSale ? 'success' : 'warning'"
+          [value]="
+            product.onSale
+              ? productSaleStates.SALE_ON
+              : productSaleStates.SALE_OFF
+          "
+        ></tui-badge>
+      </td>
+      <td class="tui-table__td">{{ product.totalCount }}</td>
+      <td class="tui-table__td">{{ product.cost }}</td>
+      <td class="tui-table__td">
+        <tui-badge
+          class="cursor-pointer"
+          (click)="changeDiscount(product)"
+          [status]="product.discount ? 'success' : 'neutral'"
+          [value]="
+            product.discount
+              ? product.discount.name + ' ' + product.discount.percent + '%'
+              : 'Без скидки'
+          "
+        ></tui-badge>
+      </td>
+      <td class="tui-table__td">
+        <button
+          (click)="deleteProduct(product)"
+          tuiIconButton
+          icon="tuiIconTrashLarge"
+          size="s"
+          appearance="accent"
+        ></button>
+        <button
+          (click)="editProduct(product)"
+          tuiIconButton
+          icon="tuiIconEditLarge"
+          size="s"
+          appearance="flat"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

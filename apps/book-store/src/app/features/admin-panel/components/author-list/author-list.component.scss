@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.authors {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 0.5rem;
+
+  @include element(input) {
+    width: 100%;
+  }
+}
+
+.list {
+  @include element(item) {
+    margin: 1rem 0;
+
+    @include modifier(danger) {
+      color: var(--tui-error-fill);
+    }
+  }
+}
