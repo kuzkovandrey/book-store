@@ -5,9 +5,9 @@ import { BaseEntity } from '@core/base';
 
 @Entity({ name: TableNames.LANGUAGE })
 export class LanguageEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   code: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   name: string;
 }

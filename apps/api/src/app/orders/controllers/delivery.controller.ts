@@ -12,7 +12,7 @@ import { BaseController } from '@core/base';
 @Controller(ApiControlles.DELIVERY)
 export class DeliveryController extends BaseController {
   constructor(private deliveryService: DeliveryService) {
-    super();
+    super(DeliveryController.name);
   }
 
   @Get('/')

@@ -4,13 +4,20 @@ import { ApiControlles } from '@book-store/shared/values';
 import { CreateBookDto } from '@book-store/shared/dto';
 import { BooksService } from '@books/services/books.service';
 import { BookEntity } from '@books/entities';
+import { BaseController } from '@core/base';
 
 @Controller(ApiControlles.BOOKS)
-export class BooksController {
-  constructor(private booksService: BooksService) {}
+export class BooksController extends BaseController {
+  constructor(private booksService: BooksService) {
+    super(BooksController.name);
+  }
 
   @Post(ApiControlles.CREATE)
-  createBook(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
-    return this.booksService.create(createBookDto);
+  async createBook(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
+    try {
+      return await this.booksService.createBook(createBookDto);
+    } catch (e) {
+      this.throwHttpExeption(e);
+    }
   }
 }

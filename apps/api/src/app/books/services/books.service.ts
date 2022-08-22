@@ -1,3 +1,4 @@
+import { ProductsService } from '@products/services';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, FindOptionsRelations, Repository } from 'typeorm';
@@ -8,9 +9,10 @@ import { PublishersService } from '@books/services/publishers.service';
 import { GenresService } from '@books/services/genres.service';
 import { BookEntity } from '@books/entities';
 import { CreateBookDto } from '@book-store/shared/dto';
+import { BaseService } from '@core/base';
 
 @Injectable()
-export class BooksService {
+export class BooksService extends BaseService<BookEntity> {
   private readonly findOptionsRelations: FindOptionsRelations<BookEntity> = {
     language: true,
     publisher: true,
@@ -20,24 +22,17 @@ export class BooksService {
 
   constructor(
     @InjectRepository(BookEntity)
-    private repository: Repository<BookEntity>,
+    repository: Repository<BookEntity>,
     private genresService: GenresService,
     private authorsService: AuthorsService,
     private languagesService: LanguagesService,
-    private publishersService: PublishersService
-  ) {}
-
-  findAll(): Promise<BookEntity[]> {
-    return this.repository.find({
-      relations: this.findOptionsRelations,
-    });
+    private publishersService: PublishersService,
+    private productsService: ProductsService
+  ) {
+    super(BookEntity.name, repository);
   }
 
-  findById(id: number): Promise<BookEntity> {
-    return this.repository.findOneBy({ id });
-  }
-
-  async create(bookDto: CreateBookDto): Promise<BookEntity> {
+  async createBook(bookDto: CreateBookDto): Promise<BookEntity> {
     const genre = await this.genresService.createIfNotExists(bookDto.genreName);
 
     const language = await this.languagesService.createIfNotExists(
@@ -57,8 +52,8 @@ export class BooksService {
       bookDto.publisherName
     );
 
-    return this.repository
-      .create({
+    return this.executePromiseElseThrowIncorrectDataError(async () => {
+      const entity = await this.create({
         genre,
         language,
         authors: [...authors],
@@ -68,11 +63,13 @@ export class BooksService {
         pageCount: bookDto.pageCount,
         publicationYear: bookDto.publicationYear,
         picture: bookDto.picture,
-      } as DeepPartial<BookEntity>)
-      .save();
+      } as DeepPartial<BookEntity>);
+
+      return await entity.save();
+    });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.repository.delete(id);
+  async remove(id: number): Promise<BookEntity> {
+    return await this.deleteById(id);
   }
 }

@@ -9,7 +9,7 @@ import {
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
-import { getQueryArray } from '@core';
+import { BaseService, getQueryArray } from '@core';
 import { QueriesType } from '@products/types';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 
@@ -22,7 +22,7 @@ interface FindQueryOptions {
 }
 
 @Injectable()
-export class ProductsService {
+export class ProductsService extends BaseService<ProductEntity> {
   private readonly findOptionsRelations: FindOptionsRelations<ProductEntity> = {
     discount: true,
     book: {
@@ -35,28 +35,17 @@ export class ProductsService {
 
   constructor(
     @InjectRepository(ProductEntity)
-    private repository: Repository<ProductEntity>
-  ) {}
-
-  async createBookProduct(book: BookEntity): Promise<ProductEntity> {
-    // const product = this.repository.create();
-    // product.book = book;
-
-    // return product.save();
-
-    return await this.repository.save({
-      book,
-    });
+    repository: Repository<ProductEntity>
+  ) {
+    super(ProductEntity.name, repository);
   }
 
-  findAll(): Promise<ProductEntity[]> {
-    return this.repository.find({
-      relations: this.findOptionsRelations,
+  async createBookProduct(bookEntity: BookEntity) {
+    const entity = await this.create({
+      book: bookEntity,
     });
-  }
 
-  findById(id: number): Promise<ProductEntity> {
-    return this.repository.findOneBy({ id });
+    await entity.save();
   }
 
   private getFindOptionsByQueries(
@@ -81,7 +70,7 @@ export class ProductsService {
     };
   }
 
-  findAllByQueryParams({
+  async findAllByQueryParams({
     genres,
     langs,
     publishers,
@@ -89,9 +78,11 @@ export class ProductsService {
     yearMax,
   }: FindQueryOptions): Promise<ProductEntity[]> {
     if (!genres && !langs && !publishers && !yearMin && !yearMax)
-      return this.findAll();
+      return await this.findAll({
+        relations: this.findOptionsRelations,
+      });
 
-    return this.repository.find({
+    return await this.findAll({
       relations: this.findOptionsRelations,
       where: this.getFindOptionsByQueries(
         genres,
@@ -107,12 +98,14 @@ export class ProductsService {
     id: number,
     { totalCount, onSale, cost }: ChangeProductValuesDto
   ): Promise<ProductEntity> {
-    const product = await this.repository.findOneBy({ id });
+    const product = await this.findById(id);
 
-    product.totalCount = totalCount ?? product.totalCount;
-    product.onSale = onSale ?? product.onSale;
-    product.cost = cost ?? product.cost;
+    return this.executePromiseElseThrowIncorrectDataError(async () => {
+      product.totalCount = totalCount ?? product.totalCount;
+      product.onSale = onSale ?? product.onSale;
+      product.cost = cost ?? product.cost;
 
-    return product.save();
+      return await product.save();
+    });
   }
 }

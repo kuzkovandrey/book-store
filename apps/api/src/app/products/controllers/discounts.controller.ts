@@ -4,10 +4,13 @@ import { ApiControlles } from '@book-store/shared/values';
 import { ProductEntity, DiscountEntity } from '@products/entities';
 import { DiscountsService } from '@products/services/discounts.service';
 import { AddDiscountDto, CreateDiscountDto } from '@book-store/shared/dto';
+import { BaseController } from '@core/base';
 
 @Controller(ApiControlles.DISCOUNTS)
-export class DiscountsController {
-  constructor(private discountsService: DiscountsService) {}
+export class DiscountsController extends BaseController {
+  constructor(private discountsService: DiscountsService) {
+    super(DiscountsController.name);
+  }
 
   @Get('/')
   getAll(): Promise<DiscountEntity[]> {
@@ -15,19 +18,36 @@ export class DiscountsController {
   }
 
   @Post(ApiControlles.ADD)
-  addDiscountToProductById(
+  async addDiscountToProductById(
     @Body() { discountId, productId }: AddDiscountDto
   ): Promise<ProductEntity> {
-    return this.discountsService.addDiscountByProductId(productId, discountId);
+    try {
+      return await this.discountsService.addDiscountByProductId(
+        productId,
+        discountId
+      );
+    } catch (error: unknown) {
+      this.throwHttpExeption(error);
+    }
   }
 
   @Post('/')
-  createDiscount(@Body() discount: CreateDiscountDto): Promise<DiscountEntity> {
-    return this.discountsService.create(discount);
+  async createDiscount(
+    @Body() discount: CreateDiscountDto
+  ): Promise<DiscountEntity> {
+    try {
+      return await this.discountsService.create(discount);
+    } catch (error: unknown) {
+      this.throwHttpExeption(error);
+    }
   }
 
   @Delete('/:id')
-  deleteDiscountById(@Param('id') id: number): Promise<DiscountEntity> {
-    return this.discountsService.deleteById(id);
+  async deleteDiscountById(@Param('id') id: number): Promise<DiscountEntity> {
+    try {
+      return await this.discountsService.deleteById(id);
+    } catch (error: unknown) {
+      this.throwHttpExeption(error);
+    }
   }
 }

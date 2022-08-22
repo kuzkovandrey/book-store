@@ -3,35 +3,22 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { GenreEntity } from '@books/entities';
+import { BaseService } from '@core/base';
 
 @Injectable()
-export class GenresService {
+export class GenresService extends BaseService<GenreEntity> {
   constructor(
     @InjectRepository(GenreEntity)
-    private repository: Repository<GenreEntity>
-  ) {}
-
-  findAll(): Promise<GenreEntity[]> {
-    return this.repository.find();
-  }
-
-  findById(id: number): Promise<GenreEntity> {
-    return this.repository.findOneBy({ id });
-  }
-
-  findByName(name: string): Promise<GenreEntity> {
-    return this.repository.findOneBy({ name });
-  }
-
-  create(name: string): Promise<GenreEntity> {
-    return this.repository.create({ name }).save();
+    repository: Repository<GenreEntity>
+  ) {
+    super(GenreEntity.name, repository);
   }
 
   async createIfNotExists(name: string): Promise<GenreEntity> {
-    const genre = await this.findByName(name);
-
-    if (genre) return genre;
-
-    return this.create(name);
+    try {
+      return await this.findBy({ name });
+    } catch {
+      return await this.create({ name });
+    }
   }
 }

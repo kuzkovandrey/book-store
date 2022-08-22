@@ -21,7 +21,7 @@ import { OrdersModule } from '@orders/orders.module';
       database: process.env.DATABASE_NAME,
       synchronize: true,
       autoLoadEntities: true,
-      //dropSchema: true,
+      // dropSchema: true,
     }),
     ProductsModule,
     BooksModule,

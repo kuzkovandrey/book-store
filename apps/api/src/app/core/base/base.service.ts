@@ -4,6 +4,7 @@ import {
   FindOptionsWhere,
   DeepPartial,
   FindManyOptions,
+  SaveOptions,
 } from 'typeorm';
 import { IncorrectDataError, NotFountError } from '@core/values';
 
@@ -23,7 +24,15 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
         id,
       } as unknown as FindOptionsWhere<ENTITY>);
     } catch {
-      throw new NotFountError(this.entityName);
+      this.throwNotFountError();
+    }
+  }
+
+  async findBy(where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[]) {
+    try {
+      return await this.repo.findOneByOrFail(where);
+    } catch {
+      this.throwNotFountError();
     }
   }
 
@@ -33,6 +42,31 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
     } catch {
       throw new IncorrectDataError(this.entityName);
     }
+  }
+
+  async save<T extends DeepPartial<ENTITY>>(
+    entity: T,
+    options?: SaveOptions
+  ): Promise<T & ENTITY> {
+    try {
+      return await this.repo.save(entity, options);
+    } catch {
+      throw new IncorrectDataError(this.entityName);
+    }
+  }
+
+  async deleteById(id: number): Promise<ENTITY> {
+    try {
+      const entity = await this.findById(id);
+
+      return await this.repo.remove(entity);
+    } catch {
+      this.throwNotFountError();
+    }
+  }
+
+  throwNotFountError(name = this.entityName): never {
+    throw new NotFountError(name);
   }
 
   executeElseThrowIncorrectDataError<T>(execute: () => T): T {

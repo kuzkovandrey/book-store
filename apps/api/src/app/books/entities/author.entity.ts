@@ -6,10 +6,10 @@ import { BookEntity } from './book.entity';
 
 @Entity({ name: TableNames.AUTHOR })
 export class AuthorEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   firstName: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   lastName: string;
 
   @ManyToMany(() => BookEntity, (book) => book.authors)

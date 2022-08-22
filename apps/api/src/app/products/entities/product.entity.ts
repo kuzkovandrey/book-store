@@ -7,13 +7,13 @@ import { BaseEntity } from '@core/base';
 
 @Entity({ name: TableNames.PRODUCT })
 export class ProductEntity extends BaseEntity {
-  @Column({ default: 100 })
+  @Column({ default: 100, type: 'int' })
   totalCount: number;
 
-  @Column({ default: false })
+  @Column({ default: false, type: 'boolean' })
   onSale: boolean;
 
-  @Column({ default: null })
+  @Column({ default: null, type: 'int' })
   cost: number;
 
   @ManyToOne(() => DiscountEntity, {

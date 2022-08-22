@@ -5,6 +5,6 @@ import { BaseEntity } from '@core/base';
 
 @Entity({ name: TableNames.PUBLISHER })
 export class PublisherEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   name: string;
 }

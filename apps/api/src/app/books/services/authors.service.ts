@@ -3,46 +3,25 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { AuthorEntity } from '@books/entities';
+import { BaseService } from '@core/base';
 
 @Injectable()
-export class AuthorsService {
+export class AuthorsService extends BaseService<AuthorEntity> {
   constructor(
     @InjectRepository(AuthorEntity)
-    private repository: Repository<AuthorEntity>
-  ) {}
-
-  findAll(): Promise<AuthorEntity[]> {
-    return this.repository.find();
-  }
-
-  findById(id: number): Promise<AuthorEntity> {
-    return this.repository.findOneBy({ id });
-  }
-
-  findByFirstAndLastName(
-    firstName: string,
-    lastName: string
-  ): Promise<AuthorEntity> {
-    return this.repository.findOneBy({ firstName, lastName });
-  }
-
-  create(firstName: string, lastName: string): Promise<AuthorEntity> {
-    return this.repository
-      .create({
-        firstName,
-        lastName,
-      })
-      .save();
+    repository: Repository<AuthorEntity>
+  ) {
+    super(AuthorEntity.name, repository);
   }
 
   async createIfNotExists(
     firstName: string,
     lastName: string
   ): Promise<AuthorEntity> {
-    const author = await this.findByFirstAndLastName(firstName, lastName);
-
-    if (author) return author;
-
-    return this.create(firstName, lastName);
+    try {
+      return await this.findBy({ firstName, lastName });
+    } catch {
+      return await this.create({ firstName, lastName });
+    }
   }
 }

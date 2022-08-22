@@ -3,35 +3,22 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { LanguageEntity } from '@books/entities';
+import { BaseService } from '@core/base';
 
 @Injectable()
-export class LanguagesService {
+export class LanguagesService extends BaseService<LanguageEntity> {
   constructor(
     @InjectRepository(LanguageEntity)
     private repository: Repository<LanguageEntity>
-  ) {}
-
-  findAll(): Promise<LanguageEntity[]> {
-    return this.repository.find();
-  }
-
-  findById(id: number): Promise<LanguageEntity> {
-    return this.repository.findOneBy({ id });
-  }
-
-  findByCodeAndName(code: string, name: string): Promise<LanguageEntity> {
-    return this.repository.findOneBy({ code, name });
-  }
-
-  create(code: string, name: string): Promise<LanguageEntity> {
-    return this.repository.create({ code, name }).save();
+  ) {
+    super(LanguageEntity.name, repository);
   }
 
   async createIfNotExists(code: string, name: string): Promise<LanguageEntity> {
-    const language = await this.findByCodeAndName(code, name);
-
-    if (language) return language;
-
-    return this.create(code, name);
+    try {
+      return await this.findBy({ code, name });
+    } catch {
+      return await this.create({ code, name });
+    }
   }
 }

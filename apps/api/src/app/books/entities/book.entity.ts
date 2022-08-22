@@ -11,19 +11,19 @@ import {
 
 @Entity({ name: TableNames.BOOK })
 export class BookEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   title: string;
 
-  @Column({ nullable: false, length: 500 })
+  @Column({ nullable: false, length: 500, type: 'varchar' })
   description: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'int' })
   pageCount: number;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'int' })
   publicationYear: number;
 
-  @Column({ default: null })
+  @Column({ default: null, type: 'varchar' })
   picture: string;
 
   @ManyToOne(() => LanguageEntity)

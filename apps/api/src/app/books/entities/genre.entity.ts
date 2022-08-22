@@ -5,6 +5,6 @@ import { BaseEntity } from '@core/base';
 
 @Entity({ name: TableNames.GENRE })
 export class GenreEntity extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ nullable: false, type: 'varchar' })
   name: string;
 }
