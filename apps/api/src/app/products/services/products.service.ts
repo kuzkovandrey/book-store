@@ -100,7 +100,7 @@ export class ProductsService extends BaseService<ProductEntity> {
   ): Promise<ProductEntity> {
     const product = await this.findById(id);
 
-    return this.executePromiseElseThrowIncorrectDataError(async () => {
+    return this.executeElseThrowIncorrectDataError(async () => {
       product.totalCount = totalCount ?? product.totalCount;
       product.onSale = onSale ?? product.onSale;
       product.cost = cost ?? product.cost;

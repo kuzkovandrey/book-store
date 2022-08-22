@@ -21,7 +21,7 @@ export class DeliveryController extends BaseController {
   }
 
   @Post(ApiControlles.CREATE)
-  async createBook(
+  async createDeliveryPoint(
     @Body() delivery: CreateDeliveryPointDto
   ): Promise<DeliveryPointEntity> {
     try {

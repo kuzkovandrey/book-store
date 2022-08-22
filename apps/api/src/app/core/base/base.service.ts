@@ -69,15 +69,7 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
     throw new NotFountError(name);
   }
 
-  executeElseThrowIncorrectDataError<T>(execute: () => T): T {
-    try {
-      return execute();
-    } catch {
-      throw new IncorrectDataError(this.entityName);
-    }
-  }
-
-  async executePromiseElseThrowIncorrectDataError<T>(
+  async executeElseThrowIncorrectDataError<T>(
     execute: () => Promise<T>
   ): Promise<T> {
     try {

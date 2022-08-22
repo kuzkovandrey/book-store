@@ -21,7 +21,7 @@ export class DeliveryService extends BaseService<DeliveryPointEntity> {
   ): Promise<DeliveryPointEntity> {
     const deliveryPoint = await this.findById(id);
 
-    return this.executePromiseElseThrowIncorrectDataError(async () => {
+    return this.executeElseThrowIncorrectDataError(async () => {
       deliveryPoint.isActive = isActive;
       return await deliveryPoint.save();
     });
@@ -33,7 +33,7 @@ export class DeliveryService extends BaseService<DeliveryPointEntity> {
   ): Promise<DeliveryPointEntity> {
     const deliveryPoint = await this.findById(id);
 
-    return this.executePromiseElseThrowIncorrectDataError(async () => {
+    return this.executeElseThrowIncorrectDataError(async () => {
       deliveryPoint.address = address;
       deliveryPoint.isActive = isActive;
       deliveryPoint.schedule = schedule;

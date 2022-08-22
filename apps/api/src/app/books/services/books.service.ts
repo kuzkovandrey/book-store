@@ -52,7 +52,7 @@ export class BooksService extends BaseService<BookEntity> {
       bookDto.publisherName
     );
 
-    return this.executePromiseElseThrowIncorrectDataError(async () => {
+    return this.executeElseThrowIncorrectDataError(async () => {
       const entity = await this.create({
         genre,
         language,
