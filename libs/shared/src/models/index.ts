@@ -1,6 +1,7 @@
-export { Author } from './author.model';
-export { Model } from './base.model';
-export { Language } from './language.model';
-export { Book } from './book.model';
-export { Discount } from './discount.model';
-export { Product } from './product.model';
+export * from './author.model';
+export * from './base.model';
+export * from './language.model';
+export * from './book.model';
+export * from './discount.model';
+export * from './product.model';
+export * from './delivery.model';

@@ -1,5 +1,3 @@
-export interface ChangeProductValuesDto {
-  totalCount: number;
-  onSale: boolean;
-  cost: number;
-}
+import { Product } from '../models';
+
+export type ChangeProductValuesDto = Omit<Product, 'discount' | 'book'>;

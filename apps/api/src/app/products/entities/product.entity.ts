@@ -1,9 +1,9 @@
 import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 
 import { DiscountEntity } from '@products/entities';
-import { TableNames } from '@products/values';
 import { BookEntity } from '@books/entities';
-import { BaseEntity } from '@config';
+import { TableNames } from '@core/values';
+import { BaseEntity } from '@core/base';
 
 @Entity({ name: TableNames.PRODUCT })
 export class ProductEntity extends BaseEntity {

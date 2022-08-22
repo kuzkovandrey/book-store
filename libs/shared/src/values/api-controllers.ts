@@ -12,4 +12,7 @@ export enum ApiControlles {
   TOGGLE_SALES_STATE = '/toggle_sales_state',
   DISCOUNTS = '/discounts',
   ADD = '/add',
+
+  DELIVERY = '/delivery',
+  TOGGLE_STATE = 'toggle_state',
 }

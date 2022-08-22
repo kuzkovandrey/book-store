@@ -1,17 +1,19 @@
-import { Author } from './author.model';
+import { AuthorModel } from './author.model';
 import { Model } from './base.model';
-import { Genre } from './genre.model';
-import { Language } from './language.model';
-import { Publisher } from './publisher.model';
+import { GenreModel } from './genre.model';
+import { LanguageModel } from './language.model';
+import { PublisherModel } from './publisher.model';
 
-export interface Book {
+export type Book = {
   title: string;
   description: string;
   pageCount: number;
   publicationYear: number;
-  language: Model<Language>;
+  language: LanguageModel;
   picture: string;
-  genre: Model<Genre>;
-  publisher: Model<Publisher>;
-  authors: Model<Author>[];
-}
+  genre: GenreModel;
+  publisher: PublisherModel;
+  authors: AuthorModel[];
+};
+
+export type BookModel = Model<Book>;

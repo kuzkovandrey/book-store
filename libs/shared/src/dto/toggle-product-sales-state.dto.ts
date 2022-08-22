@@ -1,3 +1,3 @@
-export interface ToggleProductSalesStateDto {
+export type ToggleProductSalesStateDto = {
   onSale: boolean;
-}
+};

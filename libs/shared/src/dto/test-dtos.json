@@ -29,3 +29,9 @@
   "description": "Test Disc Desc",
   "percent": 33,
 }
+
+{
+  "address": "Adress1",
+  "isActive": false,
+  "schedule": "10 - 20"
+}

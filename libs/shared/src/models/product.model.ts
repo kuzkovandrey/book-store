@@ -1,11 +1,13 @@
 import { Model } from './base.model';
-import { Book } from './book.model';
-import { Discount } from './discount.model';
+import { BookModel } from './book.model';
+import { DiscountModel } from './discount.model';
 
-export interface Product {
+export type Product = {
   totalCount: number;
   onSale: boolean;
   cost: number;
-  discount: Model<Discount>;
-  book: Model<Book>;
-}
+  discount: DiscountModel;
+  book: BookModel;
+};
+
+export type ProductModel = Model<Product>;

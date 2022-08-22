@@ -1,9 +1,9 @@
 import { Entity, Column } from 'typeorm';
 
-import { BooksTableNames } from '@books/values';
-import { BaseEntity } from '@config';
+import { TableNames } from '@core/values';
+import { BaseEntity } from '@core/base';
 
-@Entity({ name: BooksTableNames.PUBLISHER })
+@Entity({ name: TableNames.PUBLISHER })
 export class PublisherEntity extends BaseEntity {
   @Column({ nullable: false })
   name: string;

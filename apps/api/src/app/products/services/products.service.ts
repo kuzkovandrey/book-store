@@ -9,7 +9,7 @@ import {
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
-import { getQueryArray } from '@config';
+import { getQueryArray } from '@core';
 import { QueriesType } from '@products/types';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 

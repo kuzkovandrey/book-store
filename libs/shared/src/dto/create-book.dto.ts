@@ -1,7 +1,7 @@
 import { Author } from '../models/author.model';
 import { Language } from '../models/language.model';
 
-export interface CreateBookDto {
+export type CreateBookDto = {
   language: Language;
   authors: Author[];
   genreName: string;
@@ -11,4 +11,4 @@ export interface CreateBookDto {
   pageCount: number;
   publicationYear: number;
   picture: string;
-}
+};
