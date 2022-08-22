@@ -1,32 +1,16 @@
-<table [columns]="columns" tuiTable class="tui-table table">
+<table class="tui-table">
   <thead>
-    <tr tuiThGroup>
-      <th [sorter]="null" tuiTh *tuiHead="'Название'">Название</th>
-      <th [sorter]="null" tuiTh *tuiHead="'Описание'">Описание</th>
-      <th [sorter]="null" tuiTh *tuiHead="'Процент скидки'">Процент скидки</th>
-      <th [sorter]="null" tuiTh *tuiHead="'Дата создания'">Дата создания</th>
-      <th [sorter]="null" tuiTh *tuiHead="'Действие'">Действие</th>
+    <tr class="tui-table__tr">
+      <th class="tui-table__th" *ngFor="let item of columns">{{ item }}</th>
     </tr>
   </thead>
-  <tbody tuiTbody [data]="discounts">
-    <tr tuiTr *tuiRow="let discount of discounts">
-      <td tuiTd *tuiCell="'Название'">
-        {{ discount.name }}
-      </td>
-
-      <td tuiTd *tuiCell="'Описание'">
-        {{ discount.description }}
-      </td>
-
-      <td tuiTd *tuiCell="'Процент скидки'">
-        {{ discount.percent }}
-      </td>
-
-      <td tuiTd *tuiCell="'Дата создания'">
-        {{ discount?.createdAt | date }}
-      </td>
-
-      <td tuiTd *tuiCell="'Действие'">
+  <tbody>
+    <tr *ngFor="let discount of discounts" class="tui-table__tr">
+      <td class="tui-table__td">{{ discount.name }}</td>
+      <td class="tui-table__td">{{ discount.description }}</td>
+      <td class="tui-table__td">{{ discount.percent }}</td>
+      <td class="tui-table__td">{{ discount?.createdAt | date }}</td>
+      <td class="tui-table__td">
         <button
           (click)="delete(discount.id)"
           tuiIconButton

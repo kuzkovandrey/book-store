@@ -15,7 +15,6 @@ import {
   TuiDataListWrapperModule,
   TuiActionModule,
 } from '@taiga-ui/kit';
-import { TuiTableModule } from '@taiga-ui/addon-table';
 
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { AdminPanelComponent } from './admin-panel.component';
@@ -49,7 +48,6 @@ import { ChangeDiscountModalComponent } from './components/change-discount-modal
     TuiComboBoxModule,
     TuiDataListWrapperModule,
     TuiDataListModule,
-    TuiTableModule,
     TuiSvgModule,
     TuiActionModule,
   ],
