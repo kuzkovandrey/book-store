@@ -5,3 +5,5 @@ export { NavbarComponent } from './navbar/navbar.component';
 export { DiscountListComponent } from './discount-list/discount-list.component';
 export { ProductListComponent } from './product-list/product-list.component';
 export { ChangeDiscountModalComponent } from './change-discount-modal/change-discount-modal.component';
+export { CreateDeliveryFormComponent } from './create-delivery-form/create-delivery-form.component';
+export { EditDeliveryPointModalComponent } from './edit-delivery-point-modal/edit-delivery-point-modal.component';

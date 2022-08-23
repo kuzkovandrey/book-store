@@ -1,0 +1,38 @@
+<table class="tui-table">
+  <thead>
+    <tr class="tui-table__tr">
+      <th class="tui-table__th" *ngFor="let item of columns">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let delivery of deliveryList" class="tui-table__tr">
+      <td class="tui-table__td">{{ delivery.id }}</td>
+      <td class="tui-table__td">{{ delivery.address }}</td>
+      <td class="tui-table__td">{{ delivery.schedule }}</td>
+      <td class="tui-table__td">
+        <tui-badge
+          [status]="delivery.isActive ? 'success' : 'error'"
+          [value]="delivery.isActive ? 'Открыт' : 'Закрыт'"
+        ></tui-badge>
+      </td>
+      <td class="tui-table__td">{{ delivery.createdAt | date }}</td>
+      <td class="tui-table__td">
+        <button
+          (click)="deleteDelivery(delivery.id)"
+          tuiIconButton
+          icon="tuiIconTrashLarge"
+          size="s"
+          appearance="accent"
+        ></button>
+
+        <button
+          (click)="editDeliveryPoint(delivery)"
+          tuiIconButton
+          icon="tuiIconEditLarge"
+          size="s"
+          appearance="flat"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

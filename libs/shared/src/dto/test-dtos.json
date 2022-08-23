@@ -32,6 +32,6 @@
 
 {
   "address": "Adress1",
-  "isActive": false,
-  "schedule": "10 - 20"
+  "schedule": "10 - 20",
+  "isActive": false
 }

@@ -12,9 +12,9 @@ import { environment } from '@env/environment';
 @Injectable()
 export class ProxyInterceptor implements HttpInterceptor {
   intercept(
-    req: HttpRequest<any>,
+    req: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     const request = req.clone({
       url: environment.baseUrl + req.url,
     });

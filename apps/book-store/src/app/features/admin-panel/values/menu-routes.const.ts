@@ -18,4 +18,8 @@ export const MenuRoutes: Route[] = [
     title: 'Скидки',
     path: AppRoutes.DISCOUNTS,
   },
+  {
+    title: 'Пункты выдачи',
+    path: AppRoutes.DELIVERY,
+  },
 ];

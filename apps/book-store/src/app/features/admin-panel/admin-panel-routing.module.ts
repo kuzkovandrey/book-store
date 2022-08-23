@@ -6,6 +6,7 @@ import { AdminPanelComponent } from './admin-panel.component';
 import { BooksComponent } from './pages/books/books.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { DeliveryComponent } from './pages/delivery/delivery.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: AppRoutes.DISCOUNTS,
         component: DiscountsComponent,
         title: 'Скидки',
+      },
+      {
+        path: AppRoutes.DELIVERY,
+        component: DeliveryComponent,
+        title: 'Пункты выдачи',
       },
     ],
   },

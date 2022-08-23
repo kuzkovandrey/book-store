@@ -1,0 +1,10 @@
+@import 'mixins';
+
+.delivery {
+  padding: 1rem;
+
+  @include element(create-form) {
+    width: 50%;
+    margin-bottom: 2rem;
+  }
+}

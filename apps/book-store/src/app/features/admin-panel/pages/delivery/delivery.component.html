@@ -1,0 +1,13 @@
+<section class="delivery">
+  <div class="delivery__create-form">
+    <create-delivery-form
+      (creationButtonClicked)="createDeliveryPoint($event)"
+    ></create-delivery-form>
+  </div>
+
+  <delivery-point-list
+    [deliveryList]="deliveryPointList"
+    (deleteButtonClicked)="deleteDeliveryPoint($event)"
+    (editButtonClicked)="openEditModal($event)"
+  ></delivery-point-list>
+</section>

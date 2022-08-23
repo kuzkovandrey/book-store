@@ -14,6 +14,8 @@ import {
   TuiComboBoxModule,
   TuiDataListWrapperModule,
   TuiActionModule,
+  TuiToggleModule,
+  TuiInputTimeModule,
 } from '@taiga-ui/kit';
 
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
@@ -33,6 +35,11 @@ import { DiscountsService } from './services/discounts.service';
 import { DiscountListComponent } from './components/discount-list/discount-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ChangeDiscountModalComponent } from './components/change-discount-modal/change-discount-modal.component';
+import { DeliveryComponent } from './pages/delivery/delivery.component';
+import { CreateDeliveryFormComponent } from './components/create-delivery-form/create-delivery-form.component';
+import { DeliveryService } from './services/delivery.service';
+import { DeliveryPointListComponent } from './components/delivery-point-list/delivery-point-list.component';
+import { EditDeliveryPointModalComponent } from './components/edit-delivery-point-modal/edit-delivery-point-modal.component';
 
 @NgModule({
   imports: [
@@ -50,6 +57,8 @@ import { ChangeDiscountModalComponent } from './components/change-discount-modal
     TuiDataListModule,
     TuiSvgModule,
     TuiActionModule,
+    TuiToggleModule,
+    TuiInputTimeModule,
   ],
   declarations: [
     AdminPanelComponent,
@@ -63,7 +72,17 @@ import { ChangeDiscountModalComponent } from './components/change-discount-modal
     DiscountListComponent,
     ProductListComponent,
     ChangeDiscountModalComponent,
+    DeliveryComponent,
+    CreateDeliveryFormComponent,
+    DeliveryPointListComponent,
+    EditDeliveryPointModalComponent,
   ],
-  providers: [BooksService, LoadingService, ProductsService, DiscountsService],
+  providers: [
+    BooksService,
+    LoadingService,
+    ProductsService,
+    DiscountsService,
+    DeliveryService,
+  ],
 })
 export class AdminPanelModule {}

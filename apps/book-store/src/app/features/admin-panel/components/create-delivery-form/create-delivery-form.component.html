@@ -1,0 +1,42 @@
+<form [formGroup]="deliveryForm" class="form">
+  <h6 class="form__title tui-text_h6">Время работы</h6>
+
+  <div class="schedule" formGroupName="schedule">
+    <tui-input-time class="schedule__input" formControlName="from"
+      >С</tui-input-time
+    >
+
+    <tui-input-time class="schedule__input" formControlName="to"
+      >По</tui-input-time
+    >
+
+    <tui-input class="schedule__input" formControlName="days">
+      Дни работы
+      <input tuiTextfield type="text" />
+    </tui-input>
+  </div>
+
+  <tui-input class="form__input" formControlName="address">
+    Адрес
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <div>
+    <span class="form__toggle-lable tui-text_body-m"
+      >Осуществляется доставка в пункт?
+    </span>
+    <tui-toggle formControlName="isActive" size="l"></tui-toggle>
+  </div>
+
+  <button
+    (click)="onClickCreationButton()"
+    [disabled]="deliveryForm.invalid"
+    class="form__button"
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+  >
+    {{ buttonText }}
+  </button>
+</form>

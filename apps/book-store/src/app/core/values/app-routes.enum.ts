@@ -3,4 +3,5 @@ export enum AppRoutes {
   BOOKS = 'books',
   PRODUCTS = 'products',
   DISCOUNTS = 'discounts',
+  DELIVERY = 'delivery',
 }

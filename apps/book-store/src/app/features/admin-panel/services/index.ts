@@ -1,4 +1,5 @@
-export { BooksService } from './books.service';
-export { LoadingService } from './loading.service';
-export { ProductsService } from './products.service';
-export { DiscountsService } from './discounts.service';
+export * from './books.service';
+export * from './loading.service';
+export * from './products.service';
+export * from './discounts.service';
+export * from './delivery.service';

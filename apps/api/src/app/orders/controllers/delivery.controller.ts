@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
 import {
@@ -20,7 +28,7 @@ export class DeliveryController extends BaseController {
     return this.deliveryService.findAll();
   }
 
-  @Post(ApiControlles.CREATE)
+  @Post('/')
   async createDeliveryPoint(
     @Body() delivery: CreateDeliveryPointDto
   ): Promise<DeliveryPointEntity> {
@@ -50,6 +58,15 @@ export class DeliveryController extends BaseController {
   ) {
     try {
       return await this.deliveryService.toggleState(id, isActive);
+    } catch (error: unknown) {
+      this.throwHttpExeption(error);
+    }
+  }
+
+  @Delete('/:id')
+  async deleteDeliveryPoint(@Param('id') id: number) {
+    try {
+      return await this.deliveryService.deleteById(id);
     } catch (error: unknown) {
       this.throwHttpExeption(error);
     }

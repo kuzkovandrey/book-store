@@ -3,4 +3,5 @@ export enum ErrorMessages {
   CREATE_DESCOUNT = 'Ошибка при создании скидочной программы',
   CHANGE_DISCOUNT = 'Ошибка при изменении скидочной программы',
   CHANGE_PRODUCT_VALUES = 'Ошибка при изменении значений продукта',
+  CREATE_DELIVERY = 'Ошибка при создании пункта выдачи',
 }
