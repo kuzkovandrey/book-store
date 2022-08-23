@@ -18,16 +18,6 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
     return this.repo.find(options);
   }
 
-  async findById(id: number): Promise<ENTITY> {
-    try {
-      return await this.repo.findOneByOrFail({
-        id,
-      } as unknown as FindOptionsWhere<ENTITY>);
-    } catch {
-      this.throwNotFountError();
-    }
-  }
-
   async findBy(where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[]) {
     try {
       return await this.repo.findOneByOrFail(where);
@@ -57,7 +47,9 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
 
   async deleteById(id: number): Promise<ENTITY> {
     try {
-      const entity = await this.findById(id);
+      const entity = await this.repo.findOneByOrFail({
+        id,
+      } as unknown as FindOptionsWhere<ENTITY>);
 
       return await this.repo.remove(entity);
     } catch {

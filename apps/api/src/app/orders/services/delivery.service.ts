@@ -19,7 +19,7 @@ export class DeliveryService extends BaseService<DeliveryPointEntity> {
     id: number,
     isActive: boolean
   ): Promise<DeliveryPointEntity> {
-    const deliveryPoint = await this.findById(id);
+    const deliveryPoint = await this.findBy({ id });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       deliveryPoint.isActive = isActive;
@@ -31,7 +31,7 @@ export class DeliveryService extends BaseService<DeliveryPointEntity> {
     id: number,
     { address, isActive, schedule }: CreateDeliveryPointDto
   ): Promise<DeliveryPointEntity> {
-    const deliveryPoint = await this.findById(id);
+    const deliveryPoint = await this.findBy({ id });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       deliveryPoint.address = address;

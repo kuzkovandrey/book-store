@@ -21,8 +21,8 @@ export class DiscountsService extends BaseService<DiscountEntity> {
     productId: number,
     discountId: number
   ): Promise<ProductEntity> {
-    const product = await this.productsService.findById(productId);
-    const discount = !discountId ? null : await this.findById(discountId);
+    const product = await this.productsService.findBy({ id: productId });
+    const discount = !discountId ? null : await this.findBy({ id: discountId });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       product.discount = discount;
