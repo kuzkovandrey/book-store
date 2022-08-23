@@ -1,7 +1,7 @@
 @import 'mixins';
 
 .discounts {
-  @include element(create-form) {
+  @include element(form) {
     padding: 1rem;
     width: 50%;
   }
@@ -11,7 +11,7 @@
   }
 }
 
-.create-form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -19,5 +19,16 @@
 
   @include element(button) {
     max-width: 10rem;
+  }
+
+  @include element(input) {
+    width: 100%;
+  }
+
+  @include element(row) {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 }

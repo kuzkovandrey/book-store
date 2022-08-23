@@ -17,27 +17,29 @@
     <input tuiTextfield type="text" />
   </tui-input>
 
-  <tui-input class="form__input" formControlName="genreName">
-    Жанр
-    <input tuiTextfield type="text" />
-  </tui-input>
-
   <tui-input class="form__input" formControlName="publisherName">
     Издатель
     <input tuiTextfield type="text" />
   </tui-input>
 
-  <tui-input class="form__input" formControlName="pageCount">
-    Кол-во страниц
-    <input tuiTextfield type="number" />
-  </tui-input>
+  <div class="form__row">
+    <tui-input class="form__input" formControlName="genreName">
+      Жанр
+      <input tuiTextfield type="text" />
+    </tui-input>
 
-  <tui-input class="form__input" formControlName="publicationYear">
-    Год издания
-    <input tuiTextfield type="number" />
-  </tui-input>
+    <tui-input class="form__input" formControlName="pageCount">
+      Кол-во страниц
+      <input tuiTextfield type="number" />
+    </tui-input>
 
-  <div formGroupName="language">
+    <tui-input class="form__input" formControlName="publicationYear">
+      Год издания
+      <input tuiTextfield type="number" />
+    </tui-input>
+  </div>
+
+  <div class="form__row" formGroupName="language">
     <tui-input class="form__input" formControlName="name">
       Язык
       <input tuiTextfield type="text" />
