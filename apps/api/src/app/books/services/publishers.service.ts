@@ -16,7 +16,7 @@ export class PublishersService extends BaseService<PublisherEntity> {
 
   async createIfNotExists(name: string): Promise<PublisherEntity> {
     try {
-      return await this.findBy({ name });
+      return await this.findOneBy({ name });
     } catch {
       return await this.create({ name });
     }

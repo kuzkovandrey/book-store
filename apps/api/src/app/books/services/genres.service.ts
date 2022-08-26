@@ -16,7 +16,7 @@ export class GenresService extends BaseService<GenreEntity> {
 
   async createIfNotExists(name: string): Promise<GenreEntity> {
     try {
-      return await this.findBy({ name });
+      return await this.findOneBy({ name });
     } catch {
       return await this.create({ name });
     }

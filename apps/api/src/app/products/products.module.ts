@@ -16,6 +16,6 @@ import { DiscountsService } from './services/discounts.service';
   ],
   providers: [ProductsService, DiscountsService, CategoriesService],
   controllers: [ProductsController, DiscountsController, CategoriesController],
-  exports: [ProductsService],
+  exports: [ProductsService, CategoriesService],
 })
 export class ProductsModule {}

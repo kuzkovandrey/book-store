@@ -1,0 +1,20 @@
+@import 'mixins';
+
+.section {
+  @include element(title) {
+    display: inline-block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    min-height: 2rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include element(product-list) {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}

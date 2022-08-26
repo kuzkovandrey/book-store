@@ -1,0 +1,11 @@
+<div class="section">
+  <h4 class="section__title tui-text_h4">
+    {{ title }}
+  </h4>
+
+  <div class="section__product-list">
+    <ng-container *ngFor="let product of productList">
+      <product-card [product]="product"></product-card>
+    </ng-container>
+  </div>
+</div>

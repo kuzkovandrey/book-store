@@ -99,7 +99,7 @@ export class ProductsService extends BaseService<ProductEntity> {
     id: number,
     { totalCount, onSale, cost }: ChangeProductValuesDto
   ): Promise<ProductEntity> {
-    const product = await this.findBy({ id });
+    const product = await this.findOneBy({ id });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       product.totalCount = totalCount ?? product.totalCount;

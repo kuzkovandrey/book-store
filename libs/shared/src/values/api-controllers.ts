@@ -1,6 +1,7 @@
 export enum ApiControlles {
   ROOT = '/',
   BOOKS = '/books',
+  MAIN = '/main',
 
   AUTHORS = '/authors',
   GENRES = '/genres',

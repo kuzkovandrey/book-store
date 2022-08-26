@@ -7,3 +7,4 @@ export * from './product.model';
 export * from './delivery.model';
 export * from './genre.model';
 export * from './category.model';
+export * from './main-page-section.model';

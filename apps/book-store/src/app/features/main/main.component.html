@@ -3,9 +3,17 @@
 
   <div class="main__toolbar" author-toolbar></div>
 
-  <div class="main__product-list">
-    <ng-container *ngFor="let product of productList">
-      <product-card [product]="product"></product-card>
+  <ng-container *ngFor="let section of sections">
+    <div
+      class="main__category-section"
+      category-section
+      [section]="section"
+    ></div>
+  </ng-container>
+
+  <ng-container *ngIf="!sections.length">
+    <ng-container *ngFor="let section of skeletonSections">
+      <div class="main__category-section" category-section-skeleton></div>
     </ng-container>
-  </div>
+  </ng-container>
 </section>

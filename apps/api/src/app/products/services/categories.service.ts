@@ -21,8 +21,10 @@ export class CategoriesService extends BaseService<CategoryEntity> {
     categoryId: number,
     productId: number
   ): Promise<ProductEntity> {
-    const product = await this.productsService.findBy({ id: productId });
-    const category = !categoryId ? null : await this.findBy({ id: categoryId });
+    const product = await this.productsService.findOneBy({ id: productId });
+    const category = !categoryId
+      ? null
+      : await this.findOneBy({ id: categoryId });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       product.category = category;
@@ -35,7 +37,7 @@ export class CategoriesService extends BaseService<CategoryEntity> {
     id: number,
     { name }: CreateCategoryDto
   ): Promise<CategoryEntity> {
-    const category = await this.findBy({ id });
+    const category = await this.findOneBy({ id });
 
     return this.executeElseThrowIncorrectDataError(async () => {
       category.name = name;

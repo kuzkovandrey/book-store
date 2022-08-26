@@ -18,7 +18,9 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
     return this.repo.find(options);
   }
 
-  async findBy(where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[]) {
+  async findOneBy(
+    where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[]
+  ) {
     try {
       return await this.repo.findOneByOrFail(where);
     } catch {

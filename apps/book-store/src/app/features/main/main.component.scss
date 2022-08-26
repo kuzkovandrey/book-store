@@ -15,4 +15,9 @@
     flex-wrap: wrap;
     gap: 1rem 1rem;
   }
+
+  @include element(category-section) {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
 }

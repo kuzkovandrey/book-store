@@ -7,6 +7,9 @@ import { TuiTagModule } from '@taiga-ui/kit';
 import { AuthorToolbarComponent } from './components/author-toolbar/author-toolbar.component';
 import { ToolbarModule } from '@shared/ui';
 import { ProductCardComponent } from '@shared/ui';
+import { MainService } from './services/main.service';
+import { CategorySectionComponent } from './components/category-section/category-section.component';
+import { CategorySectionSkeletonComponent } from './components/category-section-skeleton/category-section-skeleton.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,13 @@ const routes: Routes = [
     ProductCardComponent,
   ],
   exports: [RouterModule],
-  declarations: [MainComponent, GenreToolbarComponent, AuthorToolbarComponent],
+  declarations: [
+    MainComponent,
+    GenreToolbarComponent,
+    AuthorToolbarComponent,
+    CategorySectionComponent,
+    CategorySectionSkeletonComponent,
+  ],
+  providers: [MainService],
 })
 export class MainModule {}

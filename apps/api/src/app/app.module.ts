@@ -6,6 +6,7 @@ import databaseConfig from './core/database.config';
 import { BooksModule } from './books/books.module';
 import { ProductsModule } from '@products/products.module';
 import { OrdersModule } from '@orders/orders.module';
+import { MainModule } from './main/main.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { OrdersModule } from '@orders/orders.module';
     ProductsModule,
     BooksModule,
     OrdersModule,
+    MainModule,
   ],
 })
 export class AppModule {}

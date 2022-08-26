@@ -19,7 +19,7 @@ export class AuthorsService extends BaseService<AuthorEntity> {
     lastName: string
   ): Promise<AuthorEntity> {
     try {
-      return await this.findBy({ firstName, lastName });
+      return await this.findOneBy({ firstName, lastName });
     } catch {
       return await this.create({ firstName, lastName });
     }

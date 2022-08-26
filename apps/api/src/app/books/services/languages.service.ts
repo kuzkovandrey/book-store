@@ -9,14 +9,14 @@ import { BaseService } from '@core/base';
 export class LanguagesService extends BaseService<LanguageEntity> {
   constructor(
     @InjectRepository(LanguageEntity)
-    private repository: Repository<LanguageEntity>
+    repository: Repository<LanguageEntity>
   ) {
     super(LanguageEntity.name, repository);
   }
 
   async createIfNotExists(code: string, name: string): Promise<LanguageEntity> {
     try {
-      return await this.findBy({ code, name });
+      return await this.findOneBy({ code, name });
     } catch {
       return await this.create({ code, name });
     }

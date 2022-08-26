@@ -5,6 +5,7 @@ import { BookApi } from './api/books.api';
 import { CategoriesApi } from './api/categories.api';
 import { DeliveryApi } from './api/delivery.api';
 import { DiscountsApi } from './api/discounts.api';
+import { MainApi } from './api/main.api';
 import { ProductsApi } from './api/products.api';
 import { ProxyInterceptor } from './interceptors/proxy.interceptor';
 import {
@@ -20,6 +21,7 @@ import {
 @NgModule({
   imports: [HttpClientModule],
   providers: [
+    MainApi,
     BookApi,
     ProductsApi,
     DiscountsApi,
