@@ -3,33 +3,30 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
   CreateDiscountDto,
-  Model,
-  Discount,
+  DiscountModel,
   ApiControlles,
   AddDiscountDto,
-  Product,
+  ProductModel,
 } from '@book-store/shared';
 
 @Injectable()
 export class DiscountsApi {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Model<Discount>[]> {
-    return this.http.get<Model<Discount>[]>(ApiControlles.DISCOUNTS);
+  getAll(): Observable<DiscountModel[]> {
+    return this.http.get<DiscountModel[]>(ApiControlles.DISCOUNTS);
   }
 
-  createDiscount(discount: CreateDiscountDto): Observable<Model<Discount>> {
-    return this.http.post<Model<Discount>>(ApiControlles.DISCOUNTS, discount);
+  createDiscount(discount: CreateDiscountDto): Observable<DiscountModel> {
+    return this.http.post<DiscountModel>(ApiControlles.DISCOUNTS, discount);
   }
 
-  deleteDiscount(id: number): Observable<Model<Discount>> {
-    return this.http.delete<Model<Discount>>(
-      `${ApiControlles.DISCOUNTS}/${id}`
-    );
+  deleteDiscount(id: number): Observable<DiscountModel> {
+    return this.http.delete<DiscountModel>(`${ApiControlles.DISCOUNTS}/${id}`);
   }
 
-  addDiscountToProduct(dto: AddDiscountDto): Observable<Model<Product>> {
-    return this.http.post<Model<Product>>(
+  addDiscountToProduct(dto: AddDiscountDto): Observable<ProductModel> {
+    return this.http.post<ProductModel>(
       `${ApiControlles.DISCOUNTS}/${ApiControlles.ADD}`,
       dto
     );

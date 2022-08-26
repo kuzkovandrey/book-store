@@ -15,4 +15,6 @@ export enum ApiControlles {
 
   DELIVERY = '/delivery',
   TOGGLE_STATE = 'toggle_state',
+
+  CATEGORIES = '/categories',
 }

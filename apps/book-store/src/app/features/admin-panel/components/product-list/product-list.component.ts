@@ -6,7 +6,7 @@ import {
   Output,
   ChangeDetectorRef,
 } from '@angular/core';
-import { Model, Product } from '@book-store/shared/models';
+import { Model, Product, ProductModel } from '@book-store/shared/models';
 import { ProductSaleStates } from '@features/admin-panel/values';
 
 @Component({
@@ -16,13 +16,15 @@ import { ProductSaleStates } from '@features/admin-panel/values';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
-  @Input() products: Model<Product>[];
+  @Input() products: ProductModel[];
 
-  @Output() editButtonClicked = new EventEmitter<Model<Product>>();
+  @Output() editButtonClicked = new EventEmitter<ProductModel>();
 
-  @Output() deleteButtonClicked = new EventEmitter<Model<Product>>();
+  @Output() deleteButtonClicked = new EventEmitter<ProductModel>();
 
-  @Output() discountClicked = new EventEmitter<Model<Product>>();
+  @Output() discountClicked = new EventEmitter<ProductModel>();
+
+  @Output() changeCategoryClicked = new EventEmitter<ProductModel>();
 
   productSaleStates = ProductSaleStates;
 
@@ -35,16 +37,17 @@ export class ProductListComponent {
     'Количество',
     'Цена',
     'Программа скидок',
+    'Категория',
     'Действия',
   ] as const;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
-  deleteProduct(product: Model<Product>) {
+  deleteProduct(product: ProductModel) {
     this.deleteButtonClicked.emit(product);
   }
 
-  editProduct(product: Model<Product>) {
+  editProduct(product: ProductModel) {
     this.editButtonClicked.emit(product);
   }
 
@@ -52,7 +55,11 @@ export class ProductListComponent {
     this.changeDetectorRef.markForCheck();
   }
 
-  changeDiscount(product: Model<Product>) {
+  changeDiscount(product: ProductModel) {
     this.discountClicked.emit(product);
+  }
+
+  changeCategory(product: ProductModel) {
+    this.changeCategoryClicked.emit(product);
   }
 }

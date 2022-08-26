@@ -1,0 +1,18 @@
+<form class="form">
+  <tui-input class="schedule__input" [formControl]="categoryNameControl">
+    Название категории
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <button
+    (click)="onCreationButtonClick()"
+    [disabled]="categoryNameControl.invalid"
+    class="form__button"
+    tuiButton
+    size="m"
+    appearance="primary"
+    type="button"
+  >
+    {{ buttonText }}
+  </button>
+</form>

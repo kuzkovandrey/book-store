@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.genres {
+  width: 100%;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  @include element(toolbar) {
+    width: 100%;
+  }
+}

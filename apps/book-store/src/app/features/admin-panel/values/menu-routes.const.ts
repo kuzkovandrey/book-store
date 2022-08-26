@@ -22,4 +22,8 @@ export const MenuRoutes: Route[] = [
     title: 'Пункты выдачи',
     path: AppRoutes.DELIVERY,
   },
+  {
+    title: 'Категории',
+    path: AppRoutes.CATEGORIES,
+  },
 ];

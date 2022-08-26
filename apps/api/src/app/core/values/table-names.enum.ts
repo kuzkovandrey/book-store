@@ -7,4 +7,5 @@ export enum TableNames {
   BOOK = 'BOOK',
   PRODUCT = 'PRODUCT',
   DISCOUNT = 'DISCOUNT',
+  CATEGORY = 'CATEGORY',
 }

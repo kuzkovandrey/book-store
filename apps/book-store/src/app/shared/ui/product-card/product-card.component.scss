@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.wrapper {
+  cursor: pointer;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  @include element(title) {
+    width: 100%;
+    font-weight: 600;
+  }
+
+  @include element(label) {
+    align-self: flex-end;
+  }
+
+  @include element(image) {
+    width: 12rem;
+    height: 16rem;
+    background: #ccc;
+  }
+}

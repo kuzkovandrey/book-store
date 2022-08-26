@@ -1,6 +1,6 @@
-import { LoadingService } from '@features/admin-panel/services/loading.service';
+import { LoadingService } from '@core/services/loading.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DiscountsService } from '@features/admin-panel/services/discounts.service';
+import { DiscountsService } from '@core/services/discounts.service';
 import { Subject, Subscription, switchMap, tap } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Model, Discount, CreateDiscountDto } from '@book-store/shared';

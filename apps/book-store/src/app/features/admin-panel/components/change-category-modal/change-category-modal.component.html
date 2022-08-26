@@ -1,0 +1,21 @@
+<form class="form">
+  <tui-combo-box class="dialog__input" [formControl]="categoryControl">
+    Программа скидок
+    <input tuiTextfield />
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="categoryNames"
+    ></tui-data-list-wrapper>
+  </tui-combo-box>
+
+  <button
+    (click)="changeCategory()"
+    [disabled]="categoryControl.invalid"
+    class="dialog__button"
+    tuiButton
+    appearance="primary"
+    type="button"
+  >
+    Изменить
+  </button>
+</form>

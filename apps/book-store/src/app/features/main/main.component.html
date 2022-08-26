@@ -1,0 +1,11 @@
+<section class="main">
+  <div class="main__toolbar" genre-toolbar></div>
+
+  <div class="main__toolbar" author-toolbar></div>
+
+  <div class="main__product-list">
+    <ng-container *ngFor="let product of productList">
+      <product-card [product]="product"></product-card>
+    </ng-container>
+  </div>
+</section>

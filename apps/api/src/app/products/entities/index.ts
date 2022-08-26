@@ -1,2 +1,3 @@
-export { DiscountEntity } from './discount.enity';
-export { ProductEntity } from './product.entity';
+export * from './discount.enity';
+export * from './product.entity';
+export * from './category.entity';

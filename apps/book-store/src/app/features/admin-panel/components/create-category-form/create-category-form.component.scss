@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include element(button) {
+    max-width: 8rem;
+  }
+}

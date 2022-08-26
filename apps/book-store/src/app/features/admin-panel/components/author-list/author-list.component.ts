@@ -32,6 +32,11 @@ export class AuthorListComponent implements OnInit {
     });
   }
 
+  private resetForm() {
+    this.authorForm.reset();
+    this.authorForm.markAsUntouched();
+  }
+
   addAuthor() {
     this.authors.push(
       new Author(
@@ -42,8 +47,7 @@ export class AuthorListComponent implements OnInit {
 
     this.authorListChanges.emit(this.authors);
 
-    this.authorForm.reset();
-    this.authorForm.markAsUntouched();
+    this.resetForm();
   }
 
   removeAuthor(id: number) {

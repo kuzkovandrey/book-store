@@ -1,10 +1,10 @@
-import { LoadingService } from '../../services/loading.service';
+import { LoadingService } from '../../../../core/services/loading.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateBookDto } from '@book-store/shared/dto';
 import { Author } from '@book-store/shared/models';
 import { CreateBookForm } from '@features/admin-panel/components/create-book-form/create-book-form.component';
-import { BooksService } from '@features/admin-panel/services/books.service';
+import { BooksService } from '@core/services/books.service';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { AppRoutes } from '@core/values';
 

@@ -22,24 +22,24 @@ import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { AdminPanelComponent } from './admin-panel.component';
 import { BooksComponent } from './pages/books/books.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { BooksService } from './services/books.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CreateBookFormComponent } from './components/create-book-form/create-book-form.component';
 import { AuthorListComponent } from './components/author-list/author-list.component';
-import { LoadingService } from './services/loading.service';
-import { ProductsService } from './services/products.service';
 import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
-import { DiscountsService } from './services/discounts.service';
 import { DiscountListComponent } from './components/discount-list/discount-list.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ChangeDiscountModalComponent } from './components/change-discount-modal/change-discount-modal.component';
 import { DeliveryComponent } from './pages/delivery/delivery.component';
 import { CreateDeliveryFormComponent } from './components/create-delivery-form/create-delivery-form.component';
-import { DeliveryService } from './services/delivery.service';
 import { DeliveryPointListComponent } from './components/delivery-point-list/delivery-point-list.component';
 import { EditDeliveryPointModalComponent } from './components/edit-delivery-point-modal/edit-delivery-point-modal.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CreateCategoryFormComponent } from './components/create-category-form/create-category-form.component';
+import { EditCategoryModalComponent } from './components/edit-category-modal/edit-category-modal.component';
+import { ChangeCategoryModalComponent } from './components/change-category-modal/change-category-modal.component';
 
 @NgModule({
   imports: [
@@ -76,13 +76,12 @@ import { EditDeliveryPointModalComponent } from './components/edit-delivery-poin
     CreateDeliveryFormComponent,
     DeliveryPointListComponent,
     EditDeliveryPointModalComponent,
+    CategoriesComponent,
+    CategoryListComponent,
+    CreateCategoryFormComponent,
+    EditCategoryModalComponent,
+    ChangeCategoryModalComponent,
   ],
-  providers: [
-    BooksService,
-    LoadingService,
-    ProductsService,
-    DiscountsService,
-    DeliveryService,
-  ],
+  providers: [],
 })
 export class AdminPanelModule {}

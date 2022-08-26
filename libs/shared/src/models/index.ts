@@ -5,3 +5,5 @@ export * from './book.model';
 export * from './discount.model';
 export * from './product.model';
 export * from './delivery.model';
+export * from './genre.model';
+export * from './category.model';

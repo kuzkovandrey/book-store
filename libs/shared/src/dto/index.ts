@@ -5,3 +5,6 @@ export * from './add-discount.dto';
 export * from './change-product-values.dto';
 export * from './create-delivery-point.dto';
 export * from './toggle-delivery-point-state.dto';
+export * from './add-category-to-product.dto';
+export * from './create-category.dto';
+export * from './change-category.dto';

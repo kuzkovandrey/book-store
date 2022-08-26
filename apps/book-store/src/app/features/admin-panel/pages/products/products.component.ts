@@ -1,18 +1,27 @@
-import { AlertService } from '@core/services/alert.service';
-import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { LoadingService } from '@features/admin-panel/services/loading.service';
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Model, Product, Discount, AddDiscountDto } from '@book-store/shared';
 import {
-  ProductsService,
-  DiscountsService,
-} from '@features/admin-panel/services';
+  AlertService,
+  CategoriesService,
+  LoadingService,
+} from '@core/services';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Model,
+  Product,
+  AddDiscountDto,
+  ProductModel,
+  DiscountModel,
+  CategoryModel,
+  ChangeCategoryDto,
+} from '@book-store/shared';
+import { ProductsService, DiscountsService } from '@core/services';
 import { Subject, Subscription, switchMap, tap } from 'rxjs';
 import { TuiDialogService } from '@taiga-ui/core';
 import {
   EditProductModalComponent,
   ProductListComponent,
   ChangeDiscountModalComponent,
+  ChangeCategoryModalComponent,
 } from '@features/admin-panel/components';
 import { ProductChanges } from '@features/admin-panel/types';
 import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
@@ -26,22 +35,29 @@ import { ErrorMessages } from '@features/admin-panel/values';
 export class ProductsComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();
 
-  private readonly changeProductValues = new Subject<ProductChanges>();
+  private readonly changeProductValues$ = new Subject<ProductChanges>();
 
-  private readonly changeProductDiscount = new Subject<AddDiscountDto>();
+  private readonly changeProductDiscount$ = new Subject<AddDiscountDto>();
+
+  private readonly changeProductCategory$ = new Subject<ChangeCategoryDto>();
+
+  private readonly getAllProducts$ = new Subject<void>();
 
   @ViewChild(ProductListComponent, { read: ProductListComponent })
   private productListComponent: ProductListComponent;
 
-  private discountList: Model<Discount>[] = [];
+  private discountList: DiscountModel[] = [];
 
-  productList: Model<Product>[] = [];
+  private categoryList: CategoryModel[] = [];
+
+  productList: ProductModel[] = [];
 
   constructor(
     private alertService: AlertService,
     private productsService: ProductsService,
     private loadingService: LoadingService,
     private discountsService: DiscountsService,
+    private categoriesService: CategoriesService,
     @Inject(TuiDialogService)
     private dialogService: TuiDialogService
   ) {}
@@ -57,9 +73,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.productsService
-        .getAll()
-        .pipe(tap(() => this.loadingService.setLoading(false)))
+      this.getAllProducts$
+        .pipe(
+          tap(() => this.loadingService.setLoading(true)),
+          switchMap(() => this.productsService.getAll()),
+          tap(() => this.loadingService.setLoading(false))
+        )
         .subscribe({
           next: this.setProductList,
           error: this.showError.bind(CommomErrorMessages.UPLOAD_ERROR),
@@ -67,7 +86,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.changeProductValues
+      this.categoriesService.getAll().subscribe({
+        next: this.setCategoryList,
+        error: this.showError.bind(CommomErrorMessages.UPLOAD_ERROR),
+      })
+    );
+
+    this.subscriptions.add(
+      this.changeProductValues$
         .pipe(
           tap(() => this.loadingService.setLoading(true)),
           switchMap(({ id, totalCount, onSale, cost }) =>
@@ -86,7 +112,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.changeProductDiscount
+      this.changeProductDiscount$
         .pipe(
           tap(() => this.loadingService.setLoading(true)),
           switchMap((addDiscount) =>
@@ -99,6 +125,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
           error: this.showError.bind(ErrorMessages.CHANGE_DISCOUNT),
         })
     );
+
+    this.subscriptions.add(
+      this.changeProductCategory$
+        .pipe(
+          tap(() => this.loadingService.setLoading(true)),
+          switchMap((dto) => this.categoriesService.addCategoryToProduct(dto)),
+          tap(() => this.loadingService.setLoading(false))
+        )
+        .subscribe({
+          next: this.getAllProducts,
+          error: this.showError.bind(ErrorMessages.CHANGE_CATEGORY),
+        })
+    );
+
+    this.getAllProducts();
   }
 
   ngOnDestroy() {
@@ -109,15 +150,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.alertService.showError(message);
   };
 
-  private setProductList = (productList: Model<Product>[]) => {
+  private setProductList = (productList: ProductModel[]) => {
     this.productList = productList;
   };
 
-  private setDiscountList = (discountList: Model<Discount>[]) => {
+  private setDiscountList = (discountList: DiscountModel[]) => {
     this.discountList = discountList;
   };
 
-  private handleChangeProductValues = (product: Model<Product>) => {
+  private setCategoryList = (categoryList: CategoryModel[]) => {
+    this.categoryList = categoryList;
+  };
+
+  private getAllProducts = () => {
+    this.getAllProducts$.next();
+  };
+
+  private handleChangeProductValues = (product: ProductModel) => {
     this.changeProduct(product);
     this.productListComponent.updateView();
   };
@@ -145,11 +194,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
       )
       .subscribe((changes) => {
-        this.changeProductValues.next(changes);
+        this.changeProductValues$.next(changes);
       });
   }
 
-  openChangeDiscountModal(product: Model<Product>) {
+  openChangeDiscountModal(product: ProductModel) {
     this.dialogService
       .open<AddDiscountDto>(
         new PolymorpheusComponent(ChangeDiscountModalComponent),
@@ -161,7 +210,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
       )
       .subscribe((values) => {
-        this.changeProductDiscount.next(values);
+        this.changeProductDiscount$.next(values);
+      });
+  }
+
+  openChangeCategoryModal(product: ProductModel) {
+    this.dialogService
+      .open<ChangeCategoryDto>(
+        new PolymorpheusComponent(ChangeCategoryModalComponent),
+        {
+          data: {
+            product: product,
+            categoryList: this.categoryList,
+          },
+        }
+      )
+      .subscribe((values) => {
+        console.log(values);
+        this.changeProductCategory$.next(values);
       });
   }
 

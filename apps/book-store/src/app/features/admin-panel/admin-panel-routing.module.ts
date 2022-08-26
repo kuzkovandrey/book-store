@@ -7,6 +7,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { DeliveryComponent } from './pages/delivery/delivery.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
         path: AppRoutes.DELIVERY,
         component: DeliveryComponent,
         title: 'Пункты выдачи',
+      },
+      {
+        path: AppRoutes.CATEGORIES,
+        component: CategoriesComponent,
+        title: 'Категории',
       },
     ],
   },

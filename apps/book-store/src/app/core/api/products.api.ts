@@ -2,22 +2,22 @@ import { ApiControlles } from '@book-store/shared/values';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Model, Product } from '@book-store/shared/models';
+import { ProductModel } from '@book-store/shared/models';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 
 @Injectable()
 export class ProductsApi {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Model<Product>[]> {
-    return this.http.get<Model<Product>[]>(ApiControlles.PRODUCTS);
+  getAll(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(ApiControlles.PRODUCTS);
   }
 
   changeValues(
     id: number,
     changes: ChangeProductValuesDto
-  ): Observable<Model<Product>> {
-    return this.http.patch<Model<Product>>(
+  ): Observable<ProductModel> {
+    return this.http.patch<ProductModel>(
       `${ApiControlles.PRODUCTS}/${id}`,
       changes
     );

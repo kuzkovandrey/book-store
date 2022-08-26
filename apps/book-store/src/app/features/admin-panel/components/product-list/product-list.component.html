@@ -36,6 +36,16 @@
           "
         ></tui-badge>
       </td>
+
+      <td class="tui-table__td">
+        <tui-badge
+          (click)="changeCategory(product)"
+          class="cursor-pointer"
+          [status]="product.category ? 'success' : 'neutral'"
+          [value]="product.category?.name ?? 'Без категории'"
+        ></tui-badge>
+      </td>
+
       <td class="tui-table__td">
         <button
           (click)="deleteProduct(product)"

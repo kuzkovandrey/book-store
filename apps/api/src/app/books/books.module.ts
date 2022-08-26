@@ -18,6 +18,7 @@ import {
 import { BooksController } from './controllers/books.controller';
 import { BooksSubscriber } from './subscribers/books.subscriber';
 import { ProductsModule } from '@products/products.module';
+import { BooksParamsController } from './controllers/book-params.controller';
 
 @Module({
   imports: [
@@ -38,6 +39,6 @@ import { ProductsModule } from '@products/products.module';
     BooksService,
     BooksSubscriber,
   ],
-  controllers: [BooksController],
+  controllers: [BooksController, BooksParamsController],
 })
 export class BooksModule {}

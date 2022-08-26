@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.categories {
+  padding: 1rem;
+
+  @include element(create-button) {
+    margin-bottom: 1rem;
+  }
+
+  @include element(form) {
+    max-width: 50%;
+    margin-bottom: 1rem;
+  }
+}

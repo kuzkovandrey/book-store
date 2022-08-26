@@ -25,6 +25,7 @@ interface FindQueryOptions {
 export class ProductsService extends BaseService<ProductEntity> {
   private readonly findOptionsRelations: FindOptionsRelations<ProductEntity> = {
     discount: true,
+    category: true,
     book: {
       language: true,
       publisher: true,

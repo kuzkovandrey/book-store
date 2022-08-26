@@ -1,0 +1,10 @@
+<div class="toolbar">
+  <tui-tag
+    *ngFor="let item of items"
+    size="l"
+    (click)="onClickItem(item.id)"
+    [value]="item.value"
+    [hoverable]="true"
+    [autoColor]="true"
+  ></tui-tag>
+</div>

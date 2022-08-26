@@ -1,0 +1,18 @@
+<header *ngIf="isShown" class="header">
+  <span class="header__logo tui-text_h3">Book Store</span>
+
+  <tui-input
+    [formControl]="searchInput"
+    icon="tuiIconSearchLarge"
+    iconAlign="right"
+    class="header__search"
+    tuiTextfieldSize="m"
+    [tuiTextfieldLabelOutside]="true"
+  >
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <span class="header__cart">
+    <tui-svg class="header__cart-icon" src="tuiIconCompanyLarge"></tui-svg>
+  </span>
+</header>

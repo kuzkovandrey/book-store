@@ -1,0 +1,30 @@
+<table class="tui-table">
+  <thead>
+    <tr class="tui-table__tr">
+      <th class="tui-table__th" *ngFor="let item of columns">{{ item }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categoryList" class="tui-table__tr">
+      <td class="tui-table__td">{{ category.name }}</td>
+      <td class="tui-table__td">{{ category.createdAt | date }}</td>
+      <td class="tui-table__td">
+        <button
+          (click)="onClickDelete(category.id)"
+          tuiIconButton
+          icon="tuiIconTrashLarge"
+          size="s"
+          appearance="accent"
+        ></button>
+
+        <button
+          (click)="onClickEdit(category)"
+          tuiIconButton
+          icon="tuiIconEditLarge"
+          size="s"
+          appearance="flat"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

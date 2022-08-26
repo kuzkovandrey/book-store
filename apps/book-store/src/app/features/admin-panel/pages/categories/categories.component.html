@@ -1,0 +1,21 @@
+<section class="categories">
+  <!-- <button
+    class="categories__create-button"
+    tuiIconButton
+    icon="tuiIconPlusLarge"
+    size="s"
+    appearance="primary"
+  ></button> -->
+
+  <div
+    class="categories__form"
+    create-category-form
+    (createCategory)="createCategory($event)"
+  ></div>
+
+  <category-list
+    [categoryList]="categoryList"
+    (deleteCategory)="deleteCategory($event)"
+    (changeCategory)="openEditModal($event)"
+  ></category-list>
+</section>

@@ -2,9 +2,8 @@ import { DiscountsApi } from '@core/api/discounts.api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
-  Model,
-  Discount,
-  Product,
+  DiscountModel,
+  ProductModel,
   CreateDiscountDto,
   AddDiscountDto,
 } from '@book-store/shared';
@@ -13,19 +12,19 @@ import {
 export class DiscountsService {
   constructor(private discountsApi: DiscountsApi) {}
 
-  getAll(): Observable<Model<Discount>[]> {
+  getAll(): Observable<DiscountModel[]> {
     return this.discountsApi.getAll();
   }
 
-  createDiscount(discount: CreateDiscountDto): Observable<Model<Discount>> {
+  createDiscount(discount: CreateDiscountDto): Observable<DiscountModel> {
     return this.discountsApi.createDiscount(discount);
   }
 
-  deleteDiscount(id: number): Observable<Model<Discount>> {
+  deleteDiscount(id: number): Observable<DiscountModel> {
     return this.discountsApi.deleteDiscount(id);
   }
 
-  addDiscountToProduct(dto: AddDiscountDto): Observable<Model<Product>> {
+  addDiscountToProduct(dto: AddDiscountDto): Observable<ProductModel> {
     return this.discountsApi.addDiscountToProduct(dto);
   }
 }

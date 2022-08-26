@@ -1,11 +1,10 @@
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { AlertService } from '@core/services/alert.service';
-import { LoadingService } from '@features/admin-panel/services';
 import { Subject, Subscription, tap, switchMap, map } from 'rxjs';
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DeliveryForm } from '@features/admin-panel/types';
 import { CreateDeliveryFormComponent } from '@features/admin-panel/components';
-import { DeliveryService } from '@features/admin-panel/services';
+import { DeliveryService, LoadingService } from '@core/services';
 import { DeliveryModel } from '@book-store/shared/models';
 import { ErrorMessages } from '@features/admin-panel/values';
 import { CommomErrorMessages } from '@core/values/common-error-messages.enum';

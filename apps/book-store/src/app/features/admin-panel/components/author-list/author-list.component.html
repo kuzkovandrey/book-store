@@ -11,7 +11,7 @@
       class="tui-text_body-l-2 list__item"
       *ngFor="let author of authors; index as i"
     >
-      * {{ author.firstName }} {{ author.lastName }}
+      {{ i + 1 }}. {{ author.firstName }} {{ author.lastName }}
       <button
         (click)="removeAuthor(i)"
         tuiButton

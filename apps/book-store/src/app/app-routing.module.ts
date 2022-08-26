@@ -5,8 +5,17 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: AppRoutes.ADMIN,
+    redirectTo: AppRoutes.MAIN,
     pathMatch: 'full',
+  },
+  {
+    path: AppRoutes.MAIN,
+    loadChildren: () =>
+      import('./features/main/main.module').then((m) => m.MainModule),
+    data: {
+      hasHeader: true,
+      hasFooter: true,
+    },
   },
   {
     path: AppRoutes.ADMIN,
@@ -14,12 +23,15 @@ const routes: Routes = [
       import('./features/admin-panel/admin-panel.module').then(
         (m) => m.AdminPanelModule
       ),
+    data: {
+      hasHeader: false,
+      hasFooter: false,
+    },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [],
 })
 export class AppRoutingModule {}

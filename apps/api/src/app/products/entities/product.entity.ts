@@ -4,6 +4,7 @@ import { DiscountEntity } from '@products/entities';
 import { BookEntity } from '@books/entities';
 import { TableNames } from '@core/values';
 import { BaseEntity } from '@core/base';
+import { CategoryEntity } from './category.entity';
 
 @Entity({ name: TableNames.PRODUCT })
 export class ProductEntity extends BaseEntity {
@@ -20,6 +21,11 @@ export class ProductEntity extends BaseEntity {
     onDelete: 'SET NULL',
   })
   discount: DiscountEntity;
+
+  @ManyToOne(() => CategoryEntity, {
+    onDelete: 'SET NULL',
+  })
+  category: CategoryEntity;
 
   @OneToOne(() => BookEntity)
   @JoinColumn()
