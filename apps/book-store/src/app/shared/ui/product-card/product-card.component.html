@@ -6,12 +6,16 @@
       {{ product.book.title | textOverflow: 22 }}
     </h6>
 
-    <tui-tag
-      class="product__label"
-      size="l"
-      [value]="price"
-      [hoverable]="true"
-      [status]="status"
-    ></tui-tag>
+    <p>
+      {{ author.firstName }}, {{ author.lastName }},
+      {{ product.book.publicationYear }}
+    </p>
+
+    <div class="product__cost">
+      <span>{{ product | productPrice }}</span>
+      <span class="product__discount" *ngIf="hasDiscount"
+        >{{ product.cost }} руб.</span
+      >
+    </div>
   </div>
 </tui-island>

@@ -5,6 +5,7 @@
 
   <ng-container *ngFor="let section of sections">
     <div
+      *ngIf="section.productList.length"
       class="main__category-section"
       category-section
       [section]="section"
@@ -16,4 +17,10 @@
       <div class="main__category-section" category-section-skeleton></div>
     </ng-container>
   </ng-container>
+
+  <div class="main__search">
+    <button tuiButton type="button" size="m" appearance="primary">
+      Найти больше книг
+    </button>
+  </div>
 </section>

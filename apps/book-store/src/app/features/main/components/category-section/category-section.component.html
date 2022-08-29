@@ -5,7 +5,14 @@
 
   <div class="section__product-list">
     <ng-container *ngFor="let product of productList">
-      <product-card [product]="product"></product-card>
+      <product-card
+        [product]="product"
+        (click)="navigateToProductPage(product.id)"
+      ></product-card>
     </ng-container>
+
+    <tui-island class="section__details">
+      <span>Больше книг</span>
+    </tui-island>
   </div>
 </div>

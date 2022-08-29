@@ -1,31 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Product } from '@book-store/shared/models';
+import { AuthorModel, Product, ProductModel } from '@book-store/shared/models';
 import { TextOverflowPipe } from '@shared/pipes';
+import { ProductPricePipe } from '@shared/pipes/product-price.pipe';
 import { TuiIslandModule, TuiTagModule } from '@taiga-ui/kit';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TuiIslandModule, TuiTagModule, TextOverflowPipe],
+  imports: [
+    CommonModule,
+    TuiIslandModule,
+    TuiTagModule,
+    TextOverflowPipe,
+    ProductPricePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'product-card, [product-card]',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent {
-  @Input() product: Product;
-
-  get status() {
-    if (this.hasDiscount && this.product.onSale) return 'error';
-
-    return this.product.onSale ? 'success' : 'warning';
-  }
-
-  get price() {
-    return this.product.onSale
-      ? `${this.calculatePrice()} руб.`
-      : 'Скоро в продаже';
-  }
+  @Input() product: ProductModel;
 
   get hasDiscount(): boolean {
     return !!this.product.discount && !!this.product.discount.percent;
@@ -40,13 +35,9 @@ export class ProductCardComponent {
     };
   }
 
-  private calculatePrice(): number {
-    if (this.product.discount && this.product.discount.percent) {
-      const cost = this.product.cost * (this.product?.discount.percent / 100);
+  get author(): AuthorModel {
+    const [author] = this.product.book.authors;
 
-      return Math.round(cost * 100) / 100;
-    }
-
-    return Math.round(this.product.cost * 100) / 100;
+    return author;
   }
 }

@@ -19,6 +19,6 @@ export class ProxyInterceptor implements HttpInterceptor {
       url: environment.baseUrl + req.url,
     });
 
-    return next.handle(request).pipe(delay(1000));
+    return next.handle(request).pipe(delay(500));
   }
 }

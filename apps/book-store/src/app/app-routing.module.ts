@@ -18,6 +18,17 @@ const routes: Routes = [
     },
   },
   {
+    path: `${AppRoutes.PRODUCT}/:id`,
+    loadChildren: () =>
+      import('./features/product-info/product-info.module').then(
+        (m) => m.ProductInfoModule
+      ),
+    data: {
+      hasHeader: true,
+      hasFooter: true,
+    },
+  },
+  {
     path: AppRoutes.ADMIN,
     loadChildren: () =>
       import('./features/admin-panel/admin-panel.module').then(

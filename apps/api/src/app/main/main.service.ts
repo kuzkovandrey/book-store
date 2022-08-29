@@ -8,6 +8,8 @@ import { CategoryEntity } from '@products/entities';
 export class MainService {
   private readonly CATEGORY_COUNTER = 4;
 
+  private readonly BOOK_COUNTER = 5;
+
   constructor(
     private productsService: ProductsService,
     private categoriesService: CategoriesService
@@ -19,8 +21,11 @@ export class MainService {
     return categoryList.map(async (cat) => {
       const productList = await this.productsService.findAll({
         where: [{ category: { id: cat.id } }],
+        take: this.BOOK_COUNTER,
         relations: {
-          book: true,
+          book: {
+            authors: true,
+          },
           discount: true,
         },
       });

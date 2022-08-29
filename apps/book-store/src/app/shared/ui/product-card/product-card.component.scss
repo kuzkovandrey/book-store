@@ -8,12 +8,11 @@
 .product {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.5rem;
 
   @include element(title) {
     width: 100%;
-    font-weight: 600;
   }
 
   @include element(label) {
@@ -24,5 +23,16 @@
     width: 12rem;
     height: 16rem;
     background: #ccc;
+  }
+
+  @include element(discount) {
+    text-decoration: line-through;
+    color: var(--tui-negative);
+  }
+
+  @include element(cost) {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
   }
 }

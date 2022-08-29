@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainPageSection, ProductModel } from '@book-store/shared';
+import { AppRoutes } from '@core/values';
 
 @Component({
   selector: 'category-section, [category-section]',
@@ -27,4 +28,8 @@ export class CategorySectionComponent {
   constructor(private router: Router) {}
 
   navigateToSearchPageByCategory() {}
+
+  navigateToProductPage(id: number) {
+    this.router.navigate([AppRoutes.PRODUCT, id]);
+  }
 }

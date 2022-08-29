@@ -13,8 +13,19 @@
   }
 
   @include element(product-list) {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+
+    ///justify-content: space-between;
+    align-items: center;
     gap: 1rem;
+  }
+
+  @include element(details) {
+    cursor: pointer;
+    width: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

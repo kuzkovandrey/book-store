@@ -20,4 +20,9 @@
     margin-bottom: 2rem;
     width: 100%;
   }
+
+  @include element(search) {
+    display: flex;
+    justify-content: center;
+  }
 }

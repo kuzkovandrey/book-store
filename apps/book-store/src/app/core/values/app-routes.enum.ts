@@ -6,4 +6,5 @@ export enum AppRoutes {
   DISCOUNTS = 'discounts',
   DELIVERY = 'delivery',
   CATEGORIES = 'categories',
+  PRODUCT = 'product',
 }
