@@ -41,6 +41,15 @@ export class ProductsService extends BaseService<ProductEntity> {
     super(ProductEntity.name, repository);
   }
 
+  async getProductById(id: number): Promise<ProductEntity> {
+    return this.findOneBy(
+      {
+        id,
+      },
+      this.findOptionsRelations
+    );
+  }
+
   async createBookProduct(bookEntity: BookEntity) {
     const entity = await this.create({
       book: bookEntity,

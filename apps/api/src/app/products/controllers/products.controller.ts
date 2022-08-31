@@ -34,7 +34,7 @@ export class ProductsController extends BaseController {
   @Get('/:id')
   async getProductById(@Param('id') id: number): Promise<ProductEntity> {
     try {
-      return await this.productsService.findOneBy({ id });
+      return await this.productsService.getProductById(id);
     } catch (e) {
       this.throwHttpExeption(e);
     }

@@ -4,25 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { TuiTagModule } from '@taiga-ui/kit';
 import { TuiButtonModule } from '@taiga-ui/core';
 
-import { ProductInfoComponent } from './product-info.component';
-import { ProductPricePipe } from '@shared/pipes/product-price.pipe';
+import { SearchComponent } from './search.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductInfoComponent,
+    component: SearchComponent,
   },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forChild(routes),
-    TuiTagModule,
+    // TuiTagModule,
     CommonModule,
-    TuiButtonModule,
-    ProductPricePipe,
+    // TuiButtonModule,
   ],
   exports: [RouterModule],
-  declarations: [ProductInfoComponent],
+  declarations: [SearchComponent],
 })
-export class ProductInfoModule {}
+export class SearchModule {}

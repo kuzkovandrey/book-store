@@ -12,6 +12,10 @@ export class ProductsService {
     return this.productsApi.getAll();
   }
 
+  getProductById(id: number): Observable<ProductModel> {
+    return this.productsApi.getProductById(id);
+  }
+
   changeValues(
     id: number,
     changes: ChangeProductValuesDto

@@ -1,0 +1,31 @@
+@import 'mixins';
+
+.product-page {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+
+  @include element(preview) {
+    max-width: 20rem;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  gap: 1rem;
+
+  @include element(title) {
+  }
+
+  @include element(description) {
+  }
+
+  @include element(discount) {
+    text-decoration: line-through;
+    color: var(--tui-negative);
+    margin-left: 1rem;
+  }
+}

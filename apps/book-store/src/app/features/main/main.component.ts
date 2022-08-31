@@ -1,7 +1,6 @@
 import { Subscription } from 'rxjs';
-import { ProductsService } from '@core/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MainPageSection, ProductModel } from '@book-store/shared';
+import { MainPageSection } from '@book-store/shared';
 import { MainService } from '@features/main/services/main.service';
 
 @Component({
@@ -16,10 +15,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   skeletonSections = new Array(3);
 
-  constructor(
-    private productsService: ProductsService,
-    private mainService: MainService
-  ) {}
+  constructor(private mainService: MainService) {}
 
   ngOnInit() {
     this.subscriptions.add(

@@ -13,6 +13,10 @@ export class ProductsApi {
     return this.http.get<ProductModel[]>(ApiControlles.PRODUCTS);
   }
 
+  getProductById(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>(`${ApiControlles.PRODUCTS}/${id}`);
+  }
+
   changeValues(
     id: number,
     changes: ChangeProductValuesDto

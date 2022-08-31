@@ -7,4 +7,5 @@ export enum AppRoutes {
   DELIVERY = 'delivery',
   CATEGORIES = 'categories',
   PRODUCT = 'product',
+  SEARCH = 'search',
 }

@@ -16,6 +16,7 @@ const routes: Routes = [
       hasHeader: true,
       hasFooter: true,
     },
+    title: 'Главная',
   },
   {
     path: `${AppRoutes.PRODUCT}/:id`,
@@ -26,6 +27,17 @@ const routes: Routes = [
     data: {
       hasHeader: true,
       hasFooter: true,
+      title: 'Подробнее',
+    },
+  },
+  {
+    path: AppRoutes.SEARCH,
+    loadChildren: () =>
+      import('./features/search/search.module').then((m) => m.SearchModule),
+    data: {
+      hasHeader: true,
+      hasFooter: true,
+      title: 'Поиск',
     },
   },
   {

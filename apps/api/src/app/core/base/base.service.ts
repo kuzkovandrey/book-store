@@ -5,6 +5,7 @@ import {
   DeepPartial,
   FindManyOptions,
   SaveOptions,
+  FindOptionsRelations,
 } from 'typeorm';
 import { IncorrectDataError, NotFountError } from '@core/values';
 
@@ -19,10 +20,15 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
   }
 
   async findOneBy(
-    where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[]
+    where: FindOptionsWhere<ENTITY> | FindOptionsWhere<ENTITY>[],
+    relations?: FindOptionsRelations<ENTITY>
   ) {
     try {
-      return await this.repo.findOneByOrFail(where);
+      const entity = await this.repo.findOne({ where, relations });
+
+      if (!entity) throw new Error();
+
+      return entity;
     } catch {
       this.throwNotFountError();
     }
