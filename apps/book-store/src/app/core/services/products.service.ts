@@ -22,4 +22,8 @@ export class ProductsService {
   ): Observable<ProductModel> {
     return this.productsApi.changeValues(id, changes);
   }
+
+  getSimilarById(id: number, count = 6): Observable<ProductModel[]> {
+    return this.productsApi.getSimilarById(id, count);
+  }
 }

@@ -41,6 +41,34 @@ export class ProductsService extends BaseService<ProductEntity> {
     super(ProductEntity.name, repository);
   }
 
+  async getSimilarById(id: number, take = 6): Promise<ProductEntity[]> {
+    const { category, book } = await this.findOneBy(
+      { id },
+      this.findOptionsRelations
+    );
+
+    const similar = await this.findAll({
+      relations: this.findOptionsRelations,
+      where: [
+        {
+          category: {
+            id: category?.id,
+          },
+        },
+        {
+          book: {
+            genre: {
+              id: book.genre.id,
+            },
+          },
+        },
+      ],
+      take,
+    });
+
+    return similar.filter((product) => product.id !== id);
+  }
+
   async getProductById(id: number): Promise<ProductEntity> {
     return this.findOneBy(
       {

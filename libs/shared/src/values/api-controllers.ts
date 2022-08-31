@@ -18,4 +18,5 @@ export enum ApiControlles {
   TOGGLE_STATE = 'toggle_state',
 
   CATEGORIES = '/categories',
+  SIMILAR = '/similar',
 }

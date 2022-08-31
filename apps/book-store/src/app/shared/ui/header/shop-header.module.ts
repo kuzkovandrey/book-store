@@ -1,21 +1,12 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ShopHeaderComponent } from './shop-header.component';
-import { TuiInputModule } from '@taiga-ui/kit';
-import { TuiTextfieldControllerModule, TuiSvgModule } from '@taiga-ui/core';
-import { SearchBarService } from './services';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TuiInputModule,
-    TuiTextfieldControllerModule,
-    TuiSvgModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, RouterModule],
   declarations: [ShopHeaderComponent],
   exports: [ShopHeaderComponent],
-  providers: [SearchBarService],
 })
 export class ShopHeaderModule {}

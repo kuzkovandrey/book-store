@@ -1,0 +1,12 @@
+@import 'mixins';
+
+.similar {
+  @include element(title) {
+    margin-bottom: 1rem;
+  }
+
+  @include element(cards) {
+    display: flex;
+    gap: 1rem;
+  }
+}

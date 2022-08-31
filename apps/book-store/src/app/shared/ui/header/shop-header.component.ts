@@ -1,9 +1,10 @@
-import { FormControl } from '@angular/forms';
 import { filter, Subscription, map } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AppRouterData } from '@core/models';
-import { SearchBarService } from './services';
+
+import { AppRoutes } from '@core/values';
+import { MenuRoutes } from '@core/values/menu-routes.const';
 
 @Component({
   selector: 'shop-header',
@@ -13,15 +14,11 @@ import { SearchBarService } from './services';
 export class ShopHeaderComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();
 
+  readonly menuRoutes = MenuRoutes;
+
   isShown = true;
 
-  searchInput = new FormControl('');
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private searchBarService: SearchBarService
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.subscriptions.add(
@@ -36,15 +33,13 @@ export class ShopHeaderComponent implements OnInit, OnDestroy {
           this.isShown = data && data.hasHeader;
         })
     );
-
-    this.subscriptions.add(
-      this.searchInput.valueChanges.subscribe((value) => {
-        this.searchBarService.setText(value);
-      })
-    );
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  navigateToMainPage() {
+    this.router.navigate([AppRoutes.MAIN]);
   }
 }

@@ -5,4 +5,6 @@ export enum ApiQueryParams {
   PUBLISHER = 'publishers',
   YEAR_MIN = 'year_MIN',
   YEAR_MAX = 'year_MAX',
+  ID = 'id',
+  COUNT = 'count',
 }

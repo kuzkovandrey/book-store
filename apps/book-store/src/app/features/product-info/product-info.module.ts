@@ -6,6 +6,9 @@ import { TuiButtonModule } from '@taiga-ui/core';
 
 import { ProductInfoComponent } from './product-info.component';
 import { ProductPricePipe } from '@shared/pipes/product-price.pipe';
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { SimilarComponent } from './components/similar/similar.component';
+import { ProductCardComponent } from '@shared/ui';
 
 const routes: Routes = [
   {
@@ -21,8 +24,9 @@ const routes: Routes = [
     CommonModule,
     TuiButtonModule,
     ProductPricePipe,
+    ProductCardComponent,
   ],
   exports: [RouterModule],
-  declarations: [ProductInfoComponent],
+  declarations: [ProductInfoComponent, BookDetailsComponent, SimilarComponent],
 })
 export class ProductInfoModule {}

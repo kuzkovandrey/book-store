@@ -1,30 +1,29 @@
 <section class="product-page" *ngIf="product">
-  <img class="product-page__preview" [src]="book.picture" />
-
-  <div class="product-page__details details">
-    <h4 class="details __title tui-text_h4">{{ book.title }}</h4>
-
-    <p class="tui-text_body-m">Авторы: {{ authors }}</p>
-
-    <p class="tui-text_body-m">Год издания: {{ book.publicationYear }}</p>
-
-    <p class="tui-text_body-m">Издательство: {{ book.publisher.name }}</p>
-
-    <p class="tui-text_body-m">Язык: {{ book.language.name }}</p>
-
-    <p class="tui-text_body-m">Жанр: {{ book.genre.name }}</p>
-
-    <p class="tui-text_body-m">Кол-во страниц: {{ book.pageCount }}</p>
-
-    <p class="details__description tui-text_body-m">
-      {{ book.description }}
-    </p>
-
-    <div>
-      <span class="tui-text_h4">{{ product | productPrice }}</span>
-      <span class="details__discount tui-text_h4" *ngIf="product.discount"
-        >{{ product.cost }} руб.</span
-      >
+  <div class="product">
+    <img class="product__preview" [src]="book.picture" />
+    <div class="product__details" book-details [book]="book">
+      <div class="product__purchase" ngProjectAs="purchase-information">
+        <div>
+          <span class="tui-text_h4">{{ product | productPrice }}</span>
+          <span
+            class="product__discount tui-text_h4"
+            *ngIf="product.discount && product.onSale"
+          >
+            {{ product.cost }} руб.
+          </span>
+        </div>
+        <button
+          tuiButton
+          type="button"
+          size="m"
+          appearance="primary"
+          *ngIf="product.onSale"
+        >
+          Добавить в корзину
+        </button>
+      </div>
     </div>
   </div>
+
+  <div class="similar" similar [productId]="product.id"></div>
 </section>

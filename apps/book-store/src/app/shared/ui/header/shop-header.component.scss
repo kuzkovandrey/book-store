@@ -15,16 +15,17 @@
 
   @include element(logo) {
     min-width: 13rem;
-  }
-
-  @include element(cart) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
   }
+}
 
-  @include element(cart-icon) {
-    width: 3rem;
+.nav {
+  @include element(item) {
+    margin-right: 1rem;
+    cursor: pointer;
+
+    @include modifier(active) {
+      font-weight: 700;
+    }
   }
 }

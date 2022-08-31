@@ -31,6 +31,16 @@ export class ProductsController extends BaseController {
     });
   }
 
+  @Get(ApiControlles.SIMILAR)
+  async getSimilarById(
+    @Query(ApiQueryParams.ID) id: number,
+    @Query(ApiQueryParams.COUNT) count: number
+  ): Promise<ProductEntity[]> {
+    console.log('Query ID', id);
+
+    return await this.productsService.getSimilarById(id, count);
+  }
+
   @Get('/:id')
   async getProductById(@Param('id') id: number): Promise<ProductEntity> {
     try {

@@ -23,7 +23,11 @@ export class ProductCardComponent {
   @Input() product: ProductModel;
 
   get hasDiscount(): boolean {
-    return !!this.product.discount && !!this.product.discount.percent;
+    return (
+      this.product.onSale &&
+      !!this.product.discount &&
+      !!this.product.discount.percent
+    );
   }
 
   get productStyles() {

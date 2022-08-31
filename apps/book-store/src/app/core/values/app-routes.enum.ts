@@ -8,4 +8,5 @@ export enum AppRoutes {
   CATEGORIES = 'categories',
   PRODUCT = 'product',
   SEARCH = 'search',
+  CART = 'cart',
 }

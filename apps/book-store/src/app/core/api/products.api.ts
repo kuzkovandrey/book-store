@@ -1,4 +1,4 @@
-import { ApiControlles } from '@book-store/shared/values';
+import { ApiControlles, ApiQueryParams } from '@book-store/shared/values';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -24,6 +24,18 @@ export class ProductsApi {
     return this.http.patch<ProductModel>(
       `${ApiControlles.PRODUCTS}/${id}`,
       changes
+    );
+  }
+
+  getSimilarById(id: number, count: number) {
+    return this.http.get<ProductModel[]>(
+      `${ApiControlles.PRODUCTS}${ApiControlles.SIMILAR}`,
+      {
+        params: {
+          [ApiQueryParams.ID]: id,
+          [ApiQueryParams.COUNT]: count,
+        },
+      }
     );
   }
 }
