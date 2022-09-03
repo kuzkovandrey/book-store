@@ -7,8 +7,8 @@ import {
   TuiIslandModule,
   TuiCarouselModule,
 } from '@taiga-ui/kit';
-import { ToolbarModule } from '@shared/ui';
-import { ProductCardComponent } from '@shared/ui';
+import { ToolbarModule } from '@shared/components';
+import { ProductCardComponent } from '@shared/components';
 import { MainService } from './services/main.service';
 import { CategorySectionComponent } from './components/category-section/category-section.component';
 import { CategorySectionSkeletonComponent } from './components/category-section-skeleton/category-section-skeleton.component';

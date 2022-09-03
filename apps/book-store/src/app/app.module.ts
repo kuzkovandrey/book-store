@@ -13,7 +13,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ShopHeaderModule, ShopFooterModule } from '@shared/ui';
+import { ShopHeaderModule, ShopFooterModule } from '@shared/components';
 
 @NgModule({
   declarations: [AppComponent],

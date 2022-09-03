@@ -17,7 +17,7 @@ import { SearchComponent } from './search.component';
 import { SearchBarComponent, FilterComponent } from './components';
 import { SearchBarService, FilterService } from './services';
 import { FilterEntityComponent } from './components/filter-entity/filter-entity.component';
-import { ProductCardComponent } from '@shared/ui';
+import { ProductCardComponent } from '@shared/components';
 
 const routes: Routes = [
   {

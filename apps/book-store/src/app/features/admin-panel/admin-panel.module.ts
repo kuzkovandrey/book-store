@@ -82,6 +82,5 @@ import { ChangeCategoryModalComponent } from './components/change-category-modal
     EditCategoryModalComponent,
     ChangeCategoryModalComponent,
   ],
-  providers: [],
 })
 export class AdminPanelModule {}
