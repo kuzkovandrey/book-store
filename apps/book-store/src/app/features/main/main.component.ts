@@ -2,6 +2,8 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MainPageSection } from '@book-store/shared';
 import { MainService } from '@features/main/services/main.service';
+import { Router } from '@angular/router';
+import { AppRoutes } from '@core/values';
 
 @Component({
   selector: 'main',
@@ -15,7 +17,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   skeletonSections = new Array(3);
 
-  constructor(private mainService: MainService) {}
+  constructor(private mainService: MainService, private router: Router) {}
 
   ngOnInit() {
     this.subscriptions.add(
@@ -28,5 +30,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  navigateToSearchPage() {
+    this.router.navigate([AppRoutes.SEARCH]);
   }
 }

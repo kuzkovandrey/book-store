@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainPageSection, ProductModel } from '@book-store/shared';
 import { AppRoutes } from '@core/values';
@@ -27,7 +22,13 @@ export class CategorySectionComponent {
 
   constructor(private router: Router) {}
 
-  navigateToSearchPageByCategory() {}
+  navigateToSearchPage() {
+    this.router.navigate([AppRoutes.SEARCH], {
+      state: {
+        categoryId: this.section.category.id,
+      },
+    });
+  }
 
   navigateToProductPage(id: number) {
     this.router.navigate([AppRoutes.PRODUCT, id]);

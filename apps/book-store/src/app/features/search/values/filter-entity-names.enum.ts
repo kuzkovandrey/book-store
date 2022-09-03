@@ -3,4 +3,5 @@ export enum FilterEntityNames {
   GENRE = 'Жанр',
   LANGUAGE = 'Язык',
   PUBLISHER = 'Издатель',
+  CATEGORY = 'Категория',
 }

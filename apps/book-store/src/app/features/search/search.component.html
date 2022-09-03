@@ -2,11 +2,23 @@
   <div class="search-page__search-bar" search-bar></div>
 
   <div class="content-wrapper">
-    <div class="search-page__filter" filter></div>
+    <div
+      class="search-page__filter"
+      filter
+      [initialCategoryId]="initialCategoryId"
+    ></div>
 
-    <div *ngIf="resultList" class="search-page__content">
-      <ng-container *ngFor="let product of resultList">
-        <product-card [product]="product"></product-card>
+    <div class="search-page__content">
+      <ng-container *ngIf="resultList">
+        <product-card
+          (click)="navigateToProductPage(product.id)"
+          *ngFor="let product of resultList"
+          [product]="product"
+        ></product-card>
+      </ng-container>
+
+      <ng-container *ngIf="resultList && !resultList.length">
+        <span class="tui-text_h5">По данному запросу ничего не найдено</span>
       </ng-container>
     </div>
   </div>

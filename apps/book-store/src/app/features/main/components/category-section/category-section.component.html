@@ -1,5 +1,5 @@
 <div class="section">
-  <h4 class="section__title tui-text_h4">
+  <h4 (click)="navigateToSearchPage()" class="section__title tui-text_h4">
     {{ title }}
   </h4>
 
@@ -11,7 +11,7 @@
       ></product-card>
     </ng-container>
 
-    <tui-island class="section__details">
+    <tui-island (click)="navigateToSearchPage()" class="section__details">
       <span>Больше книг</span>
     </tui-island>
   </div>

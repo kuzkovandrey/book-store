@@ -2,13 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { GenreToolbarComponent } from './components/genre-toolbar/genre-toolbar.component';
 import {
   TuiTagModule,
   TuiIslandModule,
   TuiCarouselModule,
 } from '@taiga-ui/kit';
-import { AuthorToolbarComponent } from './components/author-toolbar/author-toolbar.component';
 import { ToolbarModule } from '@shared/ui';
 import { ProductCardComponent } from '@shared/ui';
 import { MainService } from './services/main.service';
@@ -37,8 +35,6 @@ const routes: Routes = [
   exports: [RouterModule],
   declarations: [
     MainComponent,
-    GenreToolbarComponent,
-    AuthorToolbarComponent,
     CategorySectionComponent,
     CategorySectionSkeletonComponent,
   ],

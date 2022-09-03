@@ -1,5 +1,6 @@
 import {
   AuthorModel,
+  CategoryModel,
   GenreModel,
   LanguageModel,
   PublisherModel,
@@ -10,4 +11,5 @@ export type FilterEntities = {
   genres: GenreModel[];
   languages: LanguageModel[];
   publishers: PublisherModel[];
+  categories: CategoryModel[];
 };

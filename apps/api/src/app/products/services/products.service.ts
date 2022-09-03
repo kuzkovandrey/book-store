@@ -87,6 +87,7 @@ export class ProductsService extends BaseService<ProductEntity> {
     [ApiQueryParams.YEAR_MAX]: yearMax,
     [ApiQueryParams.PAGE]: page,
     [ApiQueryParams.PER_PAGE]: perPage,
+    [ApiQueryParams.CATEGORIES]: categories,
     [ApiQueryParams.TEXT]: text,
   }: SearchQueryParams): Promise<ProductEntity[]> {
     const [skip, take] = getDatabaseTakeParams(page, perPage);
@@ -114,6 +115,7 @@ export class ProductsService extends BaseService<ProductEntity> {
             yearMax ?? new Date().getFullYear()
           ),
         },
+        category: getArrayWithObjectId(categories),
       },
     });
   }

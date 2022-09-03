@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { TuiIdentityMatcher, TuiStringHandler } from '@taiga-ui/cdk';
 import { tuiItemsHandlersProvider } from '@taiga-ui/kit';
@@ -45,6 +45,8 @@ export class FilterEntityComponent implements OnInit, OnDestroy {
 
   @Input() entities: FilterEntity[];
 
+  @Input() initialStateById: number | undefined;
+
   @Output() valueChanges = new EventEmitter<FilterEntityChangeEvent>();
 
   private readonly subscriptions = new Subscription();
@@ -60,9 +62,21 @@ export class FilterEntityComponent implements OnInit, OnDestroy {
         });
       })
     );
+
+    this.setInitialState();
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+
+  private setInitialState() {
+    if (this.initialStateById === undefined) return;
+
+    const initialState = this.entities.find(
+      ({ id }) => id === this.initialStateById
+    );
+
+    if (initialState) this.entityControl.setValue([initialState as any]);
   }
 }

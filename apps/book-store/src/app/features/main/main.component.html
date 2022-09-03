@@ -1,8 +1,4 @@
 <section class="main">
-  <div class="main__toolbar" genre-toolbar></div>
-
-  <div class="main__toolbar" author-toolbar></div>
-
   <ng-container *ngFor="let section of sections">
     <div
       *ngIf="section.productList.length"
@@ -19,7 +15,13 @@
   </ng-container>
 
   <div class="main__search">
-    <button tuiButton type="button" size="m" appearance="primary">
+    <button
+      (click)="navigateToSearchPage()"
+      tuiButton
+      type="button"
+      size="m"
+      appearance="primary"
+    >
       Найти больше книг
     </button>
   </div>

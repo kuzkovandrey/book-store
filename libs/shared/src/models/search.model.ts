@@ -7,6 +7,7 @@ export interface SearchFilterModel {
   [ApiQueryParams.PUBLISHER]: number[];
   [ApiQueryParams.YEAR_MAX]: number;
   [ApiQueryParams.YEAR_MIN]: number;
+  [ApiQueryParams.CATEGORIES]: number[];
 }
 
 export interface SearchPagesModel {
