@@ -1,0 +1,19 @@
+<div class="search-bar">
+  <tui-input
+    [formControl]="searchInput"
+    class="search-bar__input"
+    tuiTextfieldSize="m"
+    [tuiTextfieldLabelOutside]="true"
+  >
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <button
+    (click)="onClickSearchButton()"
+    tuiIconButton
+    icon="tuiIconSearchLarge"
+    type="button"
+    size="m"
+    appearance="primary"
+  ></button>
+</div>

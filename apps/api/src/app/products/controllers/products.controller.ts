@@ -4,9 +4,12 @@ import { ProductsService } from '@products/services/products.service';
 import { ApiControlles } from '@book-store/shared/values';
 import { ApiQueryParams } from '@book-store/shared/values';
 import { ProductEntity } from '@products/entities';
-import { QueriesType } from '@products/types';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 import { BaseController } from '@core/base';
+import {
+  SearchParams,
+  SearchQueryParams,
+} from '@products/utils/search.decorator';
 
 @Controller(ApiControlles.PRODUCTS)
 export class ProductsController extends BaseController {
@@ -14,30 +17,24 @@ export class ProductsController extends BaseController {
     super(ProductsController.name);
   }
 
-  @Get('/')
+  @Get()
   getAllProducts(
-    @Query(ApiQueryParams.GENRES) genres: QueriesType,
-    @Query(ApiQueryParams.LANGS) langs: QueriesType,
-    @Query(ApiQueryParams.PUBLISHER) publishers: QueriesType,
-    @Query(ApiQueryParams.YEAR_MIN) yearMin: number,
-    @Query(ApiQueryParams.YEAR_MAX) yearMax: number
+    @SearchParams({ page: 1, perPage: 25 })
+    searchParams: Partial<SearchQueryParams>
   ): Promise<ProductEntity[]> {
     return this.productsService.findAllByQueryParams({
-      genres,
-      langs,
-      publishers,
-      yearMin,
-      yearMax,
+      ...searchParams,
     });
   }
+
+  @Get(ApiControlles.SEARCH)
+  search() {}
 
   @Get(ApiControlles.SIMILAR)
   async getSimilarById(
     @Query(ApiQueryParams.ID) id: number,
     @Query(ApiQueryParams.COUNT) count: number
   ): Promise<ProductEntity[]> {
-    console.log('Query ID', id);
-
     return await this.productsService.getSimilarById(id, count);
   }
 

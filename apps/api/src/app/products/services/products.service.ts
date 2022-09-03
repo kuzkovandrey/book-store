@@ -9,17 +9,14 @@ import {
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
-import { BaseService, getQueryArray } from '@core';
-import { QueriesType } from '@products/types';
+import {
+  BaseService,
+  getArrayWithObjectId,
+  getDatabaseTakeParams,
+} from '@core';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
-
-interface FindQueryOptions {
-  genres: QueriesType;
-  langs: QueriesType;
-  publishers: QueriesType;
-  yearMin: number;
-  yearMax: number;
-}
+import { SearchQueryParams } from '@products/utils/search.decorator';
+import { ApiQueryParams } from '@book-store/shared/values';
 
 @Injectable()
 export class ProductsService extends BaseService<ProductEntity> {
@@ -86,49 +83,41 @@ export class ProductsService extends BaseService<ProductEntity> {
     await entity.save();
   }
 
-  private getFindOptionsByQueries(
-    genres: QueriesType,
-    langs: QueriesType,
-    publishers: QueriesType,
-    yearMin: number,
-    yearMax: number
-  ): FindOptionsWhere<ProductEntity> {
-    return {
-      book: {
-        language: langs ? getQueryArray(langs).map((code) => ({ code })) : [],
-        genre: genres ? getQueryArray(genres).map((name) => ({ name })) : [],
-        publisher: publishers
-          ? getQueryArray(publishers).map((name) => ({ name }))
-          : [],
-        publicationYear: Between(
-          yearMin ?? 0,
-          yearMax ?? new Date().getFullYear()
-        ),
-      },
-    };
-  }
-
-  async findAllByQueryParams({
-    genres,
-    langs,
-    publishers,
-    yearMin,
-    yearMax,
-  }: FindQueryOptions): Promise<ProductEntity[]> {
-    if (!genres && !langs && !publishers && !yearMin && !yearMax)
+  async findAllByQueryParams(
+    params: Partial<SearchQueryParams>
+  ): Promise<ProductEntity[]> {
+    if (!Object.keys(params).length)
       return await this.findAll({
         relations: this.findOptionsRelations,
       });
 
+    const {
+      [ApiQueryParams.GENRES]: genres,
+      [ApiQueryParams.LANGS]: langs,
+      [ApiQueryParams.PUBLISHER]: publishers,
+      [ApiQueryParams.YEAR_MIN]: yearMin,
+      [ApiQueryParams.YEAR_MAX]: yearMax,
+      [ApiQueryParams.PAGE]: page,
+      [ApiQueryParams.PER_PAGE]: perPage,
+    } = params;
+
+    const [skip, take] = getDatabaseTakeParams(page, perPage);
+
     return await this.findAll({
+      take,
+      skip,
       relations: this.findOptionsRelations,
-      where: this.getFindOptionsByQueries(
-        genres,
-        langs,
-        publishers,
-        yearMin,
-        yearMax
-      ),
+      where: {
+        book: {
+          language: getArrayWithObjectId(langs),
+          genre: getArrayWithObjectId(genres),
+          publisher: getArrayWithObjectId(publishers),
+          publicationYear: Between(
+            yearMin ?? 0,
+            yearMax ?? new Date().getFullYear()
+          ),
+        },
+      },
     });
   }
 

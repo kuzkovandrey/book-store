@@ -19,4 +19,5 @@ export enum ApiControlles {
 
   CATEGORIES = '/categories',
   SIMILAR = '/similar',
+  SEARCH = '/search',
 }

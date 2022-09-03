@@ -3,8 +3,10 @@ export enum ApiQueryParams {
   GENRES = 'genres',
   AUTHORS = 'authors',
   PUBLISHER = 'publishers',
-  YEAR_MIN = 'year_MIN',
-  YEAR_MAX = 'year_MAX',
+  YEAR_MIN = 'yearMin',
+  YEAR_MAX = 'yearMax',
   ID = 'id',
   COUNT = 'count',
+  PAGE = 'page',
+  PER_PAGE = 'perPage',
 }

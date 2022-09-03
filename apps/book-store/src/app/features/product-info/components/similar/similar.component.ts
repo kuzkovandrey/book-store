@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { ProductModel } from '@book-store/shared/models';
 import { ProductsService } from '@core/services';
 import { AppRoutes } from '@core/values';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'similar, [similar]',
@@ -17,7 +17,11 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SimilarComponent implements OnInit {
-  @Input() productId: number;
+  private readonly id = new ReplaySubject<number>(1);
+
+  @Input() set productId(id: number) {
+    this.id.next(id);
+  }
 
   similar$: Observable<ProductModel[]>;
 
@@ -27,7 +31,9 @@ export class SimilarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.similar$ = this.productsService.getSimilarById(this.productId);
+    this.similar$ = this.id.pipe(
+      switchMap((id) => this.productsService.getSimilarById(id))
+    );
   }
 
   navigateToProductPage(id: number) {

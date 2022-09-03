@@ -3,7 +3,7 @@
     <img class="product__preview" [src]="book.picture" />
     <div class="product__details" book-details [book]="book">
       <div class="product__purchase" ngProjectAs="purchase-information">
-        <div>
+        <div class="product__cost">
           <span class="tui-text_h4">{{ product | productPrice }}</span>
           <span
             class="product__discount tui-text_h4"

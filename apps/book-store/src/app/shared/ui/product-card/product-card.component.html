@@ -1,21 +1,21 @@
-<tui-island class="wrapper" [class.tui-skeleton]="false">
-  <div class="product">
-    <span class="product__image" [ngStyle]="productStyles"></span>
+<div class="product">
+  <span class="product__image" [ngStyle]="productStyles"></span>
 
-    <h6 class="product__title tui-text_body-m-2">
-      {{ product.book.title | textOverflow: 22 }}
-    </h6>
+  <h6 class="product__title tui-text_body-m-2">
+    {{ product.book.title | textOverflow: 22 }}
+  </h6>
 
-    <p>
-      {{ author.firstName }}, {{ author.lastName }},
-      {{ product.book.publicationYear }}
-    </p>
+  <p class="tui-text_body-m-2">
+    {{ author.firstName }}, {{ author.lastName }},
+    {{ product.book.publicationYear }}
+  </p>
 
-    <div class="product__cost">
-      <span>{{ product | productPrice }}</span>
-      <span class="product__discount" *ngIf="hasDiscount"
-        >{{ product.cost }} руб.</span
-      >
-    </div>
+  <div class="product__cost-wrapper">
+    <span class="tui-text_body-m-2 product__cost">
+      {{ product | productPrice }}
+    </span>
+    <span class="tui-text_body-m-2 product__discount" *ngIf="hasDiscount">
+      {{ product.cost }} руб.
+    </span>
   </div>
-</tui-island>
+</div>

@@ -22,6 +22,11 @@
     gap: 1rem;
   }
 
+  @include element(cost) {
+    display: flex;
+    gap: 1rem;
+  }
+
   @include element(discount) {
     text-decoration: line-through;
     color: var(--tui-negative);

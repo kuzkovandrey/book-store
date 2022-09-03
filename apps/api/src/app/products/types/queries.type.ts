@@ -1,1 +1,1 @@
-export type QueriesType = string | string[];
+export type QueriesType = number | number[];

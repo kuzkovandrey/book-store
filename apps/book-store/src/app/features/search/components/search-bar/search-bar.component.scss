@@ -1,0 +1,10 @@
+@import 'mixins';
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+
+  @include element(input) {
+    width: 100%;
+  }
+}

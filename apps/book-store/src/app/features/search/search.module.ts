@@ -6,6 +6,9 @@ import { TuiInputModule } from '@taiga-ui/kit';
 import { TuiTextfieldControllerModule, TuiButtonModule } from '@taiga-ui/core';
 
 import { SearchComponent } from './search.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchBarService } from './services/search-bar.service';
+import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,7 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   exports: [RouterModule],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, SearchBarComponent, FilterBarComponent],
+  providers: [SearchBarService],
 })
 export class SearchModule {}
