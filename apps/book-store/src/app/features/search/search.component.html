@@ -1,5 +1,13 @@
-<section class="search">
-  <search-bar></search-bar>
+<section class="search-page">
+  <div class="search-page__search-bar" search-bar></div>
 
-  <filter-bar></filter-bar>
+  <div class="content-wrapper">
+    <div class="search-page__filter" filter></div>
+
+    <div *ngIf="resultList" class="search-page__content">
+      <ng-container *ngFor="let product of resultList">
+        <product-card [product]="product"></product-card>
+      </ng-container>
+    </div>
+  </div>
 </section>

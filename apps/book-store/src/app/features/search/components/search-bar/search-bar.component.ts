@@ -9,7 +9,7 @@ import { SearchBarService } from '@features/search/services/search-bar.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'search-bar',
+  selector: 'search-bar, [search-bar]',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +22,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   constructor(private searchBarService: SearchBarService) {}
 
   onClickSearchButton() {
-    this.searchBarService.search(this.searchInput.value);
+    this.searchBarService.search(this.searchInput.value as string);
   }
 
   ngOnInit() {

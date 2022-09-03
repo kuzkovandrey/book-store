@@ -1,0 +1,37 @@
+<div *ngIf="filterEntities" class="filter">
+  <span
+    filter-entity
+    class="filter__entity"
+    *ngIf="filterEntities.authors"
+    [entityName]="entityNames.AUTHOR"
+    [entities]="filterEntities.authors"
+    (valueChanges)="filterValueChanges($event)"
+  ></span>
+
+  <span
+    filter-entity
+    class="filter__entity"
+    *ngIf="filterEntities.languages"
+    [entityName]="entityNames.LANGUAGE"
+    [entities]="filterEntities.languages"
+    (valueChanges)="filterValueChanges($event)"
+  ></span>
+
+  <span
+    filter-entity
+    class="filter__entity"
+    *ngIf="filterEntities.genres"
+    [entityName]="entityNames.GENRE"
+    [entities]="filterEntities.genres"
+    (valueChanges)="filterValueChanges($event)"
+  ></span>
+
+  <span
+    filter-entity
+    class="filter__entity"
+    *ngIf="filterEntities.publishers"
+    [entityName]="entityNames.PUBLISHER"
+    [entities]="filterEntities.publishers"
+    (valueChanges)="filterValueChanges($event)"
+  ></span>
+</div>

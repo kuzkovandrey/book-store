@@ -6,10 +6,8 @@ import { ApiQueryParams } from '@book-store/shared/values';
 import { ProductEntity } from '@products/entities';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 import { BaseController } from '@core/base';
-import {
-  SearchParams,
-  SearchQueryParams,
-} from '@products/utils/search.decorator';
+import { SearchParams } from '@products/utils/search.decorator';
+import { SearchQueryParams } from '@book-store/shared/models';
 
 @Controller(ApiControlles.PRODUCTS)
 export class ProductsController extends BaseController {
@@ -17,18 +15,15 @@ export class ProductsController extends BaseController {
     super(ProductsController.name);
   }
 
-  @Get()
-  getAllProducts(
+  @Get(ApiControlles.SEARCH)
+  search(
     @SearchParams({ page: 1, perPage: 25 })
-    searchParams: Partial<SearchQueryParams>
+    searchParams: SearchQueryParams
   ): Promise<ProductEntity[]> {
     return this.productsService.findAllByQueryParams({
       ...searchParams,
     });
   }
-
-  @Get(ApiControlles.SEARCH)
-  search() {}
 
   @Get(ApiControlles.SIMILAR)
   async getSimilarById(

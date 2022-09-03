@@ -9,4 +9,5 @@ export enum ApiQueryParams {
   COUNT = 'count',
   PAGE = 'page',
   PER_PAGE = 'perPage',
+  TEXT = 'text',
 }

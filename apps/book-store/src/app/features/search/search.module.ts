@@ -2,13 +2,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TuiInputModule } from '@taiga-ui/kit';
-import { TuiTextfieldControllerModule, TuiButtonModule } from '@taiga-ui/core';
+import {
+  TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiMultiSelectModule,
+} from '@taiga-ui/kit';
+import {
+  TuiTextfieldControllerModule,
+  TuiButtonModule,
+  TuiDataListModule,
+} from '@taiga-ui/core';
 
 import { SearchComponent } from './search.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { SearchBarService } from './services/search-bar.service';
-import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { SearchBarComponent, FilterComponent } from './components';
+import { SearchBarService, FilterService } from './services';
+import { FilterEntityComponent } from './components/filter-entity/filter-entity.component';
+import { ProductCardComponent } from '@shared/ui';
 
 const routes: Routes = [
   {
@@ -25,9 +34,18 @@ const routes: Routes = [
     TuiTextfieldControllerModule,
     TuiButtonModule,
     ReactiveFormsModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiMultiSelectModule,
+    ProductCardComponent,
   ],
   exports: [RouterModule],
-  declarations: [SearchComponent, SearchBarComponent, FilterBarComponent],
-  providers: [SearchBarService],
+  declarations: [
+    SearchComponent,
+    SearchBarComponent,
+    FilterComponent,
+    FilterEntityComponent,
+  ],
+  providers: [SearchBarService, FilterService],
 })
 export class SearchModule {}

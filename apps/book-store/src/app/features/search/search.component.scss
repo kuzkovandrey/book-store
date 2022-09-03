@@ -1,3 +1,19 @@
-.search {
+@import 'mixins';
+
+.search-page {
   padding: 1rem;
+  min-height: 90vh;
+
+  @include element(content) {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+.content-wrapper {
+  display: flex;
+  margin: 2rem 0;
 }

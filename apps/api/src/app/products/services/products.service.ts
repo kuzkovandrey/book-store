@@ -1,11 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  FindOptionsRelations,
-  FindOptionsWhere,
-  Repository,
-  Between,
-} from 'typeorm';
+import { FindOptionsRelations, Repository, Between, Like } from 'typeorm';
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
@@ -15,8 +10,8 @@ import {
   getDatabaseTakeParams,
 } from '@core';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
-import { SearchQueryParams } from '@products/utils/search.decorator';
 import { ApiQueryParams } from '@book-store/shared/values';
+import { SearchQueryParams } from '@book-store/shared/models';
 
 @Injectable()
 export class ProductsService extends BaseService<ProductEntity> {
@@ -83,25 +78,25 @@ export class ProductsService extends BaseService<ProductEntity> {
     await entity.save();
   }
 
-  async findAllByQueryParams(
-    params: Partial<SearchQueryParams>
-  ): Promise<ProductEntity[]> {
-    if (!Object.keys(params).length)
-      return await this.findAll({
-        relations: this.findOptionsRelations,
-      });
-
-    const {
-      [ApiQueryParams.GENRES]: genres,
-      [ApiQueryParams.LANGS]: langs,
-      [ApiQueryParams.PUBLISHER]: publishers,
-      [ApiQueryParams.YEAR_MIN]: yearMin,
-      [ApiQueryParams.YEAR_MAX]: yearMax,
-      [ApiQueryParams.PAGE]: page,
-      [ApiQueryParams.PER_PAGE]: perPage,
-    } = params;
-
+  async findAllByQueryParams({
+    [ApiQueryParams.GENRES]: genres,
+    [ApiQueryParams.LANGS]: langs,
+    [ApiQueryParams.PUBLISHER]: publishers,
+    [ApiQueryParams.AUTHORS]: authors,
+    [ApiQueryParams.YEAR_MIN]: yearMin,
+    [ApiQueryParams.YEAR_MAX]: yearMax,
+    [ApiQueryParams.PAGE]: page,
+    [ApiQueryParams.PER_PAGE]: perPage,
+    [ApiQueryParams.TEXT]: text,
+  }: SearchQueryParams): Promise<ProductEntity[]> {
     const [skip, take] = getDatabaseTakeParams(page, perPage);
+
+    const findAuthors =
+      authors && authors.length
+        ? authors.map((id) => ({
+            id,
+          }))
+        : [];
 
     return await this.findAll({
       take,
@@ -109,6 +104,8 @@ export class ProductsService extends BaseService<ProductEntity> {
       relations: this.findOptionsRelations,
       where: {
         book: {
+          ...(text ? { title: Like(`%${text}%`) } : {}),
+          authors: [...findAuthors],
           language: getArrayWithObjectId(langs),
           genre: getArrayWithObjectId(genres),
           publisher: getArrayWithObjectId(publishers),

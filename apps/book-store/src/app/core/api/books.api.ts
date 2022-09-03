@@ -7,6 +7,8 @@ import {
   BookModel,
   AuthorModel,
   GenreModel,
+  LanguageModel,
+  PublisherModel,
 } from '@book-store/shared';
 import { Observable } from 'rxjs';
 
@@ -30,6 +32,18 @@ export class BookApi {
   getAllGentes(): Observable<GenreModel[]> {
     return this.http.get<GenreModel[]>(
       `${ApiControlles.BOOKS}${ApiControlles.GENRES}`
+    );
+  }
+
+  getAllLanguages(): Observable<LanguageModel[]> {
+    return this.http.get<LanguageModel[]>(
+      `${ApiControlles.BOOKS}${ApiControlles.LANGUAGES}`
+    );
+  }
+
+  getAllPublishers(): Observable<PublisherModel[]> {
+    return this.http.get<PublisherModel[]>(
+      `${ApiControlles.BOOKS}${ApiControlles.PUBLISHERS}`
     );
   }
 }

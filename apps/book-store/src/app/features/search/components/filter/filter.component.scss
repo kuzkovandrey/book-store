@@ -1,0 +1,12 @@
+@import 'mixins';
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+
+  @include element(entity) {
+    width: 12rem;
+  }
+}

@@ -2,7 +2,7 @@ import { ApiControlles, ApiQueryParams } from '@book-store/shared/values';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductModel } from '@book-store/shared/models';
+import { ProductModel, SearchQueryParams } from '@book-store/shared/models';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 
 @Injectable()
@@ -36,6 +36,13 @@ export class ProductsApi {
           [ApiQueryParams.COUNT]: count,
         },
       }
+    );
+  }
+
+  search(params: SearchQueryParams): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(
+      `${ApiControlles.PRODUCTS}${ApiControlles.SEARCH}`,
+      { params: { ...params } }
     );
   }
 }
