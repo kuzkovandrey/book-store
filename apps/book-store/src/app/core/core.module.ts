@@ -1,43 +1,23 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
-import { BookApi } from './api/books.api';
-import { CategoriesApi } from './api/categories.api';
-import { DeliveryApi } from './api/delivery.api';
-import { DiscountsApi } from './api/discounts.api';
-import { MainApi } from './api/main.api';
-import { ProductsApi } from './api/products.api';
-import { ProxyInterceptor } from './interceptors/proxy.interceptor';
-import {
-  LoadingService,
-  ProductsService,
-  CategoriesService,
-  DiscountsService,
-  DeliveryService,
-  BooksService,
-  AlertService,
-} from './services';
+import { ApiProviders } from './api';
+import { EntitySerivceProviders } from './services/entities';
+import { LoadingService, AlertService } from './services';
+import { AppStorage, AppStorageImpl } from './services/storage';
+import { InterceptorProviders } from './interceptors';
 
 @NgModule({
   imports: [HttpClientModule],
   providers: [
-    MainApi,
-    BookApi,
-    ProductsApi,
-    DiscountsApi,
-    DeliveryApi,
-    CategoriesApi,
     AlertService,
-    BooksService,
     LoadingService,
-    ProductsService,
-    DiscountsService,
-    DeliveryService,
-    CategoriesService,
+    ...ApiProviders,
+    ...EntitySerivceProviders,
+    ...InterceptorProviders,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ProxyInterceptor,
-      multi: true,
+      provide: AppStorage,
+      useFactory: () => new AppStorageImpl(localStorage),
     },
   ],
 })

@@ -3,7 +3,14 @@ import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
 import { AlertService } from '@core/services/alert.service';
 import { LoadingService } from '@core/services/loading.service';
 import { Subscription, tap } from 'rxjs';
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FilterEntityItem, FilterService } from '@features/search/services';
 import { FilterEntityNames } from '@features/search/values/filter-entity-names.enum';
 
@@ -11,6 +18,7 @@ import { FilterEntityNames } from '@features/search/values/filter-entity-names.e
   selector: 'filter, [filter]',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit, OnDestroy {
   @Input() initialCategoryId: number | undefined;
@@ -24,7 +32,8 @@ export class FilterComponent implements OnInit, OnDestroy {
   constructor(
     private filterService: FilterService,
     private loadingService: LoadingService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -53,6 +62,8 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   private setFilterEntityItems = (items: FilterEntityItem[]) => {
     this.filterEntityItems = items;
+
+    this.changeDetectorRef.markForCheck();
   };
 
   filterValueChanges(event: FilterEntityChangeEvent) {

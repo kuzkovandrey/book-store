@@ -5,8 +5,9 @@ import {
   OnDestroy,
   Output,
   EventEmitter,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { Subscription, filter } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { TuiIdentityMatcher, TuiStringHandler } from '@taiga-ui/cdk';
 import { tuiItemsHandlersProvider } from '@taiga-ui/kit';
@@ -39,6 +40,7 @@ export const ID_MATCHER_ENTITY: TuiIdentityMatcher<FilterEntity> = (
       identityMatcher: ID_MATCHER_ENTITY,
     }),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterEntityComponent implements OnInit, OnDestroy {
   @Input() entityName: FilterEntityNames;
