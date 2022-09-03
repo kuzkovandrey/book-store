@@ -1,8 +1,9 @@
-import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { MainPageSection } from '@book-store/shared';
 import { MainService } from '@features/main/services/main.service';
-import { Router } from '@angular/router';
 import { AppRoutes } from '@core/values';
 
 @Component({

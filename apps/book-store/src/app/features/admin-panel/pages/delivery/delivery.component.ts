@@ -1,16 +1,17 @@
-import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { AlertService } from '@core/services/alert.service';
-import { Subject, Subscription, tap, switchMap, map } from 'rxjs';
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { DeliveryForm } from '@features/admin-panel/types';
-import { CreateDeliveryFormComponent } from '@features/admin-panel/components';
-import { DeliveryService, LoadingService } from '@core/services';
-import { DeliveryModel } from '@book-store/shared/models';
-import { ErrorMessages } from '@features/admin-panel/values';
-import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
+import { Subject, Subscription, tap, switchMap, map } from 'rxjs';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { TuiDialogService } from '@taiga-ui/core';
-import { CreateDeliveryPointDto } from '@book-store/shared/dto';
-import { EditDeliveryPointModalComponent } from '@features/admin-panel/components';
+
+import { CommonErrorMessages } from '@core/values';
+import { AlertService, DeliveryService, LoadingService } from '@core/services';
+import { DeliveryModel, CreateDeliveryPointDto } from '@book-store/shared';
+import { DeliveryForm } from '@features/admin-panel/types';
+import {
+  CreateDeliveryFormComponent,
+  EditDeliveryPointModalComponent,
+} from '@features/admin-panel/components';
+import { ErrorMessages } from '@features/admin-panel/values';
 
 @Component({
   selector: 'delivery',
@@ -120,7 +121,7 @@ export class DeliveryComponent implements OnInit, OnDestroy {
 
   private handleFetchDataError = () => {
     this.loadingService.setLoading(false);
-    this.alertService.showError(CommomErrorMessages.UPLOAD_ERROR);
+    this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
   };
 
   private fetchAllDeliveryPoints = () => {

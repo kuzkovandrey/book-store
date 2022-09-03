@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AuthorModel, Product, ProductModel } from '@book-store/shared/models';
-import { TextOverflowPipe } from '@shared/pipes';
-import { ProductPricePipe } from '@shared/pipes/product-price.pipe';
 import { TuiIslandModule, TuiTagModule } from '@taiga-ui/kit';
+
+import { AuthorModel, ProductModel } from '@book-store/shared/models';
+import { TextOverflowPipe, ProductPricePipe } from '@shared/pipes';
 
 @Component({
   standalone: true,

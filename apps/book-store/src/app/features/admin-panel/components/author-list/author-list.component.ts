@@ -6,7 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Author } from '@book-store/shared/models';
+
+import { Author } from '@book-store/shared';
 
 @Component({
   selector: 'author-list',

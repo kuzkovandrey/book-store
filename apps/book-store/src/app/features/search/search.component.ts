@@ -1,4 +1,4 @@
-import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
+import { CommonErrorMessages } from '@core/values/common-error-messages.enum';
 import { FilterService } from '@features/search/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, switchMap, tap } from 'rxjs';
@@ -99,6 +99,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   private handleFetchError = () => {
     this.loadingService.setLoading(false);
 
-    this.alertService.showError(CommomErrorMessages.UPLOAD_ERROR);
+    this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
   };
 }

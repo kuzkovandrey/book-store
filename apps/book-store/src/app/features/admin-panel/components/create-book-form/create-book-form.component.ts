@@ -7,9 +7,8 @@ import {
   Output,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CreateBookDto } from '@book-store/shared/dto';
 
-export type CreateBookForm = Pick<CreateBookDto, 'authors'>;
+import { CreateBookForm } from '@features/admin-panel/types';
 
 @Component({
   selector: 'create-book-form',

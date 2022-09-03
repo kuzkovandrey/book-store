@@ -5,6 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
+
 import { Model, Discount } from '@book-store/shared';
 
 @Component({

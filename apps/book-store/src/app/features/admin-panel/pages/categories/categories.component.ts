@@ -1,15 +1,16 @@
-import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { Category, CategoryModel, CreateCategoryDto } from '@book-store/shared';
+import { TuiDialogService } from '@taiga-ui/core';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { Subject, Subscription, switchMap, tap } from 'rxjs';
+
 import {
   CategoriesService,
   LoadingService,
   AlertService,
 } from '@core/services';
-import { TuiDialogService } from '@taiga-ui/core';
-import { Subject, Subscription, switchMap, tap } from 'rxjs';
-import { EditCategoryModalComponent } from '@features/admin-panel/components/edit-category-modal/edit-category-modal.component';
+import { Category, CategoryModel, CreateCategoryDto } from '@book-store/shared';
+import { EditCategoryModalComponent } from '@features/admin-panel/components';
 
 @Component({
   selector: 'categories',

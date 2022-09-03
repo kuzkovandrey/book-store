@@ -5,10 +5,11 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, ReplaySubject, switchMap } from 'rxjs';
+
 import { ProductModel } from '@book-store/shared/models';
 import { ProductsService } from '@core/services';
 import { AppRoutes } from '@core/values';
-import { Observable, ReplaySubject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'similar, [similar]',

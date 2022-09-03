@@ -1,10 +1,15 @@
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { TuiDialogService } from '@taiga-ui/core';
+import { Subject, Subscription, switchMap, tap } from 'rxjs';
+
 import {
   AlertService,
   CategoriesService,
   LoadingService,
+  ProductsService,
+  DiscountsService,
 } from '@core/services';
-import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   Model,
   Product,
@@ -14,9 +19,6 @@ import {
   CategoryModel,
   ChangeCategoryDto,
 } from '@book-store/shared';
-import { ProductsService, DiscountsService } from '@core/services';
-import { Subject, Subscription, switchMap, tap } from 'rxjs';
-import { TuiDialogService } from '@taiga-ui/core';
 import {
   EditProductModalComponent,
   ProductListComponent,
@@ -24,8 +26,8 @@ import {
   ChangeCategoryModalComponent,
 } from '@features/admin-panel/components';
 import { ProductChanges } from '@features/admin-panel/types';
-import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
 import { ErrorMessages } from '@features/admin-panel/values';
+import { CommonErrorMessages } from '@core/values';
 
 @Component({
   selector: 'book-store-products',
@@ -68,7 +70,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.discountsService.getAll().subscribe({
         next: this.setDiscountList,
-        error: this.showError.bind(CommomErrorMessages.UPLOAD_ERROR),
+        error: this.showError.bind(CommonErrorMessages.UPLOAD_ERROR),
       })
     );
 
@@ -81,14 +83,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
         )
         .subscribe({
           next: this.setProductList,
-          error: this.showError.bind(CommomErrorMessages.UPLOAD_ERROR),
+          error: this.showError.bind(CommonErrorMessages.UPLOAD_ERROR),
         })
     );
 
     this.subscriptions.add(
       this.categoriesService.getAll().subscribe({
         next: this.setCategoryList,
-        error: this.showError.bind(CommomErrorMessages.UPLOAD_ERROR),
+        error: this.showError.bind(CommonErrorMessages.UPLOAD_ERROR),
       })
     );
 
@@ -231,5 +233,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       });
   }
 
-  deleteProduct(product: Model<Product>) {}
+  deleteProduct(product: Model<Product>) {
+    throw new Error('Not implemented');
+  }
 }

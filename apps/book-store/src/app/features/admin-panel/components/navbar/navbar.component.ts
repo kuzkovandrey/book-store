@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MenuRoutes } from '../../values/menu-routes.const';
+
+import { MenuRoutes } from '@features/admin-panel/values';
 
 @Component({
   selector: 'navbar',

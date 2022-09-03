@@ -1,4 +1,3 @@
-import { Subject, Subscription, tap, switchMap } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -7,6 +6,8 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject, Subscription, tap, switchMap } from 'rxjs';
+
 import { ProductsService, LoadingService, AlertService } from '@core/services';
 import { ProductModel, BookModel } from '@book-store/shared/models';
 

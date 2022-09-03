@@ -1,12 +1,10 @@
-import { LoadingService } from '@core/services/loading.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DiscountsService } from '@core/services/entities/discounts.service';
-import { Subject, Subscription, switchMap, tap } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject, Subscription, switchMap, tap } from 'rxjs';
+
+import { LoadingService, DiscountsService, AlertService } from '@core/services';
 import { Model, Discount, CreateDiscountDto } from '@book-store/shared';
-import { AlertService } from '@core/services/alert.service';
-import { ErrorMessages } from '@features/admin-panel/values';
-import { AlertMessages } from '@features/admin-panel/values/alert-messages.enum';
+import { ErrorMessages, AlertMessages } from '@features/admin-panel/values';
 
 @Component({
   selector: 'discounts',

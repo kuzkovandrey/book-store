@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutes } from '@core/values';
 import { AdminPanelComponent } from './admin-panel.component';
-import { BooksComponent } from './pages/books/books.component';
-import { DiscountsComponent } from './pages/discounts/discounts.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { DeliveryComponent } from './pages/delivery/delivery.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
+import {
+  BooksComponent,
+  DiscountsComponent,
+  ProductsComponent,
+  DeliveryComponent,
+  CategoriesComponent,
+} from './pages';
 
 const routes: Routes = [
   {

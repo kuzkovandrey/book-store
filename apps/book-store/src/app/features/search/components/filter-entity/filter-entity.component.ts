@@ -7,16 +7,17 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { TuiIdentityMatcher, TuiStringHandler } from '@taiga-ui/cdk';
 import { tuiItemsHandlersProvider } from '@taiga-ui/kit';
+
 import {
   FilterEntity,
   FilterEntityChangeEvent,
   FilterEntityValues,
 } from '@features/search/models';
-import { FilterEntityNames } from '@features/search/values/filter-entity-names.enum';
+import { FilterEntityNames } from '@features/search/values';
 
 export const STRINGIFY_ENTITY: TuiStringHandler<FilterEntity> = (
   item: FilterEntity

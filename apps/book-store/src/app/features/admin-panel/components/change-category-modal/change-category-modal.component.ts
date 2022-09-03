@@ -1,7 +1,8 @@
 import { FormControl, Validators } from '@angular/forms';
-import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { TuiDialogContext } from '@taiga-ui/core';
+
 import { CategoryModel, ProductModel } from '@book-store/shared/models';
 
 @Component({

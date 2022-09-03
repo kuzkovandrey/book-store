@@ -1,6 +1,7 @@
-import { MainApi } from '@core/api/main.api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { MainApi } from '@core/api';
 import { MainPageSection } from '@book-store/shared';
 
 @Injectable()

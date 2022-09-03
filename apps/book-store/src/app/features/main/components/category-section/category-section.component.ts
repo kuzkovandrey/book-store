@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { MainPageSection, ProductModel } from '@book-store/shared';
 import { AppRoutes } from '@core/values';
 

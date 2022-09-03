@@ -5,7 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { CategoryModel } from '@book-store/shared/models';
+
+import { CategoryModel } from '@book-store/shared';
 
 @Component({
   selector: 'category-list',

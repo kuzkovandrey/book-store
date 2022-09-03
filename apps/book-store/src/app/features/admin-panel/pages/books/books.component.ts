@@ -1,15 +1,14 @@
-import { LoadingService } from '@core/services';
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateBookDto } from '@book-store/shared/dto';
-import { Author } from '@book-store/shared/models';
-import { CreateBookForm } from '@features/admin-panel/components/create-book-form/create-book-form.component';
-import { BooksService } from '@core/services/entities/books.service';
 import { Subject, takeUntil, tap } from 'rxjs';
+
+import { BooksService, LoadingService } from '@core/services';
 import { AppRoutes } from '@core/values';
+import { Author, CreateBookDto } from '@book-store/shared';
+import { CreateBookForm } from '@features/admin-panel/components';
 
 @Component({
-  selector: 'book-store-books',
+  selector: 'books',
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.scss'],
 })

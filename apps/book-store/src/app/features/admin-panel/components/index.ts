@@ -8,3 +8,7 @@ export * from './change-discount-modal/change-discount-modal.component';
 export * from './create-delivery-form/create-delivery-form.component';
 export * from './edit-delivery-point-modal/edit-delivery-point-modal.component';
 export * from './change-category-modal/change-category-modal.component';
+export * from './category-list/category-list.component';
+export * from './create-category-form/create-category-form.component';
+export * from './delivery-point-list/delivery-point-list.component';
+export * from './edit-category-modal/edit-category-modal.component';

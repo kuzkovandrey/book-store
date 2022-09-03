@@ -1,6 +1,7 @@
-import { AppRoutes } from './core/values/app-routes.enum';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AppRoutes } from '@core/values';
 
 const routes: Routes = [
   {

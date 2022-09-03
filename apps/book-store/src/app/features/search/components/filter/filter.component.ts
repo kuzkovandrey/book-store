@@ -1,8 +1,3 @@
-import { FilterEntityChangeEvent } from '@features/search/models';
-import { CommomErrorMessages } from '@core/values/common-error-messages.enum';
-import { AlertService } from '@core/services/alert.service';
-import { LoadingService } from '@core/services/loading.service';
-import { Subscription, tap } from 'rxjs';
 import {
   Component,
   OnInit,
@@ -11,8 +6,13 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { Subscription, tap } from 'rxjs';
+
+import { CommonErrorMessages } from '@core/values';
+import { AlertService, LoadingService } from '@core/services';
+import { FilterEntityChangeEvent } from '@features/search/models';
 import { FilterEntityItem, FilterService } from '@features/search/services';
-import { FilterEntityNames } from '@features/search/values/filter-entity-names.enum';
+import { FilterEntityNames } from '@features/search/values';
 
 @Component({
   selector: 'filter, [filter]',
@@ -57,7 +57,7 @@ export class FilterComponent implements OnInit, OnDestroy {
   private handleError = () => {
     this.loadingService.setLoading(false);
 
-    this.alertService.showError(CommomErrorMessages.UPLOAD_ERROR);
+    this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
   };
 
   private setFilterEntityItems = (items: FilterEntityItem[]) => {

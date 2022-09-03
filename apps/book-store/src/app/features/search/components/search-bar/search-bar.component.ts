@@ -5,8 +5,9 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SearchBarService } from '@features/search/services/search-bar.service';
 import { Subscription } from 'rxjs';
+
+import { SearchBarService } from '@features/search/services';
 
 @Component({
   selector: 'search-bar, [search-bar]',

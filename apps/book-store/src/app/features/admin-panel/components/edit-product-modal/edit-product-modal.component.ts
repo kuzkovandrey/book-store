@@ -3,8 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { TuiDialogContext } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 
-import { ChangeProductValuesDto } from '@book-store/shared/dto';
-import { Product, Model } from '@book-store/shared/models';
+import { ChangeProductValuesDto, Product, Model } from '@book-store/shared';
 import { ProductSaleStates } from '@features/admin-panel/values';
 
 @Component({

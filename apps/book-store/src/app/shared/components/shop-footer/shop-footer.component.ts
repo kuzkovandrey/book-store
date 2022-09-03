@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AppRouterData } from '@core/models';
 import { filter, map, Subscription } from 'rxjs';
+
+import { AppRouterData } from '@core/models';
 
 @Component({
   selector: 'shop-footer',

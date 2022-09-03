@@ -6,7 +6,8 @@ import {
   Output,
   ChangeDetectorRef,
 } from '@angular/core';
-import { Model, Product, ProductModel } from '@book-store/shared/models';
+
+import { ProductModel } from '@book-store/shared/models';
 import { ProductSaleStates } from '@features/admin-panel/values';
 
 @Component({

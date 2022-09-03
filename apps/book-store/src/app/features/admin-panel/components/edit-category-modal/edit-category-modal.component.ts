@@ -1,6 +1,7 @@
-import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { TuiDialogContext } from '@taiga-ui/core';
+
 import { Category } from '@book-store/shared';
 
 @Component({

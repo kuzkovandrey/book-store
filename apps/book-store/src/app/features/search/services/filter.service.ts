@@ -1,14 +1,10 @@
-import { FilterEntityNames } from '../values/filter-entity-names.enum';
-import { forkJoin, map, Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { forkJoin, map, Observable, BehaviorSubject } from 'rxjs';
 
 import { BooksService, CategoriesService } from '@core/services';
 import { SearchFilterModel, ApiQueryParams, Model } from '@book-store/shared';
-import {
-  FilterEntities,
-  FilterEntity,
-  FilterEntityChangeEvent,
-} from '../models';
+import { FilterEntity, FilterEntityChangeEvent } from '../models';
+import { FilterEntityNames } from '../values';
 
 export interface FilterEntityItem {
   hasItems: boolean;
