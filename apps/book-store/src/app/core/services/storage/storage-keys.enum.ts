@@ -1,3 +1,3 @@
 export enum StorageKeys {
-  KEY = 'ley',
+  USER_CART = 'USER_CART',
 }

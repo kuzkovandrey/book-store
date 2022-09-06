@@ -1,0 +1,14 @@
+<section class="cart">
+  <div *ngIf="cartList && cartList.length" class="cart-list">
+    <cart-item
+      *ngFor="let item of cartList"
+      (deleteItem)="deleteItemFromCartList($event)"
+      (countChanges)="changeCountItems($event)"
+      [cartItem]="item"
+    ></cart-item>
+
+    <button tuiButton appearance="primary" size="m">Оформить заказ</button>
+  </div>
+
+  <p *ngIf="cartList && !cartList.length">Корзина пуста</p>
+</section>

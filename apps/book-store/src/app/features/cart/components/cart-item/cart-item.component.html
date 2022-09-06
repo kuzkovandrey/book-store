@@ -1,0 +1,22 @@
+<div class="item">
+  <img class="item__image" [src]="book.picture" />
+
+  <p class="item__title tui-text_h5">{{ book.title }}</p>
+
+  <tui-input-count
+    class="item__input"
+    [formControl]="productFormControl"
+    tuiTextfieldSize="m"
+    [max]="10"
+    [min]="1"
+  ></tui-input-count>
+
+  <button
+    (click)="onClickDelete(cartItem.product.id)"
+    tuiButton
+    appearance="secondary-destructive"
+    size="xs"
+  >
+    Удалить
+  </button>
+</div>

@@ -42,6 +42,16 @@ const routes: Routes = [
     },
   },
   {
+    path: AppRoutes.CART,
+    loadChildren: () =>
+      import('./features/cart/cart.module').then((m) => m.CartModule),
+    data: {
+      hasHeader: true,
+      hasFooter: true,
+      title: 'Корзина',
+    },
+  },
+  {
     path: AppRoutes.ADMIN,
     loadChildren: () =>
       import('./features/admin-panel/admin-panel.module').then(

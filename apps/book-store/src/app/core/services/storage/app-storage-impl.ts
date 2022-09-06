@@ -1,9 +1,11 @@
-import { Observable, switchMap, of, filter, ReplaySubject } from 'rxjs';
+import { Observable, switchMap, of, filter, BehaviorSubject } from 'rxjs';
 import { AppStorage } from './app-storage';
 import { StorageKeys } from './storage-keys.enum';
 
 export class AppStorageImpl implements AppStorage {
-  private readonly storageTrigger = new ReplaySubject<StorageKeys | null>(1);
+  private readonly storageTrigger = new BehaviorSubject<StorageKeys | null>(
+    null
+  );
 
   constructor(private storage: Storage) {}
 
