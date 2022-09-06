@@ -59,7 +59,7 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
         id,
       } as unknown as FindOptionsWhere<ENTITY>);
 
-      return await this.repo.remove(entity);
+      return await this.repo.softRemove(entity);
     } catch {
       this.throwNotFountError();
     }

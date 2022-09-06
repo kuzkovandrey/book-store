@@ -5,4 +5,5 @@ export enum ErrorMessages {
   CHANGE_PRODUCT_VALUES = 'Ошибка при изменении значений продукта',
   CREATE_DELIVERY = 'Ошибка при создании пункта выдачи',
   CHANGE_CATEGORY = 'Ошибка при изменении категории продукта',
+  DELETE_BOOK = 'Ошибка удаления книги',
 }

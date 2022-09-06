@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Query,
+} from '@nestjs/common';
 
 import { ProductsService } from '@products/services/products.service';
 import { ApiControlles } from '@book-store/shared/values';
@@ -13,6 +21,11 @@ import { SearchQueryParams } from '@book-store/shared/models';
 export class ProductsController extends BaseController {
   constructor(private productsService: ProductsService) {
     super(ProductsController.name);
+  }
+
+  @Get()
+  getAll(): Promise<ProductEntity[]> {
+    return this.productsService.getAllProducts();
   }
 
   @Get(ApiControlles.SEARCH)
@@ -49,6 +62,15 @@ export class ProductsController extends BaseController {
   ) {
     try {
       return await this.productsService.changeProductValuesById(id, changes);
+    } catch (e) {
+      this.throwHttpExeption(e);
+    }
+  }
+
+  @Delete('/:id')
+  async deleteById(@Param('id') id: number) {
+    try {
+      return await this.productsService.deleteById(id);
     } catch (e) {
       this.throwHttpExeption(e);
     }

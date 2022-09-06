@@ -44,4 +44,8 @@ export class ProductsService {
       ...filters,
     });
   }
+
+  deleteProductById(id: number): Observable<ProductModel> {
+    return this.productsApi.deleteProductById(id);
+  }
 }

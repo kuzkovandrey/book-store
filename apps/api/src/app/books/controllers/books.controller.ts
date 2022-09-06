@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
 import { CreateBookDto } from '@book-store/shared/dto';
@@ -16,6 +16,15 @@ export class BooksController extends BaseController {
   async createBook(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
     try {
       return await this.booksService.createBook(createBookDto);
+    } catch (e) {
+      this.throwHttpExeption(e);
+    }
+  }
+
+  @Delete('/:id')
+  async deleteById(@Param('id') id: number) {
+    try {
+      return await this.booksService.deleteById(id);
     } catch (e) {
       this.throwHttpExeption(e);
     }

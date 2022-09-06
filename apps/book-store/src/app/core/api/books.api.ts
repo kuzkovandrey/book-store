@@ -23,6 +23,10 @@ export class BookApi {
     );
   }
 
+  deleteBookById(id: number): Observable<BookModel> {
+    return this.http.delete<BookModel>(`${ApiControlles.BOOKS}/${id}`);
+  }
+
   getAllAuthors(): Observable<AuthorModel[]> {
     return this.http.get<AuthorModel[]>(
       `${ApiControlles.BOOKS}${ApiControlles.AUTHORS}`

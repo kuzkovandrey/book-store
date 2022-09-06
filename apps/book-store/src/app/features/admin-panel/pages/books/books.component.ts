@@ -5,7 +5,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { BooksService, LoadingService } from '@core/services';
 import { AppRoutes } from '@core/values';
 import { Author, CreateBookDto } from '@book-store/shared';
-import { CreateBookForm } from '@features/admin-panel/components';
+import { CreateBookForm } from '@features/admin-panel/types';
 
 @Component({
   selector: 'books',

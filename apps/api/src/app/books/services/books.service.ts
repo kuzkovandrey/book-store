@@ -68,8 +68,4 @@ export class BooksService extends BaseService<BookEntity> {
       return await entity.save();
     });
   }
-
-  async remove(id: number): Promise<BookEntity> {
-    return await this.deleteById(id);
-  }
 }

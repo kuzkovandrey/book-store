@@ -27,7 +27,9 @@ export class ProductEntity extends BaseEntity {
   })
   category: CategoryEntity;
 
-  @OneToOne(() => BookEntity)
+  @OneToOne(() => BookEntity, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   book: BookEntity;
 }

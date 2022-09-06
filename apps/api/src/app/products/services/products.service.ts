@@ -33,6 +33,12 @@ export class ProductsService extends BaseService<ProductEntity> {
     super(ProductEntity.name, repository);
   }
 
+  getAllProducts(): Promise<ProductEntity[]> {
+    return this.findAll({
+      relations: this.findOptionsRelations,
+    });
+  }
+
   async getSimilarById(id: number, take = 6): Promise<ProductEntity[]> {
     const { category, book } = await this.findOneBy(
       { id },

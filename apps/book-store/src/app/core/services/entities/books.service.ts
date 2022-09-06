@@ -18,6 +18,10 @@ export class BooksService {
     return this.bookApi.createBook(book);
   }
 
+  deleteBookById(id: number): Observable<BookModel> {
+    return this.bookApi.deleteBookById(id);
+  }
+
   getAllAuthors(): Observable<AuthorModel[]> {
     return this.bookApi.getAllAuthors();
   }

@@ -4,6 +4,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity as Base,
+  DeleteDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -16,4 +17,7 @@ export class BaseEntity extends Base {
 
   @UpdateDateColumn({ nullable: false })
   updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt?: Date;
 }

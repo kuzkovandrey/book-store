@@ -9,10 +9,9 @@ import {
   LoadingService,
   ProductsService,
   DiscountsService,
+  BooksService,
 } from '@core/services';
 import {
-  Model,
-  Product,
   AddDiscountDto,
   ProductModel,
   DiscountModel,
@@ -43,6 +42,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private readonly changeProductCategory$ = new Subject<ChangeCategoryDto>();
 
+  private readonly deleteProduct$ = new Subject<number>();
+
   private readonly getAllProducts$ = new Subject<void>();
 
   @ViewChild(ProductListComponent, { read: ProductListComponent })
@@ -57,6 +58,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private alertService: AlertService,
     private productsService: ProductsService,
+    private booksService: BooksService,
     private loadingService: LoadingService,
     private discountsService: DiscountsService,
     private categoriesService: CategoriesService,
@@ -141,6 +143,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
         })
     );
 
+    this.subscriptions.add(
+      this.deleteProduct$
+        .pipe(
+          tap(() => this.loadingService.setLoading(true)),
+          switchMap((id) => this.productsService.deleteProductById(id)),
+          tap(() => this.loadingService.setLoading(false))
+        )
+        .subscribe({
+          next: this.getAllProducts,
+          error: this.showError.bind(ErrorMessages.DELETE_BOOK),
+        })
+    );
+
     this.getAllProducts();
   }
 
@@ -173,7 +188,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.productListComponent.updateView();
   };
 
-  private changeProduct = (prod: Model<Product>) => {
+  private changeProduct = (prod: ProductModel) => {
     const product = this.productList.find((p) => p.id === prod.id);
 
     if (!product) throw new Error('Product not fount');
@@ -185,7 +200,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     product.discount = prod.discount;
   };
 
-  openEditModal(product: Model<Product>) {
+  openEditModal(product: ProductModel) {
     this.dialogService
       .open<ProductChanges>(
         new PolymorpheusComponent(EditProductModalComponent),
@@ -233,7 +248,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       });
   }
 
-  deleteProduct(product: Model<Product>) {
-    throw new Error('Not implemented');
+  deleteProduct(product: ProductModel) {
+    this.deleteProduct$.next(product.book.id);
   }
 }

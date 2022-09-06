@@ -45,4 +45,8 @@ export class ProductsApi {
       { params: { ...params } }
     );
   }
+
+  deleteProductById(id: number): Observable<ProductModel> {
+    return this.http.delete<ProductModel>(`${ApiControlles.PRODUCTS}/${id}`);
+  }
 }
