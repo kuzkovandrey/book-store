@@ -1,0 +1,12 @@
+<div class="cart-item">
+  <ng-content></ng-content>
+  <button
+    (click)="toggleCartState()"
+    tuiButton
+    [appearance]="buttonOptions.appearance"
+    size="s"
+    class="cart-item__button"
+  >
+    {{ buttonOptions.text }}
+  </button>
+</div>

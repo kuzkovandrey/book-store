@@ -1,0 +1,19 @@
+@import 'mixins';
+
+.cart-item {
+  position: relative;
+
+  @include element(button) {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover {
+    .cart-item__button {
+      opacity: 1;
+    }
+  }
+}

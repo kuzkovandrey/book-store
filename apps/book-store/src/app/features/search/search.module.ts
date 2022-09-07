@@ -20,7 +20,10 @@ import {
 } from './components';
 import { SearchComponent } from './search.component';
 import { SearchBarService, FilterService } from './services';
-import { ProductCardComponent } from '@shared/components';
+import {
+  CartItemWrapperComponent,
+  ProductCardComponent,
+} from '@shared/components';
 
 const routes: Routes = [
   {
@@ -41,6 +44,7 @@ const routes: Routes = [
     TuiDataListWrapperModule,
     TuiMultiSelectModule,
     ProductCardComponent,
+    CartItemWrapperComponent,
   ],
   exports: [RouterModule],
   declarations: [

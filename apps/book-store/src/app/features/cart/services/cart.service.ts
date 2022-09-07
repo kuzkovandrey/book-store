@@ -1,13 +1,11 @@
-import { CartItem, CartList, StorageCart } from './../models/cart.model';
+import { CartItem, CartList, StorageCartList } from './../models/cart.model';
 import { Observable, of, mergeMap, map, toArray, catchError } from 'rxjs';
 import { StorageKeys } from '@core/services/storage';
 import { Injectable } from '@angular/core';
 import { AppStorage } from '@core/services/storage';
 import { ProductsService } from '@core/services';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CartService {
   constructor(
     private appStorage: AppStorage,
@@ -25,8 +23,22 @@ export class CartService {
     // ]);
   }
 
+  private mapCartListToStorageCartList(list: CartList): StorageCartList {
+    return list.map(({ product, count }) => ({
+      productId: product.id,
+      count,
+    }));
+  }
+
+  saveCartListToStorage(list: CartList) {
+    this.appStorage.set(
+      StorageKeys.USER_CART,
+      this.mapCartListToStorageCartList(list)
+    );
+  }
+
   getCartProductList(): Observable<CartList> {
-    const cart = this.appStorage.get<StorageCart>(StorageKeys.USER_CART);
+    const cart = this.appStorage.get<StorageCartList>(StorageKeys.USER_CART);
 
     if (!cart || !cart?.length) return of([]);
 
@@ -38,7 +50,7 @@ export class CartService {
         )
       ),
       toArray(),
-      map((list) => list.filter((item) => !!item?.product))
+      map((list) => list.filter(({ product }) => !!product))
     );
   }
 }

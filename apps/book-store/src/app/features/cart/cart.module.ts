@@ -7,6 +7,7 @@ import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 
 import { CartComponent } from './cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CartService } from './services';
 
 const routes: Routes = [
   {
@@ -26,6 +27,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [CartComponent, CartItemComponent],
-  providers: [],
+  providers: [CartService],
 })
 export class CartModule {}

@@ -5,7 +5,7 @@ export interface StorageCartItem {
   count: number;
 }
 
-export type StorageCart = StorageCartItem[];
+export type StorageCartList = StorageCartItem[];
 
 export interface CartItem {
   product: ProductModel;

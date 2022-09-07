@@ -35,6 +35,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+    this.cartService.saveCartListToStorage(this.cartList);
   }
 
   deleteItemFromCartList(id: number) {

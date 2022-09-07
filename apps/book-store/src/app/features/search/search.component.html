@@ -9,11 +9,14 @@
 
     <div class="search-page__content">
       <ng-container *ngIf="resultList">
-        <product-card
-          (click)="navigateToProductPage(product.id)"
-          *ngFor="let product of resultList"
-          [product]="product"
-        ></product-card>
+        <ng-container *ngFor="let product of resultList">
+          <cart-item-wrapper>
+            <product-card
+              (click)="navigateToProductPage(product.id)"
+              [product]="product"
+            ></product-card>
+          </cart-item-wrapper>
+        </ng-container>
       </ng-container>
 
       <ng-container *ngIf="resultList && !resultList.length">

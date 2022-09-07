@@ -5,10 +5,12 @@
 
   <div class="section__product-list">
     <ng-container *ngFor="let product of productList">
-      <product-card
-        [product]="product"
-        (click)="navigateToProductPage(product.id)"
-      ></product-card>
+      <cart-item-wrapper>
+        <product-card
+          [product]="product"
+          (click)="navigateToProductPage(product.id)"
+        ></product-card>
+      </cart-item-wrapper>
     </ng-container>
 
     <tui-island (click)="navigateToSearchPage()" class="section__details">

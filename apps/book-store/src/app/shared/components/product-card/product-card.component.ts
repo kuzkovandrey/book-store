@@ -4,6 +4,7 @@ import { TuiIslandModule, TuiTagModule } from '@taiga-ui/kit';
 
 import { AuthorModel, ProductModel } from '@book-store/shared/models';
 import { TextOverflowPipe, ProductPricePipe } from '@shared/pipes';
+import { AddableCartItem } from '@core/interfaces';
 
 @Component({
   standalone: true,
@@ -19,7 +20,7 @@ import { TextOverflowPipe, ProductPricePipe } from '@shared/pipes';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements AddableCartItem {
   @Input() product: ProductModel;
 
   get hasDiscount(): boolean {
@@ -43,5 +44,9 @@ export class ProductCardComponent {
     const [author] = this.product.book.authors;
 
     return author;
+  }
+
+  getId(): number {
+    return this.product.id;
   }
 }
