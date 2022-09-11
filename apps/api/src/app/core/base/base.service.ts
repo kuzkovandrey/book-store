@@ -10,6 +10,10 @@ import {
 import { IncorrectDataError, NotFountError } from '@core/values';
 
 export abstract class BaseService<ENTITY extends BaseEntity> {
+  get repositoryInstance(): Repository<ENTITY> {
+    return this.repo;
+  }
+
   constructor(
     private readonly entityName: string,
     private readonly repo: Repository<ENTITY>
@@ -37,6 +41,14 @@ export abstract class BaseService<ENTITY extends BaseEntity> {
   async create(dto: DeepPartial<ENTITY>): Promise<ENTITY> {
     try {
       return await this.repo.create(dto).save();
+    } catch {
+      throw new IncorrectDataError(this.entityName);
+    }
+  }
+
+  async createFromArray(dtoArray: DeepPartial<ENTITY>[]): Promise<ENTITY[]> {
+    try {
+      return await this.repo.save(this.repo.create(dtoArray));
     } catch {
       throw new IncorrectDataError(this.entityName);
     }

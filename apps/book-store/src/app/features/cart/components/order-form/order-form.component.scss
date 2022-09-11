@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.form {
+  width: 100%;
+
+  @include element(input) {
+    margin-bottom: 0.5rem;
+  }
+}

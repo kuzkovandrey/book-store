@@ -1,7 +1,11 @@
 <div class="item">
   <img class="item__image" [src]="book.picture" />
 
-  <p class="item__title tui-text_h5">{{ book.title }}</p>
+  <p class="item__title tui-text_body-m">{{ book.title }}</p>
+
+  <p class="item__title tui-text_body-m">
+    {{ product | productPrice: itemCount }}
+  </p>
 
   <tui-input-count
     class="item__input"

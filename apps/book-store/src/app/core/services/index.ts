@@ -6,6 +6,6 @@ export * from './entities/categories.service';
 
 export * from './alert.service';
 export * from './loading.service';
-
+export * from './product-price.service';
 export * from './storage/app-storage';
 export * from './storage/storage-keys.enum';

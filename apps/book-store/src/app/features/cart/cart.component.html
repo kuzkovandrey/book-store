@@ -7,7 +7,14 @@
       [cartItem]="item"
     ></cart-item>
 
-    <button tuiButton appearance="primary" size="m">Оформить заказ</button>
+    <p class="tui-text_body-m" *ngIf="totalPrice">
+      Итого: {{ totalPrice }} руб.
+    </p>
+
+    <order-form
+      (formValueChanges)="onChangeOrderForm($event)"
+      (orderButtonClicked)="createOrder()"
+    ></order-form>
   </div>
 
   <p *ngIf="cartList && !cartList.length">Корзина пуста</p>

@@ -1,11 +1,7 @@
 import { ProductsApi } from '@core/api/products.api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ProductModel,
-  SearchFilterModel,
-  SearchPagesModel,
-} from '@book-store/shared/models';
+import { ProductModel } from '@book-store/shared/models';
 import { ChangeProductValuesDto } from '@book-store/shared/dto';
 import { ApiQueryParams } from '@book-store/shared/values';
 import { SearchParams } from '@core/models';

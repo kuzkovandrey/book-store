@@ -1,25 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { ProductModel } from '@book-store/shared/models';
+import { ProductPriceService } from '@core/services';
 
 @Pipe({
   name: 'productPrice',
   standalone: true,
 })
 export class ProductPricePipe implements PipeTransform {
-  transform(product: ProductModel): string {
-    return product.onSale
-      ? `${this.calculatePrice(product)} руб.`
-      : 'Скоро в продаже';
+  private calculatePrice: (product: ProductModel, count: number) => number;
+
+  constructor() {
+    const productPriceService = new ProductPriceService();
+
+    this.calculatePrice =
+      productPriceService.calculatePrice.bind(productPriceService);
   }
 
-  private calculatePrice(product: ProductModel): number {
-    if (product.discount && product.discount.percent) {
-      const cost = product.cost * (product?.discount.percent / 100);
-
-      return Math.round(cost * 100) / 100;
-    }
-
-    return Math.round(product.cost * 100) / 100;
+  transform(product: ProductModel, count: number = 1): string {
+    return product.onSale
+      ? `${this.calculatePrice(product, count)} руб.`
+      : 'Скоро в продаже';
   }
 }

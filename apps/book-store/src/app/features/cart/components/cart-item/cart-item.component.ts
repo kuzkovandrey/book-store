@@ -10,7 +10,7 @@ import {
   Output,
 } from '@angular/core';
 
-import { BookModel } from '@book-store/shared/models';
+import { BookModel, ProductModel } from '@book-store/shared/models';
 import { CartItem } from '@features/cart/models/cart.model';
 
 @Component({
@@ -28,10 +28,18 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   private readonly subscriptions = new Subscription();
 
-  productFormControl = new FormControl(1);
+  productFormControl = new FormControl<number>(1);
 
   get book(): BookModel {
     return this.cartItem.product.book;
+  }
+
+  get product(): ProductModel {
+    return this.cartItem.product;
+  }
+
+  get itemCount(): number {
+    return this.productFormControl.value ?? 1;
   }
 
   ngOnInit(): void {

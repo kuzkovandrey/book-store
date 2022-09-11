@@ -1,0 +1,46 @@
+<form class="form" [formGroup]="orderForm">
+  <div formGroupName="buyer">
+    <tui-input
+      tuiTextfieldSize="m"
+      class="form__input"
+      formControlName="firstName"
+    >
+      Имя
+      <input tuiTextfield type="text" />
+    </tui-input>
+
+    <tui-input tuiTextfieldSize="m" class="form__input" formControlName="email">
+      Email
+      <input tuiTextfield type="text" />
+    </tui-input>
+  </div>
+
+  <tui-combo-box
+    class="form__input"
+    tuiTextfieldSize="m"
+    formControlName="deliveryPoint"
+    [tuiTextfieldLabelOutside]="false"
+    *ngIf="deliveryPointList && deliveryPointList.length"
+  >
+    Пункт доставки
+    <input tuiTextfield />
+    <tui-data-list-wrapper
+      *tuiDataList
+      [items]="deliveryPointList"
+    ></tui-data-list-wrapper>
+  </tui-combo-box>
+
+  <ng-container *ngIf="deliveryPointList && !deliveryPointList.length">
+    <p>Доставка временно недоступна</p>
+  </ng-container>
+
+  <button
+    (click)="onClickOrderButton()"
+    [disabled]="orderForm.invalid"
+    tuiButton
+    appearance="primary"
+    size="m"
+  >
+    Оформить заказ
+  </button>
+</form>

@@ -36,3 +36,34 @@
   "isActive": false
 }
 
+export interface CreateOrderDto {
+  buyer: Buyer;
+  deliveryPointId: number;
+  productList: {
+    productId: number;
+    count: number;
+  }[];
+  totalPrice: number;
+}
+
+// CreateOrderDto
+
+{
+  "buyer": {
+    "firstName": "TestFirstName",
+    "email": "email@email.com"
+  },
+  "deliveryPointId": 5,
+  "productList": [
+    {
+      "productId": 1,
+      "count": 1
+    },
+    {
+      "productId": 2,
+      "count": 2
+    }
+  ],
+  "totalPrice": 99.99
+}
+

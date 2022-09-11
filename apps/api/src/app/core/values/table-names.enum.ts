@@ -8,4 +8,7 @@ export enum TableNames {
   PRODUCT = 'PRODUCT',
   DISCOUNT = 'DISCOUNT',
   CATEGORY = 'CATEGORY',
+  ORDER = 'CUSTOM_ORDER',
+  BUYER = 'BUYER',
+  ORDER_ITEM = 'ORDER_ITEM',
 }

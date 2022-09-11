@@ -1,10 +1,20 @@
-import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  OneToOne,
+  JoinColumn,
+  ManyToMany,
+  OneToMany,
+} from 'typeorm';
 
 import { DiscountEntity } from '@products/entities';
 import { BookEntity } from '@books/entities';
 import { TableNames } from '@core/values';
 import { BaseEntity } from '@core/base';
 import { CategoryEntity } from './category.entity';
+import { OrderEntity } from '@orders/entities/order.entity';
+import { OrderItemEntity } from '@orders/entities/order-item.entity';
 
 @Entity({ name: TableNames.PRODUCT })
 export class ProductEntity extends BaseEntity {
@@ -32,4 +42,7 @@ export class ProductEntity extends BaseEntity {
   })
   @JoinColumn()
   book: BookEntity;
+
+  @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.product)
+  orderItems: OrderItemEntity[];
 }

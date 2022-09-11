@@ -1,27 +1,17 @@
-import { CartItem, CartList, StorageCartList } from './../models/cart.model';
-import { Observable, of, mergeMap, map, toArray, catchError } from 'rxjs';
-import { StorageKeys } from '@core/services/storage';
 import { Injectable } from '@angular/core';
-import { AppStorage } from '@core/services/storage';
-import { ProductsService } from '@core/services';
+import { Observable, of, mergeMap, map, toArray, catchError } from 'rxjs';
+
+import { ProductsService, ProductPriceService } from '@core/services';
+import { StorageKeys, AppStorage } from '@core/services/storage';
+import { CartItem, CartList, StorageCartList } from '@features/cart/models';
 
 @Injectable()
 export class CartService {
   constructor(
     private appStorage: AppStorage,
-    private productsService: ProductsService
-  ) {
-    // appStorage.set<StorageCart>(StorageKeys.USER_CART, [
-    //   {
-    //     productId: 1,
-    //     count: 1,
-    //   },
-    //   {
-    //     productId: 2,
-    //     count: 2,
-    //   },
-    // ]);
-  }
+    private productsService: ProductsService,
+    private productPriceService: ProductPriceService
+  ) {}
 
   private mapCartListToStorageCartList(list: CartList): StorageCartList {
     return list.map(({ product, count }) => ({
@@ -35,6 +25,10 @@ export class CartService {
       StorageKeys.USER_CART,
       this.mapCartListToStorageCartList(list)
     );
+  }
+
+  resetStorageCartList() {
+    this.appStorage.remove(StorageKeys.USER_CART);
   }
 
   getCartProductList(): Observable<CartList> {
@@ -52,5 +46,13 @@ export class CartService {
       toArray(),
       map((list) => list.filter(({ product }) => !!product))
     );
+  }
+
+  calculateTotalPrice(cartList: CartList) {
+    return cartList.reduce((totalCount, { product, count }) => {
+      return (
+        totalCount + this.productPriceService.calculatePrice(product, count)
+      );
+    }, 0);
   }
 }
