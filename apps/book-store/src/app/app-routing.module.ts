@@ -62,6 +62,18 @@ const routes: Routes = [
       hasFooter: false,
     },
   },
+  {
+    path: AppRoutes.ORDER_TRACKER,
+    loadChildren: () =>
+      import('./features/order-tracker/order-tracker.module').then(
+        (m) => m.OrderTrackerModule
+      ),
+    data: {
+      hasHeader: true,
+      hasFooter: true,
+      title: 'Отлеживание заказов',
+    },
+  },
 ];
 
 @NgModule({

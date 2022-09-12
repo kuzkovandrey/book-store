@@ -7,7 +7,6 @@ import { OrderEntity } from '@orders/entities';
 import {
   CreateOrderDto,
   OrderState,
-  OrderStatus,
   SuccessCreateOrder,
 } from '@book-store/shared';
 import { ProductsService } from '@products/services';
@@ -88,12 +87,16 @@ export class OrderService extends BaseService<OrderEntity> {
     });
   }
 
-  async trackOrderStatus(tracker: string): Promise<OrderStatus> {
-    const { id, state } = await this.findOneBy({ tracker });
+  async getOrderByTrack(tracker: string): Promise<OrderEntity> {
+    const order = await this.findOneBy(
+      { tracker },
+      {
+        orderItems: true,
+        deliveryPoint: true,
+        buyer: true,
+      }
+    );
 
-    return {
-      id,
-      state,
-    };
+    return order;
   }
 }

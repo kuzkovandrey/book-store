@@ -10,6 +10,10 @@ export const MenuRoutes = [
     title: 'Поиск',
   },
   {
+    path: AppRoutes.ORDER_TRACKER,
+    title: 'Отлеживание заказов',
+  },
+  {
     path: AppRoutes.CART,
     title: 'Корзина товаров',
   },

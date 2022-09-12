@@ -7,7 +7,7 @@ import {
   ApiControlles,
   SuccessCreateOrder,
   ApiQueryParams,
-  OrderStatus,
+  OrderModel,
 } from '@book-store/shared';
 
 @Injectable()
@@ -18,9 +18,9 @@ export class OrdersApi {
     return this.http.post<SuccessCreateOrder>(ApiControlles.ORDERS, order);
   }
 
-  trackOrderStatus(track: string): Observable<OrderStatus> {
-    return this.http.get<OrderStatus>(
-      `${ApiControlles.ORDERS}${ApiControlles.TRACK_STATUS}`,
+  getOrderByTrack(track: string): Observable<OrderModel> {
+    return this.http.get<OrderModel>(
+      `${ApiControlles.ORDERS}${ApiControlles.BY_TRACK}`,
       {
         params: {
           [ApiQueryParams.TRACK]: track,

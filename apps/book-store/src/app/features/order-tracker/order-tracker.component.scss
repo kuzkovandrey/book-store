@@ -1,0 +1,7 @@
+@import 'mixins';
+
+.tracker {
+  @include element(info) {
+    margin-top: 2rem;
+  }
+}

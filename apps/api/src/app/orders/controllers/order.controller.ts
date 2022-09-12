@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 
 import { OrderService } from '@orders/services';
 import { BaseController } from '@core/base';
@@ -41,10 +41,14 @@ export class OrderController extends BaseController {
     }
   }
 
-  @Get(ApiControlles.TRACK_STATUS)
-  trackOrderStatus(
-    @Param(ApiQueryParams.TRACK) track: string
+  @Get(ApiControlles.BY_TRACK)
+  async getOrderByTrack(
+    @Query(ApiQueryParams.TRACK) track: string
   ): Promise<OrderStatus> {
-    return this.orderService.trackOrderStatus(track);
+    try {
+      return await this.orderService.getOrderByTrack(track);
+    } catch (e) {
+      this.throwHttpExeption(e);
+    }
   }
 }

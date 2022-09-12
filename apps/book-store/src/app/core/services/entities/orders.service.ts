@@ -3,9 +3,9 @@ import { Observable } from 'rxjs';
 
 import { OrdersApi } from '@core/api';
 import {
-  OrderStatus,
   SuccessCreateOrder,
   CreateOrderDto,
+  OrderModel,
 } from '@book-store/shared';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class OrdersService {
     return this.ordersApi.createOrder(order);
   }
 
-  trackOrderStatus(track: string): Observable<OrderStatus> {
-    return this.ordersApi.trackOrderStatus(track);
+  getOrderByTrack(track: string): Observable<OrderModel> {
+    return this.ordersApi.getOrderByTrack(track);
   }
 }

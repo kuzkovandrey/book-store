@@ -1,0 +1,20 @@
+<form class="form">
+  <tui-input
+    class="form__input"
+    tuiTextfieldSize="m"
+    [formControl]="trackerControl"
+  >
+    Трекер заказа
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <button
+    (click)="onButtonClick()"
+    [disabled]="trackerControl.invalid"
+    tuiButton
+    appearance="primary"
+    size="m"
+  >
+    Проверить статус
+  </button>
+</form>

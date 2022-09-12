@@ -2,11 +2,10 @@ import { OrderState } from '../values';
 import { Model } from './base.model';
 import { BuyerModel } from './buyer.model';
 import { DeliveryModel } from './delivery.model';
-import { ProductModel } from './product.model';
 
 export type OrderItem = {
   count: number;
-  product: ProductModel;
+  productId: number;
 };
 
 export type OrderItemModel = Model<OrderItem>;

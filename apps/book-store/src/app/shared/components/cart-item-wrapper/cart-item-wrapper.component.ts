@@ -30,11 +30,11 @@ export class CartItemWrapperComponent implements AfterContentInit {
 
   private readonly options = {
     out: {
-      text: 'Добавить',
+      text: 'Добавить в корзину',
       appearance: 'primary',
     },
     in: {
-      text: 'Удалить',
+      text: 'Удалить из корзины',
       appearance: 'accent',
     },
   } as const;
