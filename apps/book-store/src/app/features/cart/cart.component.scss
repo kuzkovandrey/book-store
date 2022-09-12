@@ -1,7 +1,15 @@
+@import 'mixins';
+
+.cart {
+  @include element(empty-label) {
+    color: var(--tui-negative-hover);
+    text-align: center;
+  }
+}
+
 .cart-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: flex-start;
-  padding: 2rem;
 }

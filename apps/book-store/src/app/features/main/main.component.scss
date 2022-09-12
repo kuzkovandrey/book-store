@@ -1,9 +1,6 @@
 @import 'mixins';
 
 .main {
-  padding: 1rem;
-  min-height: 100vh;
-
   @include element(toolbar) {
     width: 100%;
     margin-bottom: 1rem;
