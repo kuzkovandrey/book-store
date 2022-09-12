@@ -16,10 +16,10 @@ import {
 
 import { CartComponent } from './cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { CartService } from './services';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { ProductPricePipe } from '@shared/pipes';
 import { ProductPriceService } from '@core/services';
+import { OrderSuccessModalComponent } from './components/order-success-modal/order-success-modal.component';
 
 const routes: Routes = [
   {
@@ -43,7 +43,12 @@ const routes: Routes = [
     ProductPricePipe,
   ],
   exports: [RouterModule],
-  declarations: [CartComponent, CartItemComponent, OrderFormComponent],
-  providers: [CartService, ProductPriceService],
+  declarations: [
+    CartComponent,
+    CartItemComponent,
+    OrderFormComponent,
+    OrderSuccessModalComponent,
+  ],
+  providers: [ProductPriceService],
 })
 export class CartModule {}

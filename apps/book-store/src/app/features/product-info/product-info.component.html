@@ -13,13 +13,18 @@
           </span>
         </div>
         <button
+          (click)="onCartButtonClick()"
           tuiButton
           type="button"
           size="m"
-          appearance="primary"
+          [appearance]="hasProductInCart ? 'accent' : 'primary'"
           *ngIf="product.onSale"
         >
-          Добавить в корзину
+          {{
+            hasProductInCart
+              ? buttonTexts.removeFromCart
+              : buttonTexts.addToCart
+          }}
         </button>
       </div>
     </div>

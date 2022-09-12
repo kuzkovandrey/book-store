@@ -1,3 +1,4 @@
+import { CartService } from '@core/services/cart.service';
 import {
   Component,
   OnInit,
@@ -26,19 +27,28 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
 
   book: BookModel;
 
+  buttonTexts = {
+    addToCart: 'Добавить в корзину',
+    removeFromCart: 'Удалить из карзины',
+  };
+
+  get hasProductInCart(): boolean {
+    return this.cartService.hasProductInCartStorage(this.product.id);
+  }
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
     private loadingService: LoadingService,
     private alertService: AlertService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
     this.subscriptions.add(
       this.getProduct$
         .pipe(
-          tap((e) => console.log(e)),
           tap(() => this.loadingService.setLoading(true)),
           switchMap((id) => this.productsService.getProductById(id)),
           tap(() => this.loadingService.setLoading(false))
@@ -62,6 +72,11 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-    console.log('ngOnDestroy');
+  }
+
+  onCartButtonClick() {
+    if (this.hasProductInCart)
+      this.cartService.removeProductFromStorage(this.product);
+    else this.cartService.addProductToStorage(this.product);
   }
 }

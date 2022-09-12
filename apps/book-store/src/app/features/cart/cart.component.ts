@@ -1,11 +1,19 @@
+import { CommonErrorMessages } from '@core/values';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { TuiDialogService } from '@taiga-ui/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription, tap } from 'rxjs';
+import { Subject, Subscription, tap, switchMap } from 'rxjs';
 
-import { LoadingService } from '@core/services/loading.service';
-import { CartService } from './services';
+import {
+  LoadingService,
+  OrdersService,
+  AlertService,
+  CartService,
+} from '@core/services';
 import { CartList } from './models/cart.model';
 import { OrderFormModel } from './models';
 import { CreateOrderDto } from '@book-store/shared/dto';
+import { OrderSuccessModalComponent } from './components/order-success-modal/order-success-modal.component';
 
 @Component({
   selector: 'cart',
@@ -25,7 +33,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: CartService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private dialogService: TuiDialogService,
+    private ordersService: OrdersService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit() {
@@ -43,9 +54,18 @@ export class CartComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.add(
-      this.createOrder$.subscribe((r) => {
-        console.log(r);
-      })
+      this.createOrder$
+        .pipe(
+          tap(() => this.loadingService.setLoading(true)),
+          switchMap((orderDto) => this.ordersService.createOrder(orderDto)),
+          tap(() => this.loadingService.setLoading(false))
+        )
+        .subscribe({
+          next: this.handleSuccessCreateOrder,
+          error: () => {
+            this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
+          },
+        })
     );
   }
 
@@ -53,6 +73,12 @@ export class CartComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
     this.cartService.saveCartListToStorage(this.cartList);
   }
+
+  private handleSuccessCreateOrder = () => {
+    this.openSuccessModal();
+    this.cartService.resetStorageCartList();
+    this.cartList = [];
+  };
 
   deleteItemFromCartList(id: number) {
     this.cartList = this.cartList.filter(({ product }) => product.id !== id);
@@ -85,5 +111,15 @@ export class CartComponent implements OnInit, OnDestroy {
         count,
       })),
     });
+  }
+
+  openSuccessModal() {
+    this.subscriptions.add(
+      this.dialogService
+        .open(new PolymorpheusComponent(OrderSuccessModalComponent))
+        .subscribe(() => {
+          // navigate to tracker page
+        })
+    );
   }
 }

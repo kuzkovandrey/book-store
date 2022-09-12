@@ -4,9 +4,18 @@ import { Observable, of, mergeMap, map, toArray, catchError } from 'rxjs';
 import { ProductsService, ProductPriceService } from '@core/services';
 import { StorageKeys, AppStorage } from '@core/services/storage';
 import { CartItem, CartList, StorageCartList } from '@features/cart/models';
+import { ProductModel } from '@book-store/shared/models';
 
 @Injectable()
 export class CartService {
+  private get cartStorage(): StorageCartList {
+    return this.appStorage.get<StorageCartList>(StorageKeys.USER_CART) ?? [];
+  }
+
+  private set cartStorage(cartStorageList: StorageCartList) {
+    this.appStorage.set(StorageKeys.USER_CART, cartStorageList);
+  }
+
   constructor(
     private appStorage: AppStorage,
     private productsService: ProductsService,
@@ -18,6 +27,25 @@ export class CartService {
       productId: product.id,
       count,
     }));
+  }
+
+  hasProductInCartStorage(id: number): boolean {
+    return !!this.cartStorage?.find(({ productId }) => productId === id);
+  }
+
+  addProductToStorage({ id: productId }: ProductModel) {
+    const storage = this.cartStorage;
+    storage.push({
+      productId,
+      count: 1,
+    });
+    this.cartStorage = storage;
+  }
+
+  removeProductFromStorage({ id }: ProductModel) {
+    let storage = this.cartStorage;
+    storage = storage.filter(({ productId }) => productId !== id);
+    this.cartStorage = storage;
   }
 
   saveCartListToStorage(list: CartList) {

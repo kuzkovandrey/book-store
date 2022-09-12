@@ -3,15 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { ApiProviders } from './api';
 import { EntitySerivceProviders } from './services/entities';
-import { LoadingService, AlertService } from './services';
+import { LoadingService, AlertService, ProductPriceService } from './services';
 import { AppStorage, AppStorageImpl } from './services/storage';
 import { InterceptorProviders } from './interceptors';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   imports: [HttpClientModule],
   providers: [
     AlertService,
     LoadingService,
+    CartService,
+    ProductPriceService,
     ...ApiProviders,
     ...EntitySerivceProviders,
     ...InterceptorProviders,

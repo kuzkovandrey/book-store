@@ -17,6 +17,17 @@ export type Order = {
   totalPrice: number;
   state: OrderState;
   orderItems: OrderItemModel[];
+  tracker: string;
 };
 
 export type OrderModel = Model<Order>;
+
+export type SuccessCreateOrder = {
+  id: number;
+  tracker: string;
+};
+
+export type OrderStatus = {
+  id: number;
+  state: OrderState;
+};

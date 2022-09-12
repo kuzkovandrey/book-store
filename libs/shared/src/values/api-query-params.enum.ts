@@ -11,4 +11,5 @@ export enum ApiQueryParams {
   PER_PAGE = 'perPage',
   TEXT = 'text',
   CATEGORIES = 'categories',
+  TRACK = 'track',
 }

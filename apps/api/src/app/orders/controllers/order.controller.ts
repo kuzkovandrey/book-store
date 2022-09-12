@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { OrderService } from '@orders/services';
 import { BaseController } from '@core/base';
@@ -6,6 +6,9 @@ import {
   ChangeOrderStateDto,
   CreateOrderDto,
   ApiControlles,
+  SuccessCreateOrder,
+  ApiQueryParams,
+  OrderStatus,
 } from '@book-store/shared';
 import { OrderEntity } from '@orders/entities';
 
@@ -21,7 +24,7 @@ export class OrderController extends BaseController {
   }
 
   @Post()
-  async createOrder(@Body() dto: CreateOrderDto): Promise<OrderEntity> {
+  async createOrder(@Body() dto: CreateOrderDto): Promise<SuccessCreateOrder> {
     try {
       return await this.orderService.createOrder(dto);
     } catch (e) {
@@ -36,5 +39,12 @@ export class OrderController extends BaseController {
     } catch (e) {
       this.throwHttpExeption(e);
     }
+  }
+
+  @Get(ApiControlles.TRACK_STATUS)
+  trackOrderStatus(
+    @Param(ApiQueryParams.TRACK) track: string
+  ): Promise<OrderStatus> {
+    return this.orderService.trackOrderStatus(track);
   }
 }

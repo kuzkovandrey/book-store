@@ -1,6 +1,7 @@
 <div class="cart-item">
   <ng-content></ng-content>
   <button
+    *ngIf="onSale"
     (click)="toggleCartState()"
     tuiButton
     [appearance]="buttonOptions.appearance"

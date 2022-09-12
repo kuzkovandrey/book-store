@@ -55,6 +55,8 @@ export class CartItemWrapperComponent implements AfterContentInit {
     return this.options[this.currentState];
   }
 
+  onSale = false;
+
   constructor(
     private appStorage: AppStorage,
     private changeDetectorRef: ChangeDetectorRef
@@ -62,6 +64,8 @@ export class CartItemWrapperComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     asyncScheduler.schedule(this.setInitialCartState);
+
+    this.onSale = this.cartItem.onSale();
   }
 
   private getReversState(): CartState {

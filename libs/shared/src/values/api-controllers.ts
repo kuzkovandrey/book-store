@@ -18,4 +18,5 @@ export enum ApiControlles {
   SEARCH = '/search',
   ORDERS = '/orders',
   CHANGE_STATE = '/change_state',
+  TRACK_STATUS = '/track_status',
 }

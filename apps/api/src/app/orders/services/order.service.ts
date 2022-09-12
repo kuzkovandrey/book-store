@@ -4,7 +4,12 @@ import { Repository } from 'typeorm';
 
 import { BaseService } from '@core/base';
 import { OrderEntity } from '@orders/entities';
-import { CreateOrderDto, OrderState } from '@book-store/shared';
+import {
+  CreateOrderDto,
+  OrderState,
+  OrderStatus,
+  SuccessCreateOrder,
+} from '@book-store/shared';
 import { ProductsService } from '@products/services';
 import { DeliveryService } from './delivery.service';
 import { OrderItemService } from './order-item.service';
@@ -28,7 +33,7 @@ export class OrderService extends BaseService<OrderEntity> {
     deliveryPointId,
     productList,
     totalPrice,
-  }: CreateOrderDto): Promise<OrderEntity> {
+  }: CreateOrderDto): Promise<SuccessCreateOrder> {
     const buyer = await this.buyerService.createIfNotExists(newBuyer);
     const deliveryPoint = await this.deliveryService.findOneBy({
       id: deliveryPointId,
@@ -54,13 +59,14 @@ export class OrderService extends BaseService<OrderEntity> {
       });
     });
 
-    const saved = await this.orderItemService.repositoryInstance.save(
-      orderItems
-    );
+    await this.orderItemService.repositoryInstance.save(orderItems);
 
-    console.log(saved);
+    const { id, tracker } = createdOrder;
 
-    return createdOrder;
+    return {
+      id,
+      tracker,
+    };
   }
 
   async changeOrderState(id: number, state: OrderState): Promise<OrderEntity> {
@@ -80,5 +86,14 @@ export class OrderService extends BaseService<OrderEntity> {
         },
       },
     });
+  }
+
+  async trackOrderStatus(tracker: string): Promise<OrderStatus> {
+    const { id, state } = await this.findOneBy({ tracker });
+
+    return {
+      id,
+      state,
+    };
   }
 }

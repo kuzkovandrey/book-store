@@ -49,4 +49,8 @@ export class ProductCardComponent implements AddableCartItem {
   getId(): number {
     return this.product.id;
   }
+
+  onSale(): boolean {
+    return this.product.onSale;
+  }
 }

@@ -1,13 +1,11 @@
 import {
   Entity,
   Column,
-  ManyToMany,
-  JoinTable,
   ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { BaseEntity, TableNames } from '@core';
-import { ProductEntity } from '@products/entities';
 import { BuyerEntity } from './buyer.entity';
 import { OrderState } from '@book-store/shared/values';
 import { DeliveryPointEntity } from './delivery-point.entity';
@@ -24,6 +22,9 @@ export class OrderEntity extends BaseEntity {
     default: OrderState.PROCESS,
   })
   state: OrderState;
+
+  @PrimaryGeneratedColumn('uuid')
+  tracker: string;
 
   @ManyToOne(() => BuyerEntity)
   buyer: BuyerEntity;

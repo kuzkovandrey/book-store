@@ -5,6 +5,7 @@ import { Provider } from '@angular/core';
 import { BookApi } from './books.api';
 import { MainApi } from './main.api';
 import { ProductsApi } from './products.api';
+import { OrdersApi } from './orders.api';
 
 export const ApiProviders: Provider[] = [
   BookApi,
@@ -13,4 +14,5 @@ export const ApiProviders: Provider[] = [
   DiscountsApi,
   MainApi,
   ProductsApi,
+  OrdersApi,
 ];
