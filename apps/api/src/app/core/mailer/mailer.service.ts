@@ -8,7 +8,7 @@ export interface MailOptions {
 }
 
 @Injectable()
-export class MailService {
+export class MailerService {
   constructor(@Inject('MAIL_TRANSPORTER') private transporter: Transporter) {}
 
   async sendEmail({ text, subject, to }: MailOptions) {

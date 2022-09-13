@@ -2,17 +2,18 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-import databaseConfig from './core/database.config';
 import { BooksModule } from './books/books.module';
 import { ProductsModule } from '@products/products.module';
 import { OrdersModule } from '@orders/orders.module';
 import { MainModule } from './main/main.module';
-import { MailModule } from './core/mail/mail.module';
+import { MailerModule } from './core/mailer/mailer.module';
+import mailerConfig from '@core/mailer.config';
+import databaseConfig from '@core/database.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [databaseConfig],
+      load: [databaseConfig, mailerConfig],
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -29,7 +30,7 @@ import { MailModule } from './core/mail/mail.module';
     BooksModule,
     OrdersModule,
     MainModule,
-    MailModule,
+    MailerModule,
   ],
 })
 export class AppModule {}

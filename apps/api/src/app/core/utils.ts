@@ -1,5 +1,5 @@
 import { OrderModel } from '@book-store/shared/models';
-import { MailOptions } from './mail';
+import { MailOptions } from './mailer';
 
 export const getQueryArray = (
   query: number | string | Array<string | number>

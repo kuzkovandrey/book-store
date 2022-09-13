@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { createTransport } from 'nodemailer';
 
-import { MailService } from './mail.service';
+import { MailerService } from './mailer.service';
 
 @Global()
 @Module({
@@ -9,8 +9,6 @@ import { MailService } from './mail.service';
     {
       provide: 'MAIL_TRANSPORTER',
       useFactory: () => {
-        console.log(process.env.ADMIN_EMAIL, process.env.ADMIN_EMAIL_PASSWORD);
-
         return createTransport({
           host: 'smtp.mail.ru',
           name: 'Nodemailer',
@@ -23,8 +21,8 @@ import { MailService } from './mail.service';
         });
       },
     },
-    MailService,
+    MailerService,
   ],
-  exports: [MailService],
+  exports: [MailerService],
 })
-export class MailModule {}
+export class MailerModule {}
