@@ -1,15 +1,16 @@
-import { ChangeOrderStateDto } from './../../../../../../../../libs/shared/src/dto/change-order-state.dto';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { LoadingService } from '@core/services/loading.service';
-import { CommonErrorMessages } from '@core/values';
 import { Subject, Subscription, tap, switchMap } from 'rxjs';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { OrdersService, AlertService } from '@core/services';
-import { OrderModel } from '@book-store/shared/models';
 import { TuiDialogService } from '@taiga-ui/core';
-import { OrderState } from '@book-store/shared/values';
-import { ChangeOrderStateModalComponent } from '@features/admin-panel/components/change-order-state-modal/change-order-state-modal.component';
+
+import {
+  OrderState,
+  ChangeOrderStateDto,
+  OrderModel,
+} from '@book-store/shared';
+import { ChangeOrderStateModalComponent } from '@features/admin-panel/components';
+import { OrdersService, AlertService, LoadingService } from '@core/services';
+import { CommonErrorMessages } from '@core/values';
 
 @Component({
   selector: 'orders',

@@ -1,3 +1,6 @@
+import { OrderModel } from '@book-store/shared/models';
+import { MailOptions } from './mail';
+
 export const getQueryArray = (
   query: number | string | Array<string | number>
 ): number[] => {
@@ -21,3 +24,17 @@ export const getDatabaseTakeParams = (
 ): [skip: number, take: number] => {
   return [(page - 1) * perPage, perPage];
 };
+
+export const getOrderDetailsText = (tracker: string): string => `
+  Ваш заказ успешно оформлен.\n
+  Трекер для отслеживания заказа: ${tracker}\n
+`;
+
+export const getMailSubject = (orderNumber: number): string =>
+  `BookStore. Заказ №${orderNumber}`;
+
+export const getSuccesOrderMailOptions = (order: OrderModel): MailOptions => ({
+  text: getOrderDetailsText(order.tracker),
+  to: order.buyer.email,
+  subject: getMailSubject(order.id),
+});

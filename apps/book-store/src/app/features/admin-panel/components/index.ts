@@ -12,3 +12,4 @@ export * from './category-list/category-list.component';
 export * from './create-category-form/create-category-form.component';
 export * from './delivery-point-list/delivery-point-list.component';
 export * from './edit-category-modal/edit-category-modal.component';
+export * from './change-order-state-modal/change-order-state-modal.component';

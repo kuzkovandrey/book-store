@@ -9,6 +9,7 @@ import { OrderItemEntity } from './entities/order-item.entity';
 import { OrderEntity } from './entities/order.entity';
 import { BuyerService, DeliveryService, OrderService } from './services';
 import { OrderItemService } from './services/order-item.service';
+import { OrdersSubscriber } from './subscribers/orders.subscriber';
 
 @Module({
   imports: [
@@ -20,7 +21,13 @@ import { OrderItemService } from './services/order-item.service';
     ]),
     ProductsModule,
   ],
-  providers: [DeliveryService, BuyerService, OrderService, OrderItemService],
+  providers: [
+    DeliveryService,
+    BuyerService,
+    OrderService,
+    OrderItemService,
+    OrdersSubscriber,
+  ],
   controllers: [DeliveryController, OrderController],
 })
 export class OrdersModule {}
