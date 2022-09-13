@@ -40,6 +40,9 @@ import { CategoryListComponent } from './components/category-list/category-list.
 import { CreateCategoryFormComponent } from './components/create-category-form/create-category-form.component';
 import { EditCategoryModalComponent } from './components/edit-category-modal/edit-category-modal.component';
 import { ChangeCategoryModalComponent } from './components/change-category-modal/change-category-modal.component';
+import { OrdersComponent } from './pages/orders/orders.component';
+import { OrderStateToTextPipe } from '@shared/pipes/order-state-to-text.pipe';
+import { ChangeOrderStateModalComponent } from './components/change-order-state-modal/change-order-state-modal.component';
 
 @NgModule({
   imports: [
@@ -59,6 +62,7 @@ import { ChangeCategoryModalComponent } from './components/change-category-modal
     TuiActionModule,
     TuiToggleModule,
     TuiInputTimeModule,
+    OrderStateToTextPipe,
   ],
   declarations: [
     AdminPanelComponent,
@@ -81,6 +85,8 @@ import { ChangeCategoryModalComponent } from './components/change-category-modal
     CreateCategoryFormComponent,
     EditCategoryModalComponent,
     ChangeCategoryModalComponent,
+    OrdersComponent,
+    ChangeOrderStateModalComponent,
   ],
 })
 export class AdminPanelModule {}

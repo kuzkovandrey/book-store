@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
 
 import { OrderService } from '@orders/services';
 import { BaseController } from '@core/base';
@@ -32,7 +32,7 @@ export class OrderController extends BaseController {
     }
   }
 
-  @Post(ApiControlles.CHANGE_STATE)
+  @Patch(ApiControlles.CHANGE_STATE)
   async changeOrderState(@Body() { orderId: id, state }: ChangeOrderStateDto) {
     try {
       return await this.orderService.changeOrderState(id, state);

@@ -3,8 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Subscription, tap, switchMap } from 'rxjs';
 
 import { LoadingService, OrdersService } from '@core/services';
-import { OrderState, OrderModel } from '@book-store/shared';
-import { TrackMessages } from './values';
+import { OrderModel } from '@book-store/shared';
+import { OrderStateMessages, orderStateToText } from '@shared/values';
 
 @Component({
   selector: 'order-tracker',
@@ -15,13 +15,6 @@ export class OrderTrackerComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();
 
   private readonly getOrderByTrack$ = new Subject<string>();
-
-  private readonly statusTexts = {
-    [OrderState.PROCESS]: TrackMessages.PROCESS,
-    [OrderState.SHIPMENT]: TrackMessages.SHIPMENT,
-    [OrderState.DELIVERY]: TrackMessages.DELIVERY,
-    [OrderState.DELIVERED]: TrackMessages.DELIVERED,
-  };
 
   displayText: {
     status: string;
@@ -58,7 +51,7 @@ export class OrderTrackerComponent implements OnInit, OnDestroy {
     console.log(order);
 
     this.displayText = {
-      status: this.statusTexts[order.state],
+      status: orderStateToText(order.state),
       deliveryPointAddress: order.deliveryPoint.address,
       deliveryPointSchedule: order.deliveryPoint.schedule,
       totalPrice: order.totalPrice,
@@ -69,11 +62,11 @@ export class OrderTrackerComponent implements OnInit, OnDestroy {
     this.loadingService.setLoading(false);
 
     if (status === HttpStatusCode.NotFound) {
-      this.displayText.status = TrackMessages.NOT_NOUNT;
+      this.displayText.status = OrderStateMessages.NOT_NOUNT;
       return;
     }
 
-    this.displayText.status = TrackMessages.ERROR;
+    this.displayText.status = OrderStateMessages.ERROR;
   };
 
   getOrderByTrack(track: string) {

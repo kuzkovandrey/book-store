@@ -1,0 +1,30 @@
+<section class="orders page">
+  <table *ngIf="orderList" class="tui-table">
+    <thead>
+      <tr class="tui-table__tr">
+        <th class="tui-table__th" *ngFor="let item of tableColumns">
+          {{ item }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderList" class="tui-table__tr">
+        <td class="tui-table__td">{{ order.id }}</td>
+        <td class="tui-table__td">{{ order.tracker }}</td>
+        <td class="tui-table__td">
+          <tui-badge
+            class="cursor-pointer"
+            (click)="openChangeOrderStateModal(order.id, order.state)"
+            [value]="order.state | orderStateToText"
+          ></tui-badge>
+        </td>
+        <td class="tui-table__td">{{ order.totalPrice }}</td>
+        <td class="tui-table__td">{{ order.deliveryPoint.address }}</td>
+        <td class="tui-table__td">
+          {{ order.buyer.email }} <br />
+          {{ order.buyer.firstName }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

@@ -19,17 +19,17 @@ import {
 } from '@features/search/models';
 import { FilterEntityNames } from '@features/search/values';
 
-export const STRINGIFY_ENTITY: TuiStringHandler<FilterEntity> = (
+const STRINGIFY_ENTITY: TuiStringHandler<FilterEntity> = (
   item: FilterEntity
-) =>
+): string =>
   'firstName' in item && 'lastName' in item
     ? `${item.firstName} ${item.lastName}`
     : `${item.name}`;
 
-export const ID_MATCHER_ENTITY: TuiIdentityMatcher<FilterEntity> = (
+const ID_MATCHER_ENTITY: TuiIdentityMatcher<FilterEntity> = (
   item1: FilterEntity,
   item2: FilterEntity
-) => item1.id === item2.id;
+): boolean => item1.id === item2.id;
 
 @Component({
   selector: 'filter-entity, [filter-entity]',

@@ -26,4 +26,8 @@ export const MenuRoutes: Route[] = [
     title: 'Категории',
     path: AppRoutes.CATEGORIES,
   },
+  {
+    title: 'Заказы',
+    path: AppRoutes.ORDERS,
+  },
 ];

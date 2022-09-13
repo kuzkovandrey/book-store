@@ -1,0 +1,22 @@
+<form class="order-state">
+  <tui-combo-box class="order-state__input" [formControl]="orderStateControl">
+    Программа скидок
+    <input tuiTextfield />
+    <tui-data-list-wrapper
+      tuiMultiSelectGroup
+      *tuiDataList
+      [items]="orderStates"
+    ></tui-data-list-wrapper>
+  </tui-combo-box>
+
+  <button
+    (click)="changeState()"
+    [disabled]="orderStateControl.invalid"
+    class="order-state__button"
+    tuiButton
+    appearance="primary"
+    type="button"
+  >
+    Изменить
+  </button>
+</form>

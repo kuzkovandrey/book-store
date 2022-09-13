@@ -1,4 +1,4 @@
-export enum TrackMessages {
+export enum OrderStateMessages {
   NOT_NOUNT = 'Такой заказ не найден, проверьте введенные данные.',
   ERROR = 'Произошла ошибка. Повторите, пожалуйста, позже.',
   PROCESS = 'Заказ в процессе формирования.',

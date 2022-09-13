@@ -9,6 +9,7 @@ import {
   ProductsComponent,
   DeliveryComponent,
   CategoriesComponent,
+  OrdersComponent,
 } from './pages';
 
 const routes: Routes = [
@@ -45,6 +46,11 @@ const routes: Routes = [
         path: AppRoutes.CATEGORIES,
         component: CategoriesComponent,
         title: 'Категории',
+      },
+      {
+        path: AppRoutes.ORDERS,
+        component: OrdersComponent,
+        title: 'Заказы',
       },
     ],
   },

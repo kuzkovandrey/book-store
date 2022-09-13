@@ -10,4 +10,5 @@ export enum AppRoutes {
   SEARCH = 'search',
   CART = 'cart',
   ORDER_TRACKER = 'order-tracker',
+  ORDERS = 'orders',
 }

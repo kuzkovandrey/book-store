@@ -8,6 +8,7 @@ import {
   SuccessCreateOrder,
   ApiQueryParams,
   OrderModel,
+  OrderState,
 } from '@book-store/shared';
 
 @Injectable()
@@ -25,6 +26,20 @@ export class OrdersApi {
         params: {
           [ApiQueryParams.TRACK]: track,
         },
+      }
+    );
+  }
+
+  getAllOrders(): Observable<OrderModel[]> {
+    return this.http.get<OrderModel[]>(ApiControlles.ORDERS);
+  }
+
+  changeState(orderId: number, state: OrderState): Observable<OrderModel> {
+    return this.http.patch<OrderModel>(
+      `${ApiControlles.ORDERS}${ApiControlles.CHANGE_STATE}`,
+      {
+        orderId,
+        state,
       }
     );
   }
