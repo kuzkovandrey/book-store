@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 
 import { ProductsService } from '@products/services/products.service';
@@ -16,6 +17,7 @@ import { ChangeProductValuesDto } from '@book-store/shared/dto';
 import { BaseController } from '@core/base';
 import { SearchParams } from '@products/utils/search.decorator';
 import { SearchQueryParams } from '@book-store/shared/models';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.PRODUCTS)
 export class ProductsController extends BaseController {
@@ -56,6 +58,7 @@ export class ProductsController extends BaseController {
   }
 
   @Patch('/:id')
+  @UseGuards(AuthenticatedGuard)
   async changeProductValuesById(
     @Param('id') id: number,
     @Body() changes: ChangeProductValuesDto
@@ -68,6 +71,7 @@ export class ProductsController extends BaseController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthenticatedGuard)
   async deleteById(@Param('id') id: number) {
     try {
       return await this.productsService.deleteById(id);

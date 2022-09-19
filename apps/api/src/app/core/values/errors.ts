@@ -9,3 +9,9 @@ export class IncorrectDataError extends Error {
     super(`Incorrect data for ${entity}.`);
   }
 }
+
+export class IncorrectUserAuthError extends Error {
+  constructor() {
+    super('Incorrect login or password');
+  }
+}

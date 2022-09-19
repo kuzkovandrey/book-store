@@ -19,4 +19,7 @@ export enum ApiControlles {
   ORDERS = '/orders',
   CHANGE_STATE = '/change_state',
   BY_TRACK = '/by_track',
+  USER = '/user',
+  LOGIN = '/login',
+  LOGOUT = '/logout',
 }

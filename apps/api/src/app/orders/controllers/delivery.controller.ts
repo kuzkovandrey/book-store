@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
@@ -16,6 +17,7 @@ import {
 import { DeliveryService } from '@orders/services/delivery.service';
 import { DeliveryPointEntity } from '@orders/entities/delivery-point.entity';
 import { BaseController } from '@core/base';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.DELIVERY)
 export class DeliveryController extends BaseController {
@@ -29,6 +31,7 @@ export class DeliveryController extends BaseController {
   }
 
   @Post('/')
+  @UseGuards(AuthenticatedGuard)
   async createDeliveryPoint(
     @Body() delivery: CreateDeliveryPointDto
   ): Promise<DeliveryPointEntity> {
@@ -40,6 +43,7 @@ export class DeliveryController extends BaseController {
   }
 
   @Patch('/:id')
+  @UseGuards(AuthenticatedGuard)
   async changeValues(
     @Param('id') id: number,
     @Body() changes: CreateDeliveryPointDto
@@ -52,6 +56,7 @@ export class DeliveryController extends BaseController {
   }
 
   @Patch(`${ApiControlles.TOGGLE_STATE}/:id`)
+  @UseGuards(AuthenticatedGuard)
   async toggleSate(
     @Param('id') id: number,
     @Body() { isActive }: ToggleDeliveryPointStateDto
@@ -64,6 +69,7 @@ export class DeliveryController extends BaseController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthenticatedGuard)
   async deleteDeliveryPoint(@Param('id') id: number) {
     try {
       return await this.deliveryService.deleteById(id);

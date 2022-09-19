@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 
 import { CategoriesService } from '@products/services';
@@ -16,6 +17,7 @@ import {
 } from '@book-store/shared';
 import { CategoryEntity, ProductEntity } from '@products/entities';
 import { BaseController } from '@core/base';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.CATEGORIES)
 export class CategoriesController extends BaseController {
@@ -29,6 +31,7 @@ export class CategoriesController extends BaseController {
   }
 
   @Post('/')
+  @UseGuards(AuthenticatedGuard)
   create(@Body() dto: CreateCategoryDto): Promise<CategoryEntity> {
     try {
       return this.categoriesService.create(dto);
@@ -38,6 +41,7 @@ export class CategoriesController extends BaseController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthenticatedGuard)
   delete(@Param('id') id: number): Promise<CategoryEntity> {
     try {
       return this.categoriesService.deleteById(id);
@@ -47,6 +51,7 @@ export class CategoriesController extends BaseController {
   }
 
   @Patch('/:id')
+  @UseGuards(AuthenticatedGuard)
   changeValues(
     @Param('id') id: number,
     @Body() dto: CreateCategoryDto
@@ -59,6 +64,7 @@ export class CategoriesController extends BaseController {
   }
 
   @Post(ApiControlles.ADD)
+  @UseGuards(AuthenticatedGuard)
   addCategoryToProduct(
     @Body() { categoryId, productId }: AddCategoryToProductDto
   ): Promise<ProductEntity> {

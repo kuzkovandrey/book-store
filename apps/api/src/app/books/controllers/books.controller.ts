@@ -1,12 +1,21 @@
-import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
 import { CreateBookDto } from '@book-store/shared/dto';
 import { BooksService } from '@books/services/books.service';
 import { BookEntity } from '@books/entities';
 import { BaseController } from '@core/base';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.BOOKS)
+@UseGuards(AuthenticatedGuard)
 export class BooksController extends BaseController {
   constructor(private booksService: BooksService) {
     super(BooksController.name);

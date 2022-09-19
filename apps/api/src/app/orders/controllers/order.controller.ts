@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 
 import { OrderService } from '@orders/services';
 import { BaseController } from '@core/base';
@@ -11,6 +19,7 @@ import {
   OrderStatus,
 } from '@book-store/shared';
 import { OrderEntity } from '@orders/entities';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.ORDERS)
 export class OrderController extends BaseController {
@@ -19,6 +28,7 @@ export class OrderController extends BaseController {
   }
 
   @Get()
+  @UseGuards(AuthenticatedGuard)
   getAllOrders(): Promise<OrderEntity[]> {
     return this.orderService.getAllOrders();
   }
@@ -33,6 +43,7 @@ export class OrderController extends BaseController {
   }
 
   @Patch(ApiControlles.CHANGE_STATE)
+  @UseGuards(AuthenticatedGuard)
   async changeOrderState(@Body() { orderId: id, state }: ChangeOrderStateDto) {
     try {
       return await this.orderService.changeOrderState(id, state);

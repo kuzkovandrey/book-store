@@ -9,11 +9,14 @@ import { MainModule } from './main/main.module';
 import { MailerModule } from './core/mailer/mailer.module';
 import mailerConfig from '@core/mailer.config';
 import databaseConfig from '@core/database.config';
+import adminCredentialConfig from '@core/admin-credential.config';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [databaseConfig, mailerConfig],
+      load: [databaseConfig, mailerConfig, adminCredentialConfig],
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -26,6 +29,8 @@ import databaseConfig from '@core/database.config';
       autoLoadEntities: true,
       // dropSchema: true,
     }),
+    UsersModule,
+    AuthModule,
     ProductsModule,
     BooksModule,
     OrdersModule,

@@ -1,12 +1,22 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { ApiControlles } from '@book-store/shared/values';
 import { ProductEntity, DiscountEntity } from '@products/entities';
 import { DiscountsService } from '@products/services/discounts.service';
 import { AddDiscountDto, CreateDiscountDto } from '@book-store/shared/dto';
 import { BaseController } from '@core/base';
+import { AuthenticatedGuard } from '@auth';
 
 @Controller(ApiControlles.DISCOUNTS)
+@UseGuards(AuthenticatedGuard)
 export class DiscountsController extends BaseController {
   constructor(private discountsService: DiscountsService) {
     super(DiscountsController.name);
