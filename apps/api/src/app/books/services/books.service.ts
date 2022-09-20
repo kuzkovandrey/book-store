@@ -89,7 +89,7 @@ export class BooksService extends BaseService<BookEntity> {
     );
 
     return this.executeElseThrowIncorrectDataError(async () => {
-      return await this.create({
+      return await this.repositoryInstance.create({
         genre,
         language,
         authors: [...authors],
