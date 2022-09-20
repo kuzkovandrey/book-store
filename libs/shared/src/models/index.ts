@@ -12,3 +12,4 @@ export * from './search.model';
 export * from './publisher.model';
 export * from './buyer.model';
 export * from './order.model';
+export * from './user.model';

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { User } from './user.model';
+import { User } from '@book-store/shared';
 
 @Injectable()
 export class UsersService {
@@ -9,8 +9,8 @@ export class UsersService {
     if (process.env.ADMIN_LOGIN !== login) return null;
 
     return {
-      login: process.env.ADMIN_LOGIN,
-      password: process.env.ADMIN_PASSWORD,
+      login: `${process.env.ADMIN_LOGIN}`,
+      password: `${process.env.ADMIN_PASSWORD}`,
     };
   }
 }

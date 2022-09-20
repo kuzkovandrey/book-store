@@ -11,3 +11,4 @@ export * from './product-price.service';
 export * from './storage/app-storage';
 export * from './storage/storage-keys.enum';
 export * from './cart.service';
+export * from './auth.service';

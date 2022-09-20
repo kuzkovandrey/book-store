@@ -20,5 +20,5 @@
     }
   },
   "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../../libs/shared/src/models/user.model.ts"]
 }

@@ -3,7 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { ApiProviders } from './api';
 import { EntitySerivceProviders } from './services/entities';
-import { LoadingService, AlertService, ProductPriceService } from './services';
+import {
+  LoadingService,
+  AlertService,
+  ProductPriceService,
+  AuthService,
+} from './services';
 import { AppStorage, AppStorageImpl } from './services/storage';
 import { InterceptorProviders } from './interceptors';
 import { CartService } from './services/cart.service';
@@ -15,6 +20,7 @@ import { CartService } from './services/cart.service';
     LoadingService,
     CartService,
     ProductPriceService,
+    AuthService,
     ...ApiProviders,
     ...EntitySerivceProviders,
     ...InterceptorProviders,

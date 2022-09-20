@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 import { AppRoutes } from '@core/values';
 
@@ -57,6 +58,7 @@ const routes: Routes = [
       import('./features/admin-panel/admin-panel.module').then(
         (m) => m.AdminPanelModule
       ),
+    canActivate: [AuthGuard],
     data: {
       hasHeader: false,
       hasFooter: false,
@@ -72,6 +74,16 @@ const routes: Routes = [
       hasHeader: true,
       hasFooter: true,
       title: 'Отлеживание заказов',
+    },
+  },
+  {
+    path: AppRoutes.AUTH,
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
+    data: {
+      hasHeader: false,
+      hasFooter: false,
+      title: 'Вход в личный кабинет',
     },
   },
 ];

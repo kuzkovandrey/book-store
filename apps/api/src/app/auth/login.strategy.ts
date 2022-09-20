@@ -11,7 +11,7 @@ export class LoginStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(login: string, password: string): Promise<string> {
+  async validate(login: string, password: string): Promise<{ login: string }> {
     try {
       return await this.authService.validateUser({ login, password });
     } catch {
