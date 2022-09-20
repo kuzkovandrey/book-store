@@ -9,7 +9,6 @@ import {
   LoadingService,
   ProductsService,
   DiscountsService,
-  BooksService,
 } from '@core/services';
 import {
   AddDiscountDto,
@@ -17,6 +16,7 @@ import {
   DiscountModel,
   CategoryModel,
   ChangeCategoryDto,
+  BookModel,
 } from '@book-store/shared';
 import {
   EditProductModalComponent,
@@ -26,7 +26,8 @@ import {
 } from '@features/admin-panel/components';
 import { ProductChanges } from '@features/admin-panel/types';
 import { ErrorMessages } from '@features/admin-panel/values';
-import { CommonErrorMessages } from '@core/values';
+import { AppRoutes, CommonErrorMessages } from '@core/values';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'book-store-products',
@@ -58,12 +59,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private alertService: AlertService,
     private productsService: ProductsService,
-    private booksService: BooksService,
     private loadingService: LoadingService,
     private discountsService: DiscountsService,
     private categoriesService: CategoriesService,
     @Inject(TuiDialogService)
-    private dialogService: TuiDialogService
+    private dialogService: TuiDialogService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -199,6 +200,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     product.updatedAt = prod.updatedAt;
     product.discount = prod.discount;
   };
+
+  navigateToEditBookPage(book: BookModel) {
+    this.router.navigate([AppRoutes.ADMIN, AppRoutes.BOOKS], {
+      state: {
+        book,
+      },
+    });
+  }
 
   openEditModal(product: ProductModel) {
     this.dialogService

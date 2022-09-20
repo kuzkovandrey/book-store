@@ -18,6 +18,10 @@ export class BooksService {
     return this.bookApi.createBook(book);
   }
 
+  changeBookValues(id: number, book: CreateBookDto): Observable<BookModel> {
+    return this.bookApi.changeBookValues(id, book);
+  }
+
   deleteBookById(id: number): Observable<BookModel> {
     return this.bookApi.deleteBookById(id);
   }

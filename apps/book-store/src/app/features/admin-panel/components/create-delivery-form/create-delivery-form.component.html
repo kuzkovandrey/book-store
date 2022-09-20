@@ -2,21 +2,33 @@
   <h6 class="form__title tui-text_h6">Время работы</h6>
 
   <div class="schedule" formGroupName="schedule">
-    <tui-input-time class="schedule__input" formControlName="from"
-      >С</tui-input-time
+    <tui-input-time
+      tuiTextfieldSize="m"
+      class="schedule__input"
+      formControlName="from"
     >
+      С
+    </tui-input-time>
 
-    <tui-input-time class="schedule__input" formControlName="to"
-      >По</tui-input-time
+    <tui-input-time
+      tuiTextfieldSize="m"
+      class="schedule__input"
+      formControlName="to"
     >
+      По
+    </tui-input-time>
 
-    <tui-input class="schedule__input" formControlName="days">
+    <tui-input
+      tuiTextfieldSize="m"
+      class="schedule__input"
+      formControlName="days"
+    >
       Дни работы
       <input tuiTextfield type="text" />
     </tui-input>
   </div>
 
-  <tui-input class="form__input" formControlName="address">
+  <tui-input tuiTextfieldSize="m" class="form__input" formControlName="address">
     Адрес
     <input tuiTextfield type="text" />
   </tui-input>

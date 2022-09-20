@@ -1,6 +1,11 @@
 @import 'mixins';
 
 .dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+
   @include element(button) {
     margin-top: 1rem;
     width: 100%;

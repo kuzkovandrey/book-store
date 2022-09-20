@@ -1,7 +1,8 @@
 <section class="books page">
-  <h2 class="books__title tui-text_h3">Добавить новую книгу</h2>
+  <h2 class="books__title tui-text_h5">{{ title }}</h2>
 
   <create-book-form
+    [initialValue]="editableBook"
     (valueChanges)="onBookFormChanges($event)"
     class="books__create-book-form"
   ></create-book-form>
@@ -9,12 +10,13 @@
   <h4 class="books__title tui-text_body-l-2">Авторы:</h4>
 
   <author-list
+    [initialValues]="editableBook?.authors"
     (authorListChanges)="onAuthorListChanges($event)"
     class="books__author-list"
   ></author-list>
 
   <button
-    (click)="createBook()"
+    (click)="onClickButton()"
     class="books__add-button"
     tuiButton
     type="button"
@@ -23,6 +25,6 @@
     [disabled]="!isValidBookForm || !hasAuthors"
     color="primary"
   >
-    Добавить книгу
+    {{ buttonText }}
   </button>
 </section>

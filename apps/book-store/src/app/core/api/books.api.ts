@@ -23,6 +23,10 @@ export class BookApi {
     );
   }
 
+  changeBookValues(id: number, book: CreateBookDto): Observable<BookModel> {
+    return this.http.patch<BookModel>(`${ApiControlles.BOOKS}/${id}`, book);
+  }
+
   deleteBookById(id: number): Observable<BookModel> {
     return this.http.delete<BookModel>(`${ApiControlles.BOOKS}/${id}`);
   }

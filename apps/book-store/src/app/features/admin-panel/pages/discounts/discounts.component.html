@@ -1,18 +1,27 @@
 <section class="discounts">
   <form [formGroup]="createDiscountForm" class="discounts__form form">
     <div class="form__row">
-      <tui-input class="form__input" formControlName="name">
+      <tui-input
+        tuiTextfieldSize="m"
+        class="form__input"
+        formControlName="name"
+      >
         Название скидки
         <input tuiTextfield type="text" />
       </tui-input>
 
-      <tui-input class="form__input" formControlName="percent">
+      <tui-input
+        tuiTextfieldSize="m"
+        class="form__input"
+        formControlName="percent"
+      >
         Процент скидки
         <input tuiTextfield type="number" />
       </tui-input>
     </div>
 
     <tui-text-area
+      tuiTextfieldSize="m"
       class="form__input"
       [maxlength]="500"
       formControlName="description"

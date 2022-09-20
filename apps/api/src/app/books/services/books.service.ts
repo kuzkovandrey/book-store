@@ -1,4 +1,3 @@
-import { ProductsService } from '@products/services';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, FindOptionsRelations, Repository } from 'typeorm';
@@ -26,13 +25,50 @@ export class BooksService extends BaseService<BookEntity> {
     private genresService: GenresService,
     private authorsService: AuthorsService,
     private languagesService: LanguagesService,
-    private publishersService: PublishersService,
-    private productsService: ProductsService
+    private publishersService: PublishersService
   ) {
     super(BookEntity.name, repository);
   }
 
   async createBook(bookDto: CreateBookDto): Promise<BookEntity> {
+    const book = await this.createFromDto(bookDto);
+
+    return await book.save();
+  }
+
+  async changeBookValues(
+    id: number,
+    bookDto: CreateBookDto
+  ): Promise<BookEntity> {
+    const book = await this.findOneBy({ id }, this.findOptionsRelations);
+    const {
+      description,
+      authors,
+      language,
+      pageCount,
+      publisher,
+      publicationYear,
+      picture,
+      genre,
+      title,
+    } = await this.createFromDto(bookDto);
+
+    return this.executeElseThrowIncorrectDataError(async () => {
+      book.description = description;
+      book.authors = authors;
+      book.language = language;
+      book.pageCount = pageCount;
+      book.publisher = publisher;
+      book.publicationYear = publicationYear;
+      book.picture = picture;
+      book.genre = genre;
+      book.title = title;
+
+      return await book.save();
+    });
+  }
+
+  private async createFromDto(bookDto: CreateBookDto): Promise<BookEntity> {
     const genre = await this.genresService.createIfNotExists(bookDto.genreName);
 
     const language = await this.languagesService.createIfNotExists(
@@ -53,7 +89,7 @@ export class BooksService extends BaseService<BookEntity> {
     );
 
     return this.executeElseThrowIncorrectDataError(async () => {
-      const entity = await this.create({
+      return await this.create({
         genre,
         language,
         authors: [...authors],
@@ -64,8 +100,6 @@ export class BooksService extends BaseService<BookEntity> {
         publicationYear: bookDto.publicationYear,
         picture: bookDto.picture,
       } as DeepPartial<BookEntity>);
-
-      return await entity.save();
     });
   }
 }

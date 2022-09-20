@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -21,6 +22,13 @@ export class AuthorListComponent implements OnInit {
   authorForm: FormGroup;
 
   @Output() authorListChanges = new EventEmitter<Array<Author>>();
+
+  @Input() set initialValues(authors: Array<Author> | undefined) {
+    if (!authors) return;
+
+    this.authors = [...authors];
+    this.authorListChanges.emit(this.authors);
+  }
 
   ngOnInit() {
     this.initForm();

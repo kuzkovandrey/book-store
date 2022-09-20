@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -25,6 +26,18 @@ export class BooksController extends BaseController {
   async createBook(@Body() createBookDto: CreateBookDto): Promise<BookEntity> {
     try {
       return await this.booksService.createBook(createBookDto);
+    } catch (e) {
+      this.throwHttpExeption(e);
+    }
+  }
+
+  @Patch('/:id')
+  async changeBookValues(
+    @Param('id') id: number,
+    @Body() createBookDto: CreateBookDto
+  ): Promise<BookEntity> {
+    try {
+      return await this.booksService.changeBookValues(id, createBookDto);
     } catch (e) {
       this.throwHttpExeption(e);
     }

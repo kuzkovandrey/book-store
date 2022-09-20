@@ -5,6 +5,7 @@ import {
   TuiLoaderModule,
   TuiDataListModule,
   TuiSvgModule,
+  TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {
   TuiInputModule,
@@ -62,6 +63,7 @@ import { ChangeOrderStateModalComponent } from './components/change-order-state-
     TuiActionModule,
     TuiToggleModule,
     TuiInputTimeModule,
+    TuiTextfieldControllerModule,
     OrderStateToTextPipe,
   ],
   declarations: [

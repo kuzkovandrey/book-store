@@ -2,6 +2,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -9,6 +10,7 @@ import {
 import { Subject } from 'rxjs';
 
 import { CreateBookForm } from '@features/admin-panel/types';
+import { BookModel } from '@book-store/shared/models';
 
 @Component({
   selector: 'create-book-form',
@@ -20,13 +22,15 @@ export class CreateBookFormComponent implements OnInit, OnDestroy {
 
   bookForm: FormGroup;
 
+  @Input() initialValue: BookModel;
+
   @Output() valueChanges = new EventEmitter<[CreateBookForm, boolean]>();
 
   ngOnInit() {
     this.initForms();
 
-    this.bookForm.valueChanges.subscribe((form: CreateBookForm) => {
-      this.valueChanges.emit([form, this.bookForm.valid]);
+    this.bookForm.valueChanges.subscribe({
+      next: this.onValueChanges,
     });
   }
 
@@ -34,6 +38,10 @@ export class CreateBookFormComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  private onValueChanges = () => {
+    this.valueChanges.emit([this.bookForm.value, this.bookForm.valid]);
+  };
 
   private initForms() {
     this.bookForm = new FormGroup({
@@ -53,5 +61,33 @@ export class CreateBookFormComponent implements OnInit, OnDestroy {
         code: new FormControl('', [Validators.required]),
       }),
     });
+
+    if (this.initialValue) this.setInitialValues();
+  }
+
+  private setInitialValues() {
+    const {
+      title,
+      description,
+      genre,
+      publisher,
+      pageCount,
+      publicationYear,
+      picture,
+      language,
+    } = this.initialValue;
+
+    this.bookForm.get('title')?.setValue(title);
+    this.bookForm.get('description')?.setValue(description);
+    this.bookForm.get('genreName')?.setValue(genre.name);
+    this.bookForm.get('publisherName')?.setValue(publisher.name);
+    this.bookForm.get('publicationYear')?.setValue(publicationYear);
+    this.bookForm.get('publicationYear')?.setValue(publicationYear);
+    this.bookForm.get('picture')?.setValue(picture);
+    this.bookForm.get('pageCount')?.setValue(pageCount);
+    this.bookForm.get('language')?.get('name')?.setValue(language.name);
+    this.bookForm.get('language')?.get('code')?.setValue(language.code);
+
+    this.onValueChanges();
   }
 }

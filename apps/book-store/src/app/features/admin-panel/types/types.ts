@@ -1,4 +1,5 @@
 import { ChangeProductValuesDto, CreateBookDto } from '@book-store/shared/dto';
+import { BookModel } from '@book-store/shared/models';
 
 export type ProductChanges = ChangeProductValuesDto & { id: number };
 
@@ -13,3 +14,9 @@ export type DeliveryForm = {
   };
   isActive: boolean;
 };
+
+export type EditBookState = {
+  book: BookModel;
+};
+
+export type BookCreationType = 'edit' | 'create';

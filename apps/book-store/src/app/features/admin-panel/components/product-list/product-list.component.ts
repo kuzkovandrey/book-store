@@ -7,7 +7,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 
-import { ProductModel } from '@book-store/shared/models';
+import { BookModel, ProductModel } from '@book-store/shared/models';
 import { ProductSaleStates } from '@features/admin-panel/values';
 
 @Component({
@@ -26,6 +26,8 @@ export class ProductListComponent {
   @Output() discountClicked = new EventEmitter<ProductModel>();
 
   @Output() changeCategoryClicked = new EventEmitter<ProductModel>();
+
+  @Output() changeBookClicked = new EventEmitter<BookModel>();
 
   productSaleStates = ProductSaleStates;
 
@@ -62,5 +64,9 @@ export class ProductListComponent {
 
   changeCategory(product: ProductModel) {
     this.changeCategoryClicked.emit(product);
+  }
+
+  changeBookValues({ book }: ProductModel) {
+    this.changeBookClicked.emit(book);
   }
 }

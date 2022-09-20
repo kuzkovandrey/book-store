@@ -1,5 +1,9 @@
 <form class="form">
-  <tui-combo-box class="dialog__input" [formControl]="categoryControl">
+  <tui-combo-box
+    tuiTextfieldSize="m"
+    class="dialog__input"
+    [formControl]="categoryControl"
+  >
     Программа скидок
     <input tuiTextfield />
     <tui-data-list-wrapper
@@ -15,6 +19,7 @@
     tuiButton
     appearance="primary"
     type="button"
+    size="m"
   >
     Изменить
   </button>

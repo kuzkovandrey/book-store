@@ -24,12 +24,20 @@
   </ul>
 
   <form [formGroup]="authorForm" class="authors__form form">
-    <tui-input class="form__input" formControlName="firstName">
+    <tui-input
+      tuiTextfieldSize="m"
+      class="form__input"
+      formControlName="firstName"
+    >
       Имя
       <input tuiTextfield type="text" />
     </tui-input>
 
-    <tui-input class="form__input" formControlName="lastName">
+    <tui-input
+      tuiTextfieldSize="m"
+      class="form__input"
+      formControlName="lastName"
+    >
       Фамилия
       <input tuiTextfield type="text" />
     </tui-input>

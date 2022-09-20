@@ -21,6 +21,26 @@
   "picture": null
 }
 
+{
+  "language": {
+    "code": "RU",
+    "name": "Русский"
+  },
+  "authors": [
+    {
+      "firstName": "Марк",
+      "lastName": "Уолинн"
+    }
+  ],
+  "genreName": "Мелодрамма",
+  "publisherName": "Эксмо",
+  "title": "Это началось не с тебя",
+  "description": "Душевная или физическая боль не возникает сама по себе и не всегда излечивается со временем. Ее корни могут лежать не в нашем жизненном опыте или в химическом дисбалансе мозга – а в жизни наших родителей, бабушек, дедушек и даже прадедушек.",
+  "pageCount": 350,
+  "publicationYear": 2020,
+  "picture": "https://s3-goods.ozstatic.by/480/715/954/10/10954715_0_Eto_nachalos_ne_s_tebya_Kak_mi_nasleduem_negativnie_scenarii_nashey_semi_i_kak_ostanovit_ih_vliyanie_Mark_Uolinn.jpg"
+}
+
 
 // create discount
 
