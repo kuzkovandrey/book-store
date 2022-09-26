@@ -12,7 +12,7 @@ import { AppRouterData } from '@core/models';
 export class ShopFooterComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();
 
-  isShown = true;
+  isShown = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 

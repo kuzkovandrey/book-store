@@ -1,7 +1,13 @@
 <div class="item">
-  <img class="item__image" [src]="book.picture" />
+  <p class="tui-text_body-m">{{ count }}.</p>
 
-  <p class="item__title tui-text_body-m">{{ book.title }}</p>
+  <img
+    (click)="onClickProductPicture()"
+    class="item__image cursor-pointer"
+    [src]="book.picture"
+  />
+
+  <p class="item__title tui-text_body-m">{{ book.title | textOverflow: 30 }}</p>
 
   <p class="item__title tui-text_body-m">
     {{ product | productPrice: itemCount }}

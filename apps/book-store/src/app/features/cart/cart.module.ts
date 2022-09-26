@@ -17,7 +17,7 @@ import {
 import { CartComponent } from './cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
-import { ProductPricePipe } from '@shared/pipes';
+import { ProductPricePipe, TextOverflowPipe } from '@shared/pipes';
 import { ProductPriceService } from '@core/services';
 import { OrderSuccessModalComponent } from './components/order-success-modal/order-success-modal.component';
 
@@ -41,6 +41,7 @@ const routes: Routes = [
     TuiComboBoxModule,
     TuiDataListWrapperModule,
     ProductPricePipe,
+    TextOverflowPipe,
   ],
   exports: [RouterModule],
   declarations: [

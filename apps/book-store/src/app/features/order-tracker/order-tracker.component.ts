@@ -11,45 +11,26 @@ import { OrderStateMessages, orderStateToText } from '@shared/values';
   templateUrl: './order-tracker.component.html',
   styleUrls: ['./order-tracker.component.scss'],
 })
-export class OrderTrackerComponent implements OnInit, OnDestroy {
+export class OrderTrackerComponent implements OnDestroy {
   private readonly subscriptions = new Subscription();
 
-  private readonly getOrderByTrack$ = new Subject<string>();
-
   displayText: {
-    status: string;
-    deliveryPointAddress: string;
-    deliveryPointSchedule: string;
-    totalPrice: number;
-  };
+    status?: string;
+    deliveryPointAddress?: string;
+    deliveryPointSchedule?: string;
+    totalPrice?: number;
+  } = {};
 
   constructor(
     private ordersService: OrdersService,
     private loadingService: LoadingService
   ) {}
 
-  ngOnInit() {
-    this.subscriptions.add(
-      this.getOrderByTrack$
-        .pipe(
-          tap(() => this.loadingService.setLoading(true)),
-          switchMap((track) => this.ordersService.getOrderByTrack(track)),
-          tap(() => this.loadingService.setLoading(false))
-        )
-        .subscribe({
-          next: this.setTrackResult,
-          error: this.handleError,
-        })
-    );
-  }
-
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
   private setTrackResult = (order: OrderModel) => {
-    console.log(order);
-
     this.displayText = {
       status: orderStateToText(order.state),
       deliveryPointAddress: order.deliveryPoint.address,
@@ -62,7 +43,10 @@ export class OrderTrackerComponent implements OnInit, OnDestroy {
     this.loadingService.setLoading(false);
 
     if (status === HttpStatusCode.NotFound) {
-      this.displayText.status = OrderStateMessages.NOT_NOUNT;
+      this.displayText = {
+        status: OrderStateMessages.NOT_NOUNT,
+      };
+
       return;
     }
 
@@ -70,6 +54,16 @@ export class OrderTrackerComponent implements OnInit, OnDestroy {
   };
 
   getOrderByTrack(track: string) {
-    this.getOrderByTrack$.next(track);
+    this.loadingService.setLoading(true);
+
+    this.subscriptions.add(
+      this.ordersService
+        .getOrderByTrack(track)
+        .pipe(tap(() => this.loadingService.setLoading(false)))
+        .subscribe({
+          next: this.setTrackResult,
+          error: this.handleError,
+        })
+    );
   }
 }

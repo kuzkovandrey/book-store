@@ -1,14 +1,19 @@
 <section class="tracker page">
   <tracker-form (trackButtonClicked)="getOrderByTrack($event)"></tracker-form>
-  <div *ngIf="displayText" class="tracker__info">
+  <div *ngIf="displayText.status" class="tracker__info">
     <p class="tui-text_body-l">
       {{ displayText.status }}
     </p>
-    <p class="tui-text_body-l">
+    <p
+      *ngIf="
+        displayText.deliveryPointAddress && displayText.deliveryPointSchedule
+      "
+      class="tui-text_body-l"
+    >
       Адрес доставки: {{ displayText.deliveryPointAddress }}, <br />
       график работы: {{ displayText.deliveryPointSchedule }}
     </p>
-    <p class="tui-text_body-l">
+    <p *ngIf="displayText.totalPrice" class="tui-text_body-l">
       Итого к оплате: {{ displayText.totalPrice }} рублей.
     </p>
   </div>

@@ -1,8 +1,8 @@
-import { MainService } from './main.service';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, ServiceUnavailableException } from '@nestjs/common';
 
-import { ApiControlles } from '@book-store/shared/values';
+import { ApiControlles, MainPageSection } from '@book-store/shared';
 import { BaseController } from '@core/base';
+import { MainService } from './main.service';
 
 @Controller(ApiControlles.MAIN)
 export class MainController extends BaseController {
@@ -11,7 +11,16 @@ export class MainController extends BaseController {
   }
 
   @Get()
-  async getMainPageSections() {
+  async getMainPageSections(): Promise<MainPageSection[]> {
     return this.mainService.getMainPageSections();
+  }
+
+  @Get(ApiControlles.HEALTH_SERVICE)
+  async checkServiceHealth(): Promise<boolean> {
+    try {
+      return await this.mainService.hasMinProductsCount();
+    } catch {
+      throw new ServiceUnavailableException();
+    }
   }
 }

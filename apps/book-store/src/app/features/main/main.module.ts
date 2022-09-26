@@ -1,4 +1,3 @@
-import { CartItemComponent } from './../cart/components/cart-item/cart-item.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,10 +15,7 @@ import {
 } from '@shared/components';
 import { MainComponent } from './main.component';
 import { MainService } from './services/main.service';
-import {
-  CategorySectionComponent,
-  CategorySectionSkeletonComponent,
-} from './components';
+import { CategorySectionComponent } from './components';
 
 const routes: Routes = [
   {
@@ -40,11 +36,7 @@ const routes: Routes = [
     TuiButtonModule,
     CartItemWrapperComponent,
   ],
-  declarations: [
-    MainComponent,
-    CategorySectionComponent,
-    CategorySectionSkeletonComponent,
-  ],
+  declarations: [MainComponent, CategorySectionComponent],
   providers: [MainService],
   exports: [RouterModule],
 })

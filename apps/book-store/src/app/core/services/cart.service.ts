@@ -77,10 +77,12 @@ export class CartService {
   }
 
   calculateTotalPrice(cartList: CartList) {
-    return cartList.reduce((totalCount, { product, count }) => {
+    const totalPrice = cartList.reduce((totalCount, { product, count }) => {
       return (
         totalCount + this.productPriceService.calculatePrice(product, count)
       );
     }, 0);
+
+    return Math.round(totalPrice * 100) / 100;
   }
 }

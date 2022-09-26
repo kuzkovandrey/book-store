@@ -1,4 +1,6 @@
 <form class="form" [formGroup]="orderForm">
+  <p class="form__title tui-text_body-l-2">Оформить заказ:</p>
+
   <div formGroupName="buyer">
     <tui-input
       tuiTextfieldSize="m"
@@ -35,6 +37,7 @@
   </ng-container>
 
   <button
+    class="form__button"
     (click)="onClickOrderButton()"
     [disabled]="orderForm.invalid"
     tuiButton

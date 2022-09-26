@@ -8,13 +8,7 @@
     ></div>
   </ng-container>
 
-  <ng-container *ngIf="!sections.length">
-    <ng-container *ngFor="let section of skeletonSections">
-      <div class="main__category-section" category-section-skeleton></div>
-    </ng-container>
-  </ng-container>
-
-  <div class="main__search">
+  <div *ngIf="sections.length" class="main__search">
     <button
       (click)="navigateToSearchPage()"
       tuiButton

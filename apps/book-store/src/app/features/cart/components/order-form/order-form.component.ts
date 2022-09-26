@@ -19,7 +19,7 @@ const STRINGIFY_DELIVERY_POINT: TuiStringHandler<DeliveryModel> = ({
 }: DeliveryModel) => `${address}`;
 
 @Component({
-  selector: 'order-form',
+  selector: 'order-form, [order-form]',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss'],
   providers: [

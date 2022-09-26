@@ -1,9 +1,25 @@
 @import 'mixins';
 
 .cart {
+  padding: 1rem 2rem;
+
   @include element(empty-label) {
-    color: var(--tui-negative-hover);
     text-align: center;
+
+    @include modifier(link) {
+      color: var(--tui-link-hover);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  @include element(order-form) {
+    margin-top: 1rem;
+    width: 20rem;
+  }
+
+  @include element(price) {
+    font-weight: 700;
   }
 }
 

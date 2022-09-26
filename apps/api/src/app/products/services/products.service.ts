@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsRelations, Repository, Between, Like } from 'typeorm';
+import { FindOptionsRelations, Repository, Between, Like, Not } from 'typeorm';
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
@@ -49,11 +49,13 @@ export class ProductsService extends BaseService<ProductEntity> {
       relations: this.findOptionsRelations,
       where: [
         {
+          id: Not(id),
           category: {
             id: category?.id,
           },
         },
         {
+          id: Not(id),
           book: {
             genre: {
               id: book.genre.id,
@@ -64,7 +66,7 @@ export class ProductsService extends BaseService<ProductEntity> {
       take,
     });
 
-    return similar.filter((product) => product.id !== id);
+    return similar;
   }
 
   async getProductById(id: number): Promise<ProductEntity> {

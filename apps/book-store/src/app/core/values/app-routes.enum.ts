@@ -13,4 +13,6 @@ export enum AppRoutes {
   ORDERS = 'orders',
   AUTH = 'auth',
   LOGIN = 'login',
+  SERVICE_UNAVAILABLE = 'service-unavailable',
+  ERROR = 'error',
 }

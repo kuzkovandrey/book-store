@@ -15,7 +15,7 @@ export class ShopHeaderComponent implements OnInit, OnDestroy {
 
   readonly menuRoutes = MenuRoutes;
 
-  isShown = true;
+  isShown = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 

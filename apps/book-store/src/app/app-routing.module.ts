@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '@core/guards/auth.guard';
 
+import { AuthGuard, ServiceUnavailableGuard } from '@core/guards';
 import { AppRoutes } from '@core/values';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: AppRoutes.MAIN,
@@ -12,6 +12,8 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.MAIN,
+    canActivate: [ServiceUnavailableGuard],
+    canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
       import('./features/main/main.module').then((m) => m.MainModule),
     data: {
@@ -22,6 +24,8 @@ const routes: Routes = [
   },
   {
     path: `${AppRoutes.PRODUCT}/:id`,
+    canActivate: [ServiceUnavailableGuard],
+    canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
       import('./features/product-info/product-info.module').then(
         (m) => m.ProductInfoModule
@@ -34,6 +38,8 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.SEARCH,
+    canActivate: [ServiceUnavailableGuard],
+    canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
       import('./features/search/search.module').then((m) => m.SearchModule),
     data: {
@@ -44,6 +50,8 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.CART,
+    canActivate: [ServiceUnavailableGuard],
+    canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
       import('./features/cart/cart.module').then((m) => m.CartModule),
     data: {
@@ -59,6 +67,7 @@ const routes: Routes = [
         (m) => m.AdminPanelModule
       ),
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     data: {
       hasHeader: false,
       hasFooter: false,
@@ -66,6 +75,8 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.ORDER_TRACKER,
+    canActivate: [ServiceUnavailableGuard],
+    canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
       import('./features/order-tracker/order-tracker.module').then(
         (m) => m.OrderTrackerModule
@@ -84,6 +95,16 @@ const routes: Routes = [
       hasHeader: false,
       hasFooter: false,
       title: 'Вход в личный кабинет',
+    },
+  },
+  {
+    path: AppRoutes.ERROR,
+    loadChildren: () =>
+      import('./features/errors/errors.module').then((m) => m.ErrorsModule),
+    data: {
+      hasHeader: false,
+      hasFooter: false,
+      title: 'Произошла ошибка',
     },
   },
 ];

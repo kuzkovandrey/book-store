@@ -3,7 +3,15 @@
 .form {
   width: 100%;
 
+  @include element(title) {
+    margin-bottom: 1rem;
+  }
+
   @include element(input) {
     margin-bottom: 0.5rem;
+  }
+
+  @include element(button) {
+    margin-top: 1rem;
   }
 }

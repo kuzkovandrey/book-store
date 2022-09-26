@@ -3,12 +3,15 @@ import { Injectable } from '@nestjs/common';
 import { MainPageSection } from '@book-store/shared';
 import { CategoriesService, ProductsService } from '@products/services';
 import { CategoryEntity } from '@products/entities';
+import { HealthServiceError } from '@core/values';
 
 @Injectable()
 export class MainService {
   private readonly CATEGORY_COUNTER = 4;
 
   private readonly BOOK_COUNTER = 5;
+
+  private readonly MIN_PRODUCTS_COUNT = 10;
 
   constructor(
     private productsService: ProductsService,
@@ -43,5 +46,14 @@ export class MainService {
     });
 
     return await Promise.all(this.getSections(categories));
+  }
+
+  async hasMinProductsCount(): Promise<boolean> {
+    const products = await this.productsService.findAll();
+
+    // if (products.length < this.MIN_PRODUCTS_COUNT)
+    //   throw new HealthServiceError();
+
+    return true;
   }
 }

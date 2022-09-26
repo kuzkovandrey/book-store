@@ -1,4 +1,4 @@
-import { CommonErrorMessages } from '@core/values';
+import { AppRoutes, CommonErrorMessages } from '@core/values';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { TuiDialogService } from '@taiga-ui/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -14,6 +14,7 @@ import { CartList } from './models/cart.model';
 import { OrderFormModel } from './models';
 import { CreateOrderDto } from '@book-store/shared/dto';
 import { OrderSuccessModalComponent } from './components/order-success-modal/order-success-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cart',
@@ -36,7 +37,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private dialogService: TuiDialogService,
     private ordersService: OrdersService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -111,6 +113,14 @@ export class CartComponent implements OnInit, OnDestroy {
         count,
       })),
     });
+  }
+
+  navigateToProductPage(id: number) {
+    this.router.navigate([AppRoutes.PRODUCT, id]);
+  }
+
+  navigateToSearchPage() {
+    this.router.navigate([AppRoutes.SEARCH]);
   }
 
   openSuccessModal() {

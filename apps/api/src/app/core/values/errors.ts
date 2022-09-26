@@ -15,3 +15,9 @@ export class IncorrectUserAuthError extends Error {
     super('Incorrect login or password');
   }
 }
+
+export class HealthServiceError extends Error {
+  constructor() {
+    super('Service is not working');
+  }
+}

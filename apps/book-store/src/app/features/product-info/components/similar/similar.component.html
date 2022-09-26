@@ -1,12 +1,14 @@
 <section *ngIf="similar$ | async as similar" class="similar">
-  <p class="similar__title tui-text_h4">Похожие книги</p>
+  <ng-container *ngIf="similar.length">
+    <p class="similar__title tui-text_h4">Похожие книги</p>
 
-  <div class="similar__cards">
-    <ng-container *ngFor="let product of similar">
-      <product-card
-        (click)="navigateToProductPage(product.id)"
-        [product]="product"
-      ></product-card>
-    </ng-container>
-  </div>
+    <div class="similar__cards">
+      <ng-container *ngFor="let product of similar">
+        <product-card
+          (click)="navigateToProductPage(product.id)"
+          [product]="product"
+        ></product-card>
+      </ng-container>
+    </div>
+  </ng-container>
 </section>

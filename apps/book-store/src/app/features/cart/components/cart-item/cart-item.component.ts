@@ -22,7 +22,11 @@ import { CartItem } from '@features/cart/models/cart.model';
 export class CartItemComponent implements OnInit, OnDestroy {
   @Input() cartItem: CartItem;
 
+  @Input() count: number;
+
   @Output() deleteItem = new EventEmitter<number>();
+
+  @Output() productPictureClick = new EventEmitter<number>();
 
   @Output() countChanges = new EventEmitter<[number, number]>();
 
@@ -58,5 +62,9 @@ export class CartItemComponent implements OnInit, OnDestroy {
 
   onClickDelete(id: number) {
     this.deleteItem.emit(id);
+  }
+
+  onClickProductPicture() {
+    this.productPictureClick.emit(this.product.id);
   }
 }
