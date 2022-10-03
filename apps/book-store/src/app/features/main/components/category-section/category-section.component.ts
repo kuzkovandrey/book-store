@@ -13,8 +13,8 @@ import { AppRoutes } from '@core/values';
 export class CategorySectionComponent {
   @Input() section: MainPageSection;
 
-  get title(): string {
-    return this.section.category.name;
+  get title(): string | undefined {
+    return this.section.category?.name;
   }
 
   get productList(): ProductModel[] {
@@ -26,7 +26,7 @@ export class CategorySectionComponent {
   navigateToSearchPage() {
     this.router.navigate([AppRoutes.SEARCH], {
       state: {
-        categoryId: this.section.category.id,
+        categoryId: this.section?.category?.id,
       },
     });
   }

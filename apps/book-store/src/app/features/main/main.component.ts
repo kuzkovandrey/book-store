@@ -1,11 +1,11 @@
+import { MainService } from './services/main.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LoadingService } from '@core/services/loading.service';
+import { LoadingService } from '@core/services';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 
 import { MainPageSection } from '@book-store/shared';
-import { MainService } from '@features/main/services/main.service';
 import { AppRoutes, CommonErrorMessages } from '@core/values';
 import { AlertService } from '@core/services';
 
@@ -19,13 +19,11 @@ export class MainComponent implements OnInit, OnDestroy {
 
   sections: MainPageSection[] = [];
 
-  skeletonSections = new Array(3);
-
   constructor(
-    private mainService: MainService,
     private router: Router,
     private loadingService: LoadingService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private mainService: MainService
   ) {}
 
   ngOnInit() {

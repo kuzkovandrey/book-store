@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Subject, Subscription, tap, switchMap } from 'rxjs';
 
-import { ProductsService, LoadingService, AlertService } from '@core/services';
+import { ProductsService, LoadingService } from '@core/services';
 import { ProductModel, BookModel } from '@book-store/shared/models';
 
 @Component({
@@ -40,7 +40,6 @@ export class ProductInfoComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private productsService: ProductsService,
     private loadingService: LoadingService,
-    private alertService: AlertService,
     private changeDetectorRef: ChangeDetectorRef,
     private cartService: CartService
   ) {}

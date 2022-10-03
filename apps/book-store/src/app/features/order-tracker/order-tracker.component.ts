@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription, tap, switchMap } from 'rxjs';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription, tap } from 'rxjs';
 
 import { LoadingService, OrdersService } from '@core/services';
 import { OrderModel } from '@book-store/shared';
@@ -26,7 +26,7 @@ export class OrderTrackerComponent implements OnDestroy {
     private loadingService: LoadingService
   ) {}
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 

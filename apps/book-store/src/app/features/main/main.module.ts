@@ -14,8 +14,8 @@ import {
   CartItemWrapperComponent,
 } from '@shared/components';
 import { MainComponent } from './main.component';
-import { MainService } from './services/main.service';
 import { CategorySectionComponent } from './components';
+import { MainService } from './services/main.service';
 
 const routes: Routes = [
   {
