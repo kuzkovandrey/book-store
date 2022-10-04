@@ -1,20 +1,16 @@
 import { Provider } from '@angular/core';
-import { DiscountsApi } from '@core/api/discounts.api';
-import { DeliveryApi } from '@core/api/delivery.api';
-import { CategoriesApi } from './categories.api';
-import { BookApi } from './books.api';
+// import { ProductDiscountsApi } from '@core/api/product-discounts.api';
+// import { DeliveryApi } from '@core/api/delivery.api';
+// import { ProductCategoriesApi } from './product-categories.api';
+// import { BookApi } from './books.api';
 import { MainApi } from './main.api';
-import { ProductsApi } from './products.api';
-import { OrdersApi } from './orders.api';
-import { AuthApi } from './auth.api';
 
 export const ApiProviders: Provider[] = [
-  BookApi,
-  CategoriesApi,
-  DeliveryApi,
-  DiscountsApi,
+  // BookApi,
+  // ProductCategoriesApi,
+  // DeliveryApi,
+  // ProductDiscountsApi,
   MainApi,
-  ProductsApi,
-  OrdersApi,
-  AuthApi,
+
+  // AuthApi,
 ];

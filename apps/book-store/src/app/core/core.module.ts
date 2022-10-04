@@ -5,31 +5,19 @@ import {
 } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 
-import { ApiGateway, ApiProviders, MainApi } from './api';
-import { EntitySerivceProviders } from './services/entities';
-import {
-  LoadingService,
-  AlertService,
-  ProductPriceService,
-  AuthService,
-} from './services';
+import { ApiProviders, MainApi } from './api';
+import { LoadingService, AlertService } from './services';
 import { AppStorage, AppStorageImpl, StorageKeys } from './services/storage';
 import { InterceptorProviders } from './interceptors';
-import { CartService } from './services/cart.service';
 import { catchError, of, tap } from 'rxjs';
 import { APP_SESSION_STORAGE } from './values';
 
 @NgModule({
   imports: [HttpClientModule],
   providers: [
-    ApiGateway,
     AlertService,
     LoadingService,
-    CartService,
-    ProductPriceService,
-    AuthService,
     ...ApiProviders,
-    ...EntitySerivceProviders,
     ...InterceptorProviders,
     {
       provide: AppStorage,

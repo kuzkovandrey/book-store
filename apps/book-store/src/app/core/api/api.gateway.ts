@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiGatewayRequestParams } from '@core/models';
+import { ApiGatewayRequestParams } from './api-gateway-request-params.model';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ApiGateway {
   constructor(private readonly http: HttpClient) {}
 

@@ -26,7 +26,8 @@
     "paths": {
       "@env/*": ["./src/environments/*"],
       "@core/*": ["./src/app/core/*"],
-      "@features/*": ["./src/app/features/*"],
+      "@pages/*": ["src/app/pages/*"],
+      "@features/*": ["src/app/features/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@book-store/shared/*": ["../../libs/shared/src/*"],
       "@book-store/shared": ["../../libs/shared/src"]
