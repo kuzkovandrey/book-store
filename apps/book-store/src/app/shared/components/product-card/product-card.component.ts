@@ -31,7 +31,7 @@ export class ProductCardComponent implements AddableCartItem {
     );
   }
 
-  get productStyles() {
+  get productPosterStyles() {
     return {
       background: `url(${this.product.book.picture})`,
       backgroundSize: 'contain',

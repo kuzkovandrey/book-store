@@ -12,7 +12,6 @@ export class MainApi {
   }
 
   checkServiceHealth(): Observable<boolean> {
-    console.log('checkServiceHealth');
     return this.http
       .get<boolean>(`${ApiControlles.MAIN}${ApiControlles.HEALTH_SERVICE}`)
       .pipe(tap((r) => console.log(r)));

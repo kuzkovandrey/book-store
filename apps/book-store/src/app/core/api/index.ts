@@ -8,3 +8,4 @@ export * from './main.api';
 export * from './products.api';
 export * from './orders.api';
 export * from './auth.api';
+export * from './api.gateway';

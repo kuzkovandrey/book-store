@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 
-import { ApiProviders, MainApi } from './api';
+import { ApiGateway, ApiProviders, MainApi } from './api';
 import { EntitySerivceProviders } from './services/entities';
 import {
   LoadingService,
@@ -22,6 +22,7 @@ import { APP_SESSION_STORAGE } from './values';
 @NgModule({
   imports: [HttpClientModule],
   providers: [
+    ApiGateway,
     AlertService,
     LoadingService,
     CartService,

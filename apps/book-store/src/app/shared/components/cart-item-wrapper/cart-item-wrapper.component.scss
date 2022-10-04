@@ -5,8 +5,8 @@
 
   @include element(button) {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0rem;
+    right: 0rem;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
   }
