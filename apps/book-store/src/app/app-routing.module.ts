@@ -16,7 +16,7 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./pages/main/main.module').then((m) => m.MainModule),
+      import('./pages/main-page/main.module').then((m) => m.MainModule),
     data: {
       hasHeader: true,
       hasFooter: true,
@@ -42,7 +42,9 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./pages/search/search.module').then((m) => m.SearchModule),
+      import('./pages/search-page/search-page.module').then(
+        (m) => m.SearchPageModule
+      ),
     data: {
       hasHeader: true,
       hasFooter: true,

@@ -23,6 +23,16 @@ export class ProductsApi {
     });
   }
 
+  getProductsByCategoryId(id: number, take: number) {
+    return this.api.get<ProductModel[]>({
+      url: `${ApiControlles.PRODUCTS}${ApiControlles.BY_CATEGORY}`,
+      params: {
+        [ApiQueryParams.ID]: id,
+        [ApiQueryParams.TAKE]: take,
+      },
+    });
+  }
+
   changeValues(
     id: number,
     changes: ChangeProductValuesDto

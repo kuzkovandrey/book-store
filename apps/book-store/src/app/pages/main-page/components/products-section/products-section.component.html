@@ -1,0 +1,21 @@
+<div class="section">
+  <h4 (click)="onClickCategory()" class="section__title">
+    {{ title }}
+  </h4>
+
+  <div class="section__product-list">
+    <product-card-button (click)="onClickCategory()">
+      {{ title | textOverflow: 16 }}
+    </product-card-button>
+
+    <ng-container *ngFor="let product of products">
+      <cart-item-wrapper>
+        <product-card
+          (click)="onClickProductCard(product.id)"
+          [product]="product"
+        >
+        </product-card>
+      </cart-item-wrapper>
+    </ng-container>
+  </div>
+</div>

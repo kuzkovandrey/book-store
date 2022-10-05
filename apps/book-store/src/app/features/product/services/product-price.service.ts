@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ProductModel } from '@book-store/shared/models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ProductPriceService {
   calculatePrice(product: ProductModel, count = 1): number {
     if (product.discount && product.discount.percent) {

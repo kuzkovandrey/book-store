@@ -20,6 +20,13 @@ export class ProductsService {
     return this.productsApi.getProductById(id);
   }
 
+  getProductsByCategoryId(
+    id: number,
+    take: number
+  ): Observable<ProductModel[]> {
+    return this.productsApi.getProductsByCategoryId(id, take);
+  }
+
   changeValues(
     id: number,
     changes: ChangeProductValuesDto

@@ -1,4 +1,4 @@
-import { CartService } from '@features/cart/services/cart.service';
+import { CartService } from '@features/cart';
 import {
   Component,
   OnInit,
