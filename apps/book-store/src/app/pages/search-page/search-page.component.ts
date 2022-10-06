@@ -23,10 +23,10 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   filterOptions: SearchFilterItemOptions[];
 
   constructor(
-    private searchPageFacade: SearchPageFacade,
-    private loadingService: LoadingService,
-    private alertService: AlertService,
-    private router: Router
+    private readonly searchPageFacade: SearchPageFacade,
+    private readonly loadingService: LoadingService,
+    private readonly alertService: AlertService,
+    private readonly router: Router
   ) {
     this.initialCategoryId = (
       router.getCurrentNavigation()?.extras.state as { categoryId: number }

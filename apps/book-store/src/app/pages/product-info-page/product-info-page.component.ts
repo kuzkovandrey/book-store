@@ -46,11 +46,11 @@ export class ProductInfoPageComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private changeDetectorRef: ChangeDetectorRef,
-    private loadingService: LoadingService,
-    private alertService: AlertService,
-    private productInfoPageFacade: ProductInfoPageFacade
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly loadingService: LoadingService,
+    private readonly alertService: AlertService,
+    private readonly productInfoPageFacade: ProductInfoPageFacade
   ) {
     this.productId = (this.activatedRoute.snapshot.params as { id: number }).id;
   }

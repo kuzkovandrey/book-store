@@ -31,10 +31,10 @@ export class SearchPageFacade {
   get searchData$(): Observable<ProductModel[]> {
     return this.search$.pipe(
       debounceTime(this.SEARCH_DEBOUNCE),
-      tap(() => this.loadingService.setLoading(true)),
       switchMap((text) =>
         combineLatest([of(text), this.searchFilterService.filterParams$])
       ),
+      tap(this.setLoading),
       switchMap(([text, filters]) =>
         this.productsService.search({
           text,
@@ -60,6 +60,10 @@ export class SearchPageFacade {
     private readonly searchBarService: SearchBarService,
     private readonly loadingService: LoadingService
   ) {}
+
+  private setLoading = () => {
+    this.loadingService.setLoading(true);
+  };
 
   setCategoryAsInitialFilterParams(id: number) {
     this.searchFilterService.appendFilterParams({
