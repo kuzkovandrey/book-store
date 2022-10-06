@@ -28,8 +28,8 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./pages/product-info/product-info.module').then(
-        (m) => m.ProductInfoModule
+      import('./pages/product-info-page/product-info-page.module').then(
+        (m) => m.ProductInfoPageModule
       ),
     data: {
       hasHeader: true,

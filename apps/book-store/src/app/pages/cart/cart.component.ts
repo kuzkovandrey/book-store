@@ -41,48 +41,48 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadingService.setLoading(true);
 
-    this.subscriptions.add(
-      this.cartService
-        .getCartProductList()
-        .pipe(tap(() => this.loadingService.setLoading(false)))
-        .subscribe((cartList) => {
-          this.cartList = cartList;
+    // this.subscriptions.add(
+    //   this.cartService
+    //     .getCartProductList()
+    //     .pipe(tap(() => this.loadingService.setLoading(false)))
+    //     .subscribe((cartList) => {
+    //       this.cartList = cartList;
 
-          this.calculateTotalPrice();
-        })
-    );
+    //       this.calculateTotalPrice();
+    //     })
+    // );
 
-    this.subscriptions.add(
-      this.createOrder$
-        .pipe(
-          tap(() => this.loadingService.setLoading(true)),
-          switchMap((orderDto) => this.ordersService.createOrder(orderDto)),
-          tap(() => this.loadingService.setLoading(false))
-        )
-        .subscribe({
-          next: this.handleSuccessCreateOrder,
-          error: () => {
-            this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
-          },
-        })
-    );
+    // this.subscriptions.add(
+    //   this.createOrder$
+    //     .pipe(
+    //       tap(() => this.loadingService.setLoading(true)),
+    //       switchMap((orderDto) => this.ordersService.createOrder(orderDto)),
+    //       tap(() => this.loadingService.setLoading(false))
+    //     )
+    //     .subscribe({
+    //       next: this.handleSuccessCreateOrder,
+    //       error: () => {
+    //         this.alertService.showError(CommonErrorMessages.UPLOAD_ERROR);
+    //       },
+    //     })
+    // );
   }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
-    this.cartService.saveCartListToStorage(this.cartList);
+    // this.cartService.saveCartListToStorage(this.cartList);
   }
 
-  private handleSuccessCreateOrder = () => {
-    this.openSuccessModal();
-    this.cartService.resetStorageCartList();
-    this.cartList = [];
-  };
+  // private handleSuccessCreateOrder = () => {
+  //   this.openSuccessModal();
+  //   this.cartService.resetStorageCartList();
+  //   this.cartList = [];
+  // };
 
   deleteItemFromCartList(id: number) {
     this.cartList = this.cartList.filter(({ product }) => product.id !== id);
 
-    this.calculateTotalPrice();
+    // this.calculateTotalPrice();
   }
 
   changeCountItems([id, count]: [id: number, count: number]) {
@@ -90,16 +90,16 @@ export class CartComponent implements OnInit, OnDestroy {
 
     if (item) item.count = count;
 
-    this.calculateTotalPrice();
+    // this.calculateTotalPrice();
   }
 
   onChangeOrderForm(orderForm: OrderFormModel) {
     this.orderForm = orderForm;
   }
 
-  calculateTotalPrice() {
-    this.totalPrice = this.cartService.calculateTotalPrice(this.cartList);
-  }
+  // calculateTotalPrice() {
+  //   this.totalPrice = this.cartService.calculateTotalPrice(this.cartList);
+  // }
 
   createOrder() {
     this.createOrder$.next({

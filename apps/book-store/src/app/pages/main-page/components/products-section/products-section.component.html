@@ -9,7 +9,10 @@
     </product-card-button>
 
     <ng-container *ngFor="let product of products">
-      <cart-item-wrapper>
+      <cart-item-wrapper
+        [itemId]="product.id"
+        [isShowCartButton]="product.onSale"
+      >
         <product-card
           (click)="onClickProductCard(product.id)"
           [product]="product"

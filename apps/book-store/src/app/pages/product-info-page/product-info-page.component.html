@@ -7,7 +7,7 @@
           <span class="tui-text_h4">{{ product | productPrice }}</span>
           <span
             class="product__discount tui-text_h4"
-            *ngIf="product.discount && product.onSale"
+            *ngIf="this.isShowDiscountText"
           >
             {{ product.cost }} руб.
           </span>
@@ -20,15 +20,11 @@
           [appearance]="hasProductInCart ? 'accent' : 'primary'"
           *ngIf="product.onSale"
         >
-          {{
-            hasProductInCart
-              ? buttonTexts.removeFromCart
-              : buttonTexts.addToCart
-          }}
+          {{ buttonText }}
         </button>
       </div>
     </div>
   </div>
 
-  <div class="similar" similar [productId]="product.id"></div>
+  <div class="similar" similar [productId]="productId"></div>
 </section>

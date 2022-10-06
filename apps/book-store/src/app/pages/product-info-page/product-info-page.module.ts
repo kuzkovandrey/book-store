@@ -4,14 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { TuiTagModule } from '@taiga-ui/kit';
 import { TuiButtonModule } from '@taiga-ui/core';
 
-import { ProductInfoComponent } from './product-info.component';
-import { SimilarComponent, BookDetailsComponent } from './components';
 import { ProductCardComponent, ProductPricePipe } from '@features/product';
+import { CartItemWrapperComponent } from '@features/cart';
+import { SimilarComponent, BookDetailsComponent } from './components';
+import { ProductInfoPageComponent } from './product-info-page.component';
+import { ProductInfoPageFacade } from './product-info-page.facade';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductInfoComponent,
+    component: ProductInfoPageComponent,
   },
 ];
 
@@ -23,8 +25,14 @@ const routes: Routes = [
     TuiButtonModule,
     ProductPricePipe,
     ProductCardComponent,
+    CartItemWrapperComponent,
   ],
-  declarations: [ProductInfoComponent, BookDetailsComponent, SimilarComponent],
+  declarations: [
+    ProductInfoPageComponent,
+    BookDetailsComponent,
+    SimilarComponent,
+  ],
+  providers: [ProductInfoPageFacade],
   exports: [RouterModule],
 })
-export class ProductInfoModule {}
+export class ProductInfoPageModule {}

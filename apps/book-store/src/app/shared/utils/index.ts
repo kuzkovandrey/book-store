@@ -1,4 +1,5 @@
 import { Model } from '@book-store/shared';
+
 export const takeFirstByCount =
   (take: number) =>
   <T>(array: Array<T>): Array<T> =>

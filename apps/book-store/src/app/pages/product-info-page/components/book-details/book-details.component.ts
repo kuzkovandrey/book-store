@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { BookModel } from '@book-store/shared/models';
+import { BookModel } from '@book-store/shared';
 
 @Component({
   selector: 'book-details, [book-details]',

@@ -4,10 +4,15 @@
 
     <div class="similar__cards">
       <ng-container *ngFor="let product of similar">
-        <product-card
-          (click)="navigateToProductPage(product.id)"
-          [product]="product"
-        ></product-card>
+        <cart-item-wrapper
+          [itemId]="product.id"
+          [isShowCartButton]="product.onSale"
+        >
+          <product-card
+            (click)="navigateToProductPage(product.id)"
+            [product]="product"
+          ></product-card>
+        </cart-item-wrapper>
       </ng-container>
     </div>
   </ng-container>
