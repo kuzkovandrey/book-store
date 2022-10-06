@@ -1,19 +1,36 @@
 import { filter, map, Subscription } from 'rxjs';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
 import { TuiStringHandler } from '@taiga-ui/cdk';
-import { tuiItemsHandlersProvider } from '@taiga-ui/kit';
+import {
+  TuiInputCountModule,
+  tuiItemsHandlersProvider,
+  TuiInputModule,
+  TuiComboBoxModule,
+  TuiDataListWrapperModule,
+} from '@taiga-ui/kit';
 
 import { DeliveryModel } from '@book-store/shared/models';
 
-import { OrderFormModel } from 'src/app/pages/cart/models';
-import { DeliveryService } from '@features/delivery';
+import { OrderFormModel } from '@features/order/types';
+import { CommonModule } from '@angular/common';
+import {
+  TuiButtonModule,
+  TuiDataListModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
 
 const STRINGIFY_DELIVERY_POINT: TuiStringHandler<DeliveryModel> = ({
   address,
@@ -23,6 +40,18 @@ const STRINGIFY_DELIVERY_POINT: TuiStringHandler<DeliveryModel> = ({
   selector: 'order-form, [order-form]',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TuiInputCountModule,
+    TuiTextfieldControllerModule,
+    TuiButtonModule,
+    TuiInputModule,
+    TuiDataListModule,
+    TuiComboBoxModule,
+    TuiDataListWrapperModule,
+  ],
   providers: [
     tuiItemsHandlersProvider({ stringify: STRINGIFY_DELIVERY_POINT }),
   ],
@@ -30,32 +59,16 @@ const STRINGIFY_DELIVERY_POINT: TuiStringHandler<DeliveryModel> = ({
 export class OrderFormComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();
 
+  @Input() deliveryPointList: DeliveryModel[] = [];
+
   @Output() formValueChanges = new EventEmitter<OrderFormModel>();
 
   @Output() orderButtonClicked = new EventEmitter<void>();
 
   orderForm: FormGroup;
 
-  deliveryPointList: DeliveryModel[];
-
-  constructor(private deliveryService: DeliveryService) {}
-
   ngOnInit() {
     this.initForm();
-
-    this.subscriptions.add(
-      this.deliveryService
-        .getAllDeliveryPoints()
-        .pipe(map((pointList) => pointList.filter(({ isActive }) => isActive)))
-        .subscribe({
-          next: (deliveryPointList) => {
-            this.deliveryPointList = deliveryPointList;
-          },
-          error: () => {
-            this.deliveryPointList = [];
-          },
-        })
-    );
 
     this.subscriptions.add(
       this.orderForm.valueChanges

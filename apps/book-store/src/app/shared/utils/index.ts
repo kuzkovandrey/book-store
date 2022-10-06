@@ -1,4 +1,4 @@
-import { Model } from '@book-store/shared';
+import { Model, BookModel } from '@book-store/shared';
 
 export const takeFirstByCount =
   (take: number) =>
@@ -7,4 +7,10 @@ export const takeFirstByCount =
 
 export const getIdArrayFromModel = (models: Model<unknown>[]) => {
   return models.map(({ id }) => id);
+};
+
+export const getAuthorList = (book: BookModel) => {
+  return book.authors
+    .map(({ firstName, lastName }) => `${firstName} ${lastName}`)
+    .join(' ,');
 };

@@ -1,0 +1,33 @@
+@import 'mixins';
+
+.cart-list {
+  border: 2px solid var(--tui-base-03);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  @include element(item) {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  @include element(title) {
+    font: var(--tui-font-heading-5);
+
+    @include modifier(light) {
+      color: var(--tui-base-05);
+    }
+  }
+
+  @include element(price) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    font: var(--tui-font-heading-6);
+  }
+}

@@ -22,6 +22,10 @@ export class SearchFilterService {
     });
   }
 
+  resetFilterParams() {
+    this.filterParams.next({});
+  }
+
   private mapEventToFilterModel = ({
     name,
     entities,

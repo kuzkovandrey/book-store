@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { StorageKeys, AppStorage } from '@core/services/storage';
+import { Observable, of } from 'rxjs';
 import { StorageCartItem } from '../types';
 
 @Injectable({
@@ -19,6 +20,10 @@ export class CartService {
   }
 
   constructor(private appStorage: AppStorage) {}
+
+  getAll$(): Observable<StorageCartItem[]> {
+    return of(this.cartStorage);
+  }
 
   appendItemToCart(item: StorageCartItem) {
     const storage = this.cartStorage;

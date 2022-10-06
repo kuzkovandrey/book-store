@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { BookModel } from '@book-store/shared';
+import { getAuthorList } from '@shared/utils';
 
 @Component({
   selector: 'book-details, [book-details]',
@@ -12,8 +13,6 @@ export class BookDetailsComponent {
   @Input() book: BookModel;
 
   get authors(): string {
-    return this.book.authors
-      .map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-      .join(' ');
+    return getAuthorList(this.book);
   }
 }

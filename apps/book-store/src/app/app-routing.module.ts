@@ -56,7 +56,9 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./pages/cart/cart.module').then((m) => m.CartModule),
+      import('./pages/cart-page/cart-page.module').then(
+        (m) => m.CartPageModule
+      ),
     data: {
       hasHeader: true,
       hasFooter: true,

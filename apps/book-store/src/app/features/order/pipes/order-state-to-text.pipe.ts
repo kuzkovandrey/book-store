@@ -9,6 +9,6 @@ import { OrderStateMessages, orderStateToText } from '@features/order/utils';
 })
 export class OrderStateToTextPipe implements PipeTransform {
   transform(state: OrderState): OrderStateMessages {
-    return orderStateToText(state) ?? '';
+    return orderStateToText(state) ?? ('' as OrderStateMessages);
   }
 }

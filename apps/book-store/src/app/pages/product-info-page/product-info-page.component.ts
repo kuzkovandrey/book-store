@@ -1,4 +1,3 @@
-import { CommonErrorMessages } from './../../core/values/common-error-messages.enum';
 import {
   Component,
   OnInit,
@@ -10,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, tap } from 'rxjs';
 
 import { LoadingService, AlertService } from '@core/services';
+import { CommonErrorMessages } from '@core/values';
 import { ProductModel, BookModel } from '@book-store/shared/models';
 import { ProductInfoPageFacade } from './product-info-page.facade';
 

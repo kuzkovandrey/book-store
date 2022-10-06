@@ -6,7 +6,7 @@ import {
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 
 import { ApiProviders, MainApi } from './api';
-import { LoadingService, AlertService } from './services';
+import { LoadingService, AlertService, ModalDialogService } from './services';
 import { AppStorage, AppStorageImpl, StorageKeys } from './services/storage';
 import { InterceptorProviders } from './interceptors';
 import { catchError, of, tap } from 'rxjs';
@@ -17,6 +17,7 @@ import { APP_SESSION_STORAGE } from './values';
   providers: [
     AlertService,
     LoadingService,
+    ModalDialogService,
     ...ApiProviders,
     ...InterceptorProviders,
     {

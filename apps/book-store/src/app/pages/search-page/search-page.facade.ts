@@ -8,6 +8,7 @@ import {
   of,
   Subject,
   switchMap,
+  tap,
 } from 'rxjs';
 
 import { BooksService } from '@features/book';
@@ -21,16 +22,16 @@ import {
 } from '@features/search';
 import { ProductModel } from '@book-store/shared/models';
 import { ApiQueryParams } from '@book-store/shared/values';
+import { LoadingService } from '@core/services';
 
 @Injectable()
 export class SearchPageFacade {
   private readonly SEARCH_DEBOUNCE = 300;
 
-  private readonly searchData = new Subject<ProductModel[]>();
-
   get searchData$(): Observable<ProductModel[]> {
     return this.search$.pipe(
       debounceTime(this.SEARCH_DEBOUNCE),
+      tap(() => this.loadingService.setLoading(true)),
       switchMap((text) =>
         combineLatest([of(text), this.searchFilterService.filterParams$])
       ),
@@ -56,13 +57,18 @@ export class SearchPageFacade {
     private readonly productsService: ProductsService,
     private readonly categoriesService: ProductCategoriesService,
     private readonly searchFilterService: SearchFilterService,
-    private readonly searchBarService: SearchBarService
+    private readonly searchBarService: SearchBarService,
+    private readonly loadingService: LoadingService
   ) {}
 
   setCategoryAsInitialFilterParams(id: number) {
     this.searchFilterService.appendFilterParams({
       [ApiQueryParams.CATEGORIES]: [id],
     });
+  }
+
+  resetFilterParams() {
+    this.searchFilterService.resetFilterParams();
   }
 
   fetchFilterOptions(): Observable<SearchFilterItemOptions[]> {

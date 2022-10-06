@@ -1,0 +1,24 @@
+<div *ngIf="cartList$ | async as cartList" class="cart-list">
+  <p *ngIf="cartList.length; else emptyCart" class="cart-list__title">
+    Список товаров
+    <span class="cart-list__title--light">({{ cartList.length }})</span>
+  </p>
+
+  <ng-template #emptyCart>
+    <p class="cart-list__title">Корзина пуста</p>
+  </ng-template>
+
+  <span
+    cart-item
+    class="cart-list__item"
+    *ngFor="let item of cartList; index as i; trackBy: trackByProductId"
+    (productPictureClick)="navigateToProductPage($event)"
+    (deleteItem)="deleteItemFromCartList($event)"
+    (countChanges)="changeCountItems($event)"
+    [cartItem]="item"
+  ></span>
+
+  <p class="cart-list__price" *ngIf="totalPrice$ | async as totalPrice">
+    Итого: {{ totalPrice }} руб.
+  </p>
+</div>

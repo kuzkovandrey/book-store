@@ -1,0 +1,36 @@
+<div class="item">
+  <img [src]="book.picture" class="item__image image" />
+
+  <div class="item__description description">
+    <p class="description__title">
+      {{ book.title | textOverflow: 30 }}
+    </p>
+
+    <p class="description__author">
+      {{ authors }}
+    </p>
+
+    <p class="description__price">
+      {{ product | productPrice: itemCount }}
+    </p>
+  </div>
+
+  <tui-input-count
+    class="item__input"
+    [formControl]="countControl"
+    tuiTextfieldSize="m"
+    [max]="10"
+    [min]="1"
+  ></tui-input-count>
+
+  <div class="item__delete-wrapper">
+    <span>Удалить из корзины</span>
+    <button
+      (click)="onClickDelete(product.id)"
+      tuiIconButton
+      icon="tuiIconTrashLarge"
+      size="s"
+      appearance="accent"
+    ></button>
+  </div>
+</div>

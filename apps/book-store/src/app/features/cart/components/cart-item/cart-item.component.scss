@@ -1,0 +1,64 @@
+@import 'mixins';
+
+.item {
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+
+  @include element(image) {
+    cursor: pointer;
+  }
+
+  @include element(description) {
+    margin-left: 1rem;
+  }
+
+  @include element(input) {
+    width: 10rem;
+  }
+
+  @include element(delete-wrapper) {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font: var(--tui-font-text-m2);
+    color: var(--tui-base-06);
+    bottom: 1rem;
+    right: 1rem;
+
+    & > span {
+      font: var(--tui-font-text-m);
+    }
+  }
+}
+
+.image {
+  height: 15rem;
+  width: 11rem;
+}
+
+.description {
+  width: 100%;
+  height: 100%;
+
+  @include element(title) {
+    font: var(--tui-font-heading-6);
+    margin-bottom: 0.5rem;
+  }
+
+  @include element(price) {
+    font: var(--tui-font-text-m);
+    color: var(--tui-base-08);
+  }
+
+  @include element(author) {
+    font: var(--tui-font-text-m2);
+    color: var(--tui-base-06);
+    margin-bottom: 0.5rem;
+  }
+}

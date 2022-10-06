@@ -15,6 +15,14 @@ export class ProductPriceService {
     return this.round(product.cost * count);
   }
 
+  calculateTotalPrice(productList: { product: ProductModel; count: number }[]) {
+    const totalPrice = productList.reduce((totalCount, { product, count }) => {
+      return totalCount + this.calculatePrice(product, count);
+    }, 0);
+
+    return this.round(totalPrice);
+  }
+
   private round(cost: number): number {
     return Math.round(cost * 100) / 100;
   }

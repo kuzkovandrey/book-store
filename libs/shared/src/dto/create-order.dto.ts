@@ -1,11 +1,13 @@
 import { Buyer } from '../models';
 
+export interface ProductItem {
+  productId: number;
+  count: number;
+}
+
 export interface CreateOrderDto {
   buyer: Buyer;
   deliveryPointId: number;
-  productList: {
-    productId: number;
-    count: number;
-  }[];
+  productList: ProductItem[];
   totalPrice: number;
 }
