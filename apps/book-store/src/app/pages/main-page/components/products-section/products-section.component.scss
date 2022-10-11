@@ -1,0 +1,22 @@
+@import 'mixins';
+
+.section {
+  @include element(title) {
+    display: inline-block;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+    font: var(--tui-font-heading-3);
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include element(product-list) {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

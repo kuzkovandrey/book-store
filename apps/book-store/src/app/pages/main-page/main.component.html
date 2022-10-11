@@ -1,0 +1,24 @@
+<section class="main page">
+  <ng-container *ngFor="let section of sections">
+    <div
+      products-section
+      [title]="section.title"
+      [products]="section.products"
+      (categoryClick)="navigateToSearchPage(section.id)"
+      (productCardClick)="navigateToProductPage($event)"
+      class="main__category-section"
+    ></div>
+  </ng-container>
+
+  <div *ngIf="sections && sections.length" class="main__search">
+    <button
+      (click)="navigateToSearchPage()"
+      tuiButton
+      type="button"
+      size="m"
+      appearance="primary"
+    >
+      Найти больше книг
+    </button>
+  </div>
+</section>

@@ -3,20 +3,20 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable()
 export class SearchBarService {
-  private readonly searchText = new Subject<string>();
+  private readonly searchValue = new Subject<string>();
 
   private readonly resetInput = new Subject<void>();
 
-  get search$(): Observable<string> {
-    return this.searchText.asObservable();
+  get searchValue$(): Observable<string> {
+    return this.searchValue.asObservable();
   }
 
   get reset$(): Observable<void> {
     return this.resetInput.asObservable();
   }
 
-  search(text: string) {
-    this.searchText.next(text);
+  setSearchValue(text: string) {
+    this.searchValue.next(text);
   }
 
   reset() {

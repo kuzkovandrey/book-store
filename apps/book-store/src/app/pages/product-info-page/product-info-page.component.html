@@ -1,0 +1,30 @@
+<section class="product-page" *ngIf="product">
+  <div class="product">
+    <img class="product__preview" [src]="book.picture" />
+    <div class="product__details" book-details [book]="book">
+      <div class="product__purchase" ngProjectAs="purchase-information">
+        <div class="product__cost">
+          <span class="tui-text_h4">{{ product | productPrice }}</span>
+          <span
+            class="product__discount tui-text_h4"
+            *ngIf="this.isShowDiscountText"
+          >
+            {{ product.cost }} руб.
+          </span>
+        </div>
+        <button
+          (click)="onCartButtonClick()"
+          tuiButton
+          type="button"
+          size="m"
+          [appearance]="hasProductInCart ? 'accent' : 'primary'"
+          *ngIf="product.onSale"
+        >
+          {{ buttonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="similar" similar [productId]="productId"></div>
+</section>

@@ -23,4 +23,5 @@ export enum ApiControlles {
   LOGIN = '/login',
   LOGOUT = '/logout',
   HEALTH_SERVICE = '/health_service',
+  BY_CATEGORY = '/by_category',
 }

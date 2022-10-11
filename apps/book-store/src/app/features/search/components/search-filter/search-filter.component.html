@@ -1,0 +1,14 @@
+<div class="filter">
+  <ng-container *ngFor="let option of searchFilterItemOptions">
+    <span
+      class="filter__entity"
+      search-filter-item
+      *ngIf="option.hasItems"
+      [searchFilterItemOptions]="option"
+      [initialStateById]="
+        option.name === CATEGORY_ITEM ? initialCategoryId : undefined
+      "
+      (valueChanges)="filterValueChanges($event)"
+    ></span>
+  </ng-container>
+</div>

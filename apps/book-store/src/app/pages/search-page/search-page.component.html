@@ -1,0 +1,30 @@
+<section class="search-page page">
+  <div class="search-page__search-bar" search-bar></div>
+  <div class="content-wrapper">
+    <search-filter
+      class="search-page__filter"
+      [initialCategoryId]="initialCategoryId"
+      [searchFilterItemOptions]="filterOptions"
+    ></search-filter>
+
+    <div class="search-page__content">
+      <ng-container *ngIf="resultList">
+        <ng-container *ngFor="let product of resultList">
+          <cart-item-wrapper
+            [itemId]="product.id"
+            [isShowCartButton]="product.onSale"
+          >
+            <product-card
+              (click)="navigateToProductPage(product.id)"
+              [product]="product"
+            ></product-card>
+          </cart-item-wrapper>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="resultList && !resultList.length">
+        <span class="tui-text_h5">По данному запросу ничего не найдено</span>
+      </ng-container>
+    </div>
+  </div>
+</section>

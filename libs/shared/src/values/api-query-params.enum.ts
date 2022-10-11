@@ -12,4 +12,5 @@ export enum ApiQueryParams {
   TEXT = 'text',
   CATEGORIES = 'categories',
   TRACK = 'track',
+  TAKE = 'take',
 }

@@ -30,6 +30,14 @@ export class ProductsController extends BaseController {
     return this.productsService.getAllProducts();
   }
 
+  @Get(ApiControlles.BY_CATEGORY)
+  getProductsByCategoryId(
+    @Query(ApiQueryParams.ID) id: number,
+    @Query(ApiQueryParams.TAKE) take?: number
+  ): Promise<ProductEntity[]> {
+    return this.productsService.getProductsByCategoryId(id, take);
+  }
+
   @Get(ApiControlles.SEARCH)
   search(
     @SearchParams({ page: 1, perPage: 25 })

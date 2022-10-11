@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard, ServiceUnavailableGuard } from '@core/guards';
+import { ServiceUnavailableGuard } from '@core/guards';
 import { AppRoutes } from '@core/values';
+import { AuthGuard } from '@features/auth';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,7 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./features/main/main.module').then((m) => m.MainModule),
+      import('./pages/main-page/main.module').then((m) => m.MainModule),
     data: {
       hasHeader: true,
       hasFooter: true,
@@ -27,8 +28,8 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./features/product-info/product-info.module').then(
-        (m) => m.ProductInfoModule
+      import('./pages/product-info-page/product-info-page.module').then(
+        (m) => m.ProductInfoPageModule
       ),
     data: {
       hasHeader: true,
@@ -41,7 +42,9 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./features/search/search.module').then((m) => m.SearchModule),
+      import('./pages/search-page/search-page.module').then(
+        (m) => m.SearchPageModule
+      ),
     data: {
       hasHeader: true,
       hasFooter: true,
@@ -53,7 +56,9 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./features/cart/cart.module').then((m) => m.CartModule),
+      import('./pages/cart-page/cart-page.module').then(
+        (m) => m.CartPageModule
+      ),
     data: {
       hasHeader: true,
       hasFooter: true,
@@ -63,7 +68,7 @@ export const routes: Routes = [
   {
     path: AppRoutes.ADMIN,
     loadChildren: () =>
-      import('./features/admin-panel/admin-panel.module').then(
+      import('./pages/admin-panel/admin-panel.module').then(
         (m) => m.AdminPanelModule
       ),
     canActivate: [AuthGuard],
@@ -78,8 +83,8 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./features/order-tracker/order-tracker.module').then(
-        (m) => m.OrderTrackerModule
+      import('./pages/order-tracker-page/order-tracker-page.module').then(
+        (m) => m.OrderTrackerPageModule
       ),
     data: {
       hasHeader: true,
@@ -90,7 +95,9 @@ export const routes: Routes = [
   {
     path: AppRoutes.AUTH,
     loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
+      import('./pages/auth-page/auth-page.module').then(
+        (m) => m.AuthPageModule
+      ),
     data: {
       hasHeader: false,
       hasFooter: false,
@@ -100,7 +107,7 @@ export const routes: Routes = [
   {
     path: AppRoutes.ERROR,
     loadChildren: () =>
-      import('./features/errors/errors.module').then((m) => m.ErrorsModule),
+      import('./pages/errors/errors.module').then((m) => m.ErrorsModule),
     data: {
       hasHeader: false,
       hasFooter: false,

@@ -1,5 +1,7 @@
+import { TuiTextfieldControllerModule, TuiButtonModule } from '@taiga-ui/core';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,30 +11,41 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { TuiInputCountModule, TuiInputModule } from '@taiga-ui/kit';
 
+import { TextOverflowPipe } from '@shared/pipes';
+import { CartItemCountChangeEvent, CartItem } from '@features/cart/types';
 import { BookModel, ProductModel } from '@book-store/shared/models';
-import { CartItem } from '@features/cart/models/cart.model';
+import { ProductPricePipe } from '@features/product';
+import { getAuthorList } from '@shared/utils';
 
 @Component({
   selector: 'cart-item, [cart-item]',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TuiInputCountModule,
+    TuiTextfieldControllerModule,
+    TuiButtonModule,
+    TuiInputModule,
+    TextOverflowPipe,
+    ProductPricePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemComponent implements OnInit, OnDestroy {
   @Input() cartItem: CartItem;
 
-  @Input() count: number;
-
   @Output() deleteItem = new EventEmitter<number>();
 
   @Output() productPictureClick = new EventEmitter<number>();
 
-  @Output() countChanges = new EventEmitter<[number, number]>();
+  @Output() countChanges = new EventEmitter<CartItemCountChangeEvent>();
 
   private readonly subscriptions = new Subscription();
-
-  productFormControl = new FormControl<number>(1);
 
   get book(): BookModel {
     return this.cartItem.product.book;
@@ -43,17 +56,28 @@ export class CartItemComponent implements OnInit, OnDestroy {
   }
 
   get itemCount(): number {
-    return this.productFormControl.value ?? 1;
+    return this.countControl.value as number;
   }
 
+  authors: string;
+
+  countControl = new FormControl<number>(1);
+
   ngOnInit(): void {
-    this.productFormControl.setValue(this.cartItem.count);
+    this.countControl.setValue(this.cartItem.count);
 
     this.subscriptions.add(
-      this.productFormControl.valueChanges.subscribe((count) => {
-        this.countChanges.emit([this.cartItem.product.id, count as number]);
+      this.countControl.valueChanges.subscribe((count) => {
+        if (!count) return;
+
+        this.countChanges.emit({
+          id: this.product.id,
+          count,
+        });
       })
     );
+
+    this.authors = getAuthorList(this.book);
   }
 
   ngOnDestroy() {

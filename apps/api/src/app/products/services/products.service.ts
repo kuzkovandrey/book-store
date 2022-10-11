@@ -1,6 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsRelations, Repository, Between, Like, Not } from 'typeorm';
+import {
+  FindOptionsRelations,
+  Repository,
+  Between,
+  Like,
+  Not,
+  IsNull,
+  Equal,
+} from 'typeorm';
 
 import { BookEntity } from '@books/entities';
 import { ProductEntity } from '@products/entities';
@@ -36,6 +44,18 @@ export class ProductsService extends BaseService<ProductEntity> {
   getAllProducts(): Promise<ProductEntity[]> {
     return this.findAll({
       relations: this.findOptionsRelations,
+    });
+  }
+
+  getProductsByCategoryId(id: number, take?: number): Promise<ProductEntity[]> {
+    return this.findAll({
+      relations: this.findOptionsRelations,
+      where: {
+        category: {
+          id,
+        },
+      },
+      take,
     });
   }
 

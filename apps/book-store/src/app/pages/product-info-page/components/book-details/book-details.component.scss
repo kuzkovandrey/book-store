@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  gap: 1rem;
+}

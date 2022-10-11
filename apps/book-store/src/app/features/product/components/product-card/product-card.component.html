@@ -1,0 +1,25 @@
+<div class="product">
+  <div class="product__poster-wrapper">
+    <span [ngStyle]="productPosterStyles" class="product__poster"></span>
+  </div>
+
+  <div class="product__description description">
+    <span class="description__title">
+      {{ product.book.title | textOverflow: 22 }}
+    </span>
+
+    <span class="description__author">
+      {{ author.firstName }}, {{ author.lastName }}
+    </span>
+
+    <p class="description__price-wrapper">
+      <span class="description__price">
+        {{ product | productPrice }}
+      </span>
+
+      <span *ngIf="hasDiscount" class="description__full-price">
+        {{ product.cost }} руб.
+      </span>
+    </p>
+  </div>
+</div>

@@ -1,41 +1,24 @@
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {
-  TuiDataListWrapperModule,
-  TuiInputModule,
-  TuiMultiSelectModule,
-} from '@taiga-ui/kit';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   TuiTextfieldControllerModule,
   TuiButtonModule,
   TuiDataListModule,
 } from '@taiga-ui/core';
-
 import {
-  SearchBarComponent,
-  FilterComponent,
-  FilterEntityComponent,
-} from './components';
-import { SearchComponent } from './search.component';
-import { SearchBarService, FilterService } from './services';
-import {
-  CartItemWrapperComponent,
-  ProductCardComponent,
-} from '@shared/components';
+  TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiMultiSelectModule,
+} from '@taiga-ui/kit';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: SearchComponent,
-  },
-];
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { SearchFilterItemComponent } from './components/search-filter-item/search-filter-item.component';
+import { SearchBarService, SearchFilterService } from './services';
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
     TuiInputModule,
     TuiTextfieldControllerModule,
     TuiButtonModule,
@@ -43,16 +26,14 @@ const routes: Routes = [
     TuiDataListModule,
     TuiDataListWrapperModule,
     TuiMultiSelectModule,
-    ProductCardComponent,
-    CartItemWrapperComponent,
+    CommonModule,
   ],
-  exports: [RouterModule],
   declarations: [
-    SearchComponent,
     SearchBarComponent,
-    FilterComponent,
-    FilterEntityComponent,
+    SearchFilterComponent,
+    SearchFilterItemComponent,
   ],
-  providers: [SearchBarService, FilterService],
+  exports: [SearchBarComponent, SearchFilterComponent],
+  providers: [SearchBarService, SearchFilterService],
 })
 export class SearchModule {}

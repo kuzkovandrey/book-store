@@ -1,0 +1,14 @@
+<tui-multi-select
+  tuiTextfieldSize="m"
+  [editable]="false"
+  [formControl]="entityControl"
+  [tuiTextfieldLabelOutside]="true"
+  [tuiTextfieldCleaner]="true"
+>
+  {{ searchFilterItemOptions.name }}
+  <tui-data-list-wrapper
+    *tuiDataList
+    tuiMultiSelectGroup
+    [items]="searchFilterItemOptions.entities"
+  ></tui-data-list-wrapper>
+</tui-multi-select>

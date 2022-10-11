@@ -1,0 +1,11 @@
+<section class="cart page">
+  <cart-item-list></cart-item-list>
+  <div
+    order-form
+    *ngIf="showOrderForm"
+    class="cart__order-form"
+    [deliveryPointList]="deliveryList$ | async"
+    (formValueChanges)="onChangeOrderForm($event)"
+    (orderButtonClicked)="createOrder()"
+  ></div>
+</section>
