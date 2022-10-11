@@ -5,13 +5,13 @@ import { CommonModule } from '@angular/common';
 import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
 
-import { OrderTrackerComponent } from './order-tracker.component';
+import { OrderTrackerPageComponent } from './order-tracker-page.component';
 import { TrackerFormComponent } from './components/tracker-form/tracker-form.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: OrderTrackerComponent,
+    component: OrderTrackerPageComponent,
   },
 ];
 
@@ -25,6 +25,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     TuiTextfieldControllerModule,
   ],
-  declarations: [OrderTrackerComponent, TrackerFormComponent],
+  declarations: [OrderTrackerPageComponent, TrackerFormComponent],
 })
-export class OrderTrackerModule {}
+export class OrderTrackerPageModule {}

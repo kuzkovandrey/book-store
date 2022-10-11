@@ -8,11 +8,11 @@ import { OrderStateMessages, orderStateToText } from '@features/order/utils';
 import { OrdersService } from '@features/order';
 
 @Component({
-  selector: 'order-tracker',
-  templateUrl: './order-tracker.component.html',
-  styleUrls: ['./order-tracker.component.scss'],
+  selector: 'order-tracker-page',
+  templateUrl: './order-tracker-page.component.html',
+  styleUrls: ['./order-tracker-page.component.scss'],
 })
-export class OrderTrackerComponent implements OnDestroy {
+export class OrderTrackerPageComponent implements OnDestroy {
   private readonly subscriptions = new Subscription();
 
   displayText: {
@@ -21,6 +21,13 @@ export class OrderTrackerComponent implements OnDestroy {
     deliveryPointSchedule?: string;
     totalPrice?: number;
   } = {};
+
+  get isShowDeliveryInfo(): boolean {
+    return (
+      !!this.displayText.deliveryPointAddress &&
+      !!this.displayText.deliveryPointSchedule
+    );
+  }
 
   constructor(
     private ordersService: OrdersService,

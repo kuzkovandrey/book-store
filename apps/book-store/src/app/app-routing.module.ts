@@ -83,8 +83,8 @@ export const routes: Routes = [
     canActivate: [ServiceUnavailableGuard],
     canActivateChild: [ServiceUnavailableGuard],
     loadChildren: () =>
-      import('./pages/order-tracker/order-tracker.module').then(
-        (m) => m.OrderTrackerModule
+      import('./pages/order-tracker-page/order-tracker-page.module').then(
+        (m) => m.OrderTrackerPageModule
       ),
     data: {
       hasHeader: true,

@@ -4,12 +4,7 @@
     <p class="tui-text_body-l">
       {{ displayText.status }}
     </p>
-    <p
-      *ngIf="
-        displayText.deliveryPointAddress && displayText.deliveryPointSchedule
-      "
-      class="tui-text_body-l"
-    >
+    <p *ngIf="isShowDeliveryInfo" class="tui-text_body-l">
       Адрес доставки: {{ displayText.deliveryPointAddress }}, <br />
       график работы: {{ displayText.deliveryPointSchedule }}
     </p>
