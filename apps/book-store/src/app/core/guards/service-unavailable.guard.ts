@@ -3,7 +3,9 @@ import { CanActivate, CanActivateChild, Router } from '@angular/router';
 
 import { AppStorage, StorageKeys } from '@core/services/storage';
 import { AppRoutes, APP_SESSION_STORAGE } from '@core/values';
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class ServiceUnavailableGuard implements CanActivate, CanActivateChild {
   constructor(
     @Inject(APP_SESSION_STORAGE) private storage: AppStorage,

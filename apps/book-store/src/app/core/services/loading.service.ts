@@ -10,7 +10,6 @@ export class LoadingService {
   }
 
   setLoading(loading: boolean) {
-    console.log('set LOADING', loading);
     this.loading.next(loading);
   }
 }

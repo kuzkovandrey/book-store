@@ -2,10 +2,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TuiTextfieldControllerModule, TuiButtonModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
+import { AuthPageComponent } from './auth-page.component';
 import { NgModule } from '@angular/core';
 import { AppRoutes } from '@core/values';
 import { CommonModule } from '@angular/common';
+import { AuthFormComponent } from './components/auth-form/auth-form.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: AppRoutes.LOGIN,
-    component: LoginComponent,
+    component: AuthPageComponent,
   },
 ];
 
@@ -29,6 +30,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [RouterModule],
-  declarations: [LoginComponent],
+  declarations: [AuthPageComponent, AuthFormComponent],
 })
-export class AuthModule {}
+export class AuthPageModule {}

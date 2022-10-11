@@ -100,6 +100,8 @@ export class ProductInfoPageComponent implements OnInit, OnDestroy {
 
   private checkProductCartState(id: number) {
     this.hasProductInCart = this.productInfoPageFacade.hasProductInCart(id);
+    this.changeDetectorRef.markForCheck();
+    console.log(this.hasProductInCart);
   }
 
   onCartButtonClick() {

@@ -95,7 +95,9 @@ export const routes: Routes = [
   {
     path: AppRoutes.AUTH,
     loadChildren: () =>
-      import('./pages/auth/auth.module').then((m) => m.AuthModule),
+      import('./pages/auth-page/auth-page.module').then(
+        (m) => m.AuthPageModule
+      ),
     data: {
       hasHeader: false,
       hasFooter: false,

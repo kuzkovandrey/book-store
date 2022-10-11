@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm" class="form">
+  <tui-input tuiTextfieldSize="m" formControlName="login">
+    Логин
+    <input tuiTextfield type="text" />
+  </tui-input>
+
+  <tui-input tuiTextfieldSize="m" formControlName="password">
+    Пароль
+    <input tuiTextfield type="password" />
+  </tui-input>
+
+  <button
+    (click)="onClickLoginButton()"
+    [disabled]="loginForm.invalid"
+    size="m"
+    tuiButton
+    appearance="primary"
+    type="button"
+  >
+    Войти
+  </button>
+</form>

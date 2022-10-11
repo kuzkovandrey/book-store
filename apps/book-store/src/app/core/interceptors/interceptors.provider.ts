@@ -3,7 +3,7 @@ import { Provider } from '@angular/core';
 import { ErrorsInterceptor } from './errors.interceptor';
 import { ProxyInterceptor } from './proxy.interceptor';
 
-export const InterceptorProviders: Provider[] = [
+export const InterceptorsProvider: Provider[] = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: ProxyInterceptor,

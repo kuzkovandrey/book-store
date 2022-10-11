@@ -67,6 +67,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.searchPageFacade.resetFilterParams();
+    this.loadingService.setLoading(false);
     this.subscriptions.unsubscribe();
   }
 
