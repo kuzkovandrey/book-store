@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'vars';
 
 .product-page {
   padding: 2rem;
@@ -30,6 +31,10 @@
   @include element(discount) {
     text-decoration: line-through;
     color: var(--tui-negative);
+  }
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    flex-direction: column;
   }
 }
 

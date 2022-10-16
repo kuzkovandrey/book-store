@@ -1,12 +1,22 @@
 @import 'mixins';
+@import 'vars';
 
 .similar {
   @include element(title) {
     margin-bottom: 1rem;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      text-align: center;
+    }
   }
 
   @include element(cards) {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      justify-content: center;
+    }
   }
 }

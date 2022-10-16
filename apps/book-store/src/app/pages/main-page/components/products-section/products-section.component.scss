@@ -1,8 +1,8 @@
 @import 'mixins';
+@import 'vars';
 
 .section {
   @include element(title) {
-    display: inline-block;
     margin-bottom: 1rem;
     min-height: 2rem;
     font: var(--tui-font-heading-3);
@@ -11,6 +11,10 @@
     &:hover {
       text-decoration: underline;
     }
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      text-align: center;
+    }
   }
 
   @include element(product-list) {
@@ -18,5 +22,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      justify-content: center;
+    }
   }
 }

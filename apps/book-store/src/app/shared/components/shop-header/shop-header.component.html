@@ -1,11 +1,21 @@
-<header *ngIf="isShown" class="header">
+<header *ngIf="hasHeader" class="header">
   <span class="header__logo tui-text_h4" (click)="navigateToMainPage()">
     Book Store
   </span>
 
-  <nav class="header__nav nav">
+  <button
+    (click)="openNavBar()"
+    class="header__menu-button"
+    tuiIconButton
+    appearance="flat"
+    icon="tuiIconMenuLarge"
+    size="s"
+  ></button>
+
+  <nav class="header__nav nav" [class.nav--shown]="isShowNavBar">
     <ng-container *ngFor="let route of menuRoutes">
       <span
+        (click)="closeNavBar()"
         class="nav__item tui-text_body-l-2"
         [routerLink]="route.path"
         routerLinkActive="nav__item--active"
@@ -13,5 +23,14 @@
         {{ route.title }}
       </span>
     </ng-container>
+
+    <button
+      (click)="closeNavBar()"
+      class="nav__close-button"
+      tuiIconButton
+      appearance="flat"
+      icon="tuiIconRemoveLarge"
+      size="s"
+    ></button>
   </nav>
 </header>

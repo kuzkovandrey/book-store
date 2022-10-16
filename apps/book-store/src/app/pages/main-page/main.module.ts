@@ -12,10 +12,7 @@ import { MainComponent } from './main.component';
 import { ProductsSectionComponent } from './components';
 import { MainPageFacade } from './services';
 import { TextOverflowPipe } from '@shared/pipes';
-import {
-  ProductCardButtonComponent,
-  ProductCardComponent,
-} from '@features/product';
+import { ProductCardComponent } from '@features/product';
 import { CartItemWrapperComponent } from '@features/cart';
 
 const routes: Routes = [
@@ -35,7 +32,6 @@ const routes: Routes = [
     TuiButtonModule,
     ProductCardComponent,
     CartItemWrapperComponent,
-    ProductCardButtonComponent,
     TextOverflowPipe,
   ],
   declarations: [MainComponent, ProductsSectionComponent],

@@ -18,11 +18,35 @@ export class SearchFilterComponent {
 
   @Input() searchFilterItemOptions: SearchFilterItemOptions[];
 
+  isOpen = true;
+
+  private readonly buttonTexts = {
+    open: 'Показать фильтр',
+    close: 'Скрыть фильтр',
+  } as const;
+
+  private readonly buttonIcons = {
+    open: 'tuiIconChevronDownLarge',
+    close: 'tuiIconChevronUpLarge',
+  } as const;
+
+  get buttonText(): string {
+    return this.isOpen ? this.buttonTexts.close : this.buttonTexts.open;
+  }
+
+  get buttonIcon(): string {
+    return this.isOpen ? this.buttonIcons.close : this.buttonIcons.open;
+  }
+
   readonly CATEGORY_ITEM = SearchFilterItemNames.CATEGORY;
 
   constructor(private searchFilterService: SearchFilterService) {}
 
   filterValueChanges(event: SearchFilterItemChangeEvent) {
     this.searchFilterService.handleFilterChanges(event);
+  }
+
+  toggleFilterVisibility() {
+    this.isOpen = !this.isOpen;
   }
 }

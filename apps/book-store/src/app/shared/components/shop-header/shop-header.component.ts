@@ -15,7 +15,9 @@ export class ShopHeaderComponent implements OnInit, OnDestroy {
 
   readonly menuRoutes = MenuRoutes;
 
-  isShown = false;
+  hasHeader = false;
+
+  isShowNavBar = false;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
@@ -29,7 +31,7 @@ export class ShopHeaderComponent implements OnInit, OnDestroy {
           )
         )
         .subscribe((data) => {
-          this.isShown = data && data.hasHeader;
+          this.hasHeader = data && data.hasHeader;
         })
     );
   }
@@ -40,5 +42,14 @@ export class ShopHeaderComponent implements OnInit, OnDestroy {
 
   navigateToMainPage() {
     this.router.navigate([AppRoutes.MAIN]);
+  }
+
+  openNavBar() {
+    console.log('asfasf');
+    this.isShowNavBar = true;
+  }
+
+  closeNavBar() {
+    this.isShowNavBar = false;
   }
 }

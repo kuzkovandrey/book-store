@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'vars';
 
 .search-page {
   @include element(content) {
@@ -7,10 +8,31 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      justify-content: center;
+    }
+  }
+
+  @include element(filter) {
+    width: 12rem;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      width: 100%;
+    }
+  }
+
+  @include element(filter) {
+    margin-bottom: 1rem;
   }
 }
 
 .content-wrapper {
   display: flex;
-  margin: 2rem 0;
+  margin: 1rem 0;
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
