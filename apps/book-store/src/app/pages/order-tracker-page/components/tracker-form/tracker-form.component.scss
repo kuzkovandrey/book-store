@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'vars';
 
 .form {
   width: 100%;
@@ -8,5 +9,10 @@
 
   @include element(input) {
     width: 100%;
+  }
+
+  @media screen and (max-width: $tablet-portrait-min) {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
