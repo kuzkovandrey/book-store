@@ -4,10 +4,6 @@
   </h4>
 
   <div class="section__product-list">
-    <product-card-button (click)="onClickCategory()">
-      {{ title | textOverflow: 16 }}
-    </product-card-button>
-
     <ng-container *ngFor="let product of products">
       <cart-item-wrapper
         [itemId]="product.id"

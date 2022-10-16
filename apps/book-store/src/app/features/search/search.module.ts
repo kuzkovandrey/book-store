@@ -5,6 +5,7 @@ import {
   TuiTextfieldControllerModule,
   TuiButtonModule,
   TuiDataListModule,
+  TuiSvgModule,
 } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
@@ -22,6 +23,7 @@ import { SearchBarService, SearchFilterService } from './services';
     TuiInputModule,
     TuiTextfieldControllerModule,
     TuiButtonModule,
+    TuiSvgModule,
     ReactiveFormsModule,
     TuiDataListModule,
     TuiDataListWrapperModule,

@@ -1,9 +1,14 @@
 @import 'mixins';
+@import 'vars';
 
 .details {
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 60%;
+  //max-width: 60%;
   gap: 1rem;
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    gap: 0.5rem;
+  }
 }

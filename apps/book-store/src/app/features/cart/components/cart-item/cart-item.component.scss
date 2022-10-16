@@ -1,27 +1,29 @@
 @import 'mixins';
+@import 'vars';
 
 .item {
-  padding: 1rem;
+  padding: 0.5rem;
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 
-  @include element(image) {
-    cursor: pointer;
+  @include element(book-info) {
+    display: flex;
+  }
+
+  @include element(controls) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
 
   @include element(description) {
     margin-left: 1rem;
   }
 
-  @include element(input) {
-    width: 10rem;
-  }
-
   @include element(delete-wrapper) {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -35,11 +37,18 @@
       font: var(--tui-font-text-m);
     }
   }
+
+  @media screen and (max-width: $tablet-portrait-min) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 }
 
 .image {
-  height: 15rem;
-  width: 11rem;
+  cursor: pointer;
+  height: 11rem;
+  width: 8rem;
 }
 
 .description {
@@ -49,6 +58,10 @@
   @include element(title) {
     font: var(--tui-font-heading-6);
     margin-bottom: 0.5rem;
+
+    @media screen and (max-width: $tablet-portrait-min) {
+      font-size: 1rem;
+    }
   }
 
   @include element(price) {

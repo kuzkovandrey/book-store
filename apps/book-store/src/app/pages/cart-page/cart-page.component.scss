@@ -1,7 +1,8 @@
 @import 'mixins';
+@import 'vars';
 
 .cart {
-  padding: 1rem 2rem;
+  padding: 1rem;
 
   @include element(empty-label) {
     text-align: center;
@@ -20,6 +21,12 @@
 
   @include element(price) {
     font-weight: 700;
+  }
+
+  @media screen and (max-width: $tablet-portrait-min) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

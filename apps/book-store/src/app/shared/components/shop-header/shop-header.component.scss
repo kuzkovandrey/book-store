@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4rem;
   background-color: var(--tui-neutral-bg);
 
   @include element(search) {
@@ -19,15 +18,61 @@
     min-width: 13rem;
     cursor: pointer;
   }
+
+  @include element(menu-button) {
+    display: none;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    padding: 0 1rem;
+  }
 }
 
 .nav {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+
   @include element(item) {
-    margin-right: 1rem;
+    margin-left: 1rem;
     cursor: pointer;
 
     @include modifier(active) {
       font-weight: 700;
     }
+  }
+
+  @include element(close-button) {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    display: none;
+
+    @media screen and (max-width: $tablet-langscape-min) {
+      display: block;
+    }
+  }
+
+  @include modifier(shown) {
+    transform: translateY(0) !important;
+  }
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--tui-base-03);
+    transition: transform 0.2s ease-in-out;
+    transform: translateY(-100%);
   }
 }

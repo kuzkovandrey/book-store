@@ -3,6 +3,10 @@
 .page {
   padding: 1rem 2rem;
   min-height: calc(100vh - $header-height);
+
+  @media screen and (max-width: $tablet-langscape-min) {
+    padding: 1rem;
+  }
 }
 
 .cursor-pointer {
